@@ -40,8 +40,10 @@ rootProject.name = "SAGE"
 
 include(
     ":common:appinfo",
+    ":common:coroutines",
     ":common:logging",
     ":common:nav",
+    ":common:time",
     ":common:ui:icons",
     ":common:wakelocks",
 )
