@@ -1,0 +1,26 @@
+package net.sigmabeta.sage.ui
+
+enum class Icon {
+    ALBUM,
+    BACK,
+    BROWSE,
+    CALENDAR,
+    CLEAR,
+    CROSSOUT,
+    DESCRIPTION,
+    FORWARD,
+    HOME,
+    JAM_EMPTY,
+    JAM_FILLED,
+    MINUS,
+    OFFLINE_FILLED,
+    OFFLINE_OUTLINE,
+    PERSON,
+    PLUS,
+    REFRESH,
+    DIFFICULTY,
+    TAG,
+    SEARCH,
+    SEARCH_YOUTUBE,
+    WARNING,
+}

@@ -37,3 +37,11 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "SAGE"
+
+include(
+    ":common:appinfo",
+    ":common:logging",
+    ":common:nav",
+    ":common:ui:icons",
+    ":common:wakelocks",
+)
