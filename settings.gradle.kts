@@ -1,4 +1,4 @@
-includeBuild("build-logic")
+includeBuild("sage-build-logic")
 
 pluginManagement {
     repositories {

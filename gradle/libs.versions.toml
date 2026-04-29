@@ -148,9 +148,9 @@ sage-compose-android = { id = "sage.compose.android", version = "1.0" }
 # so VGLS modules using alias(libs.plugins.vgls.core.android) transparently pick up SageAndroidModulePlugin
 vgls-android-app = { id = "vgleadsheets.android.app", version = "1.0" }
 vgls-compose-android-app = { id = "vgleadsheets.compose.android.app", version = "1.0" }
-vgls-compose-android-module = { id = "sage.compose.android", version = "1.0" }
-vgls-core-android = { id = "sage.android", version = "1.0" }
-vgls-core-jvm = { id = "sage.jvm", version = "1.0" }
+vgls-compose-android-module = { id = "vgleadsheets.compose.android.module", version = "1.0" }
+vgls-core-android = { id = "vgleadsheets.core.android", version = "1.0" }
+vgls-core-jvm = { id = "vgleadsheets.core.jvm", version = "1.0" }
 vgls-di-android = { id = "vgleadsheets.di.android", version = "1.0" }
 vgls-di-worker-android = { id = "vgleadsheets.di.worker.android", version = "1.0" }
 vgls-di-jvm = { id = "vgleadsheets.di.jvm", version = "1.0" }
