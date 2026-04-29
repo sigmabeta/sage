@@ -39,6 +39,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "SAGE"
 
 include(
+    ":common:analytics",
     ":common:appcomm",
     ":common:appinfo",
     ":common:connectivity",
@@ -48,5 +49,6 @@ include(
     ":common:storage:common",
     ":common:time",
     ":common:ui:icons",
+    ":common:ui:strings",
     ":common:wakelocks",
 )
