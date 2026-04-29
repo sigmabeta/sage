@@ -116,7 +116,10 @@ webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref
 zoomable-image-coil3 = { group = "me.saket.telephoto", name = "zoomable-image-coil3", version.ref = "zoomable" }
 
 # SAGE module coordinates
+sage-common-appcomm = { group = "net.sigmabeta.sage", name = "common-appcomm" }
 sage-common-appinfo = { group = "net.sigmabeta.sage", name = "common-appinfo" }
+sage-common-connectivity = { group = "net.sigmabeta.sage", name = "common-connectivity" }
+sage-common-storage-common = { group = "net.sigmabeta.sage", name = "common-storage-common" }
 sage-common-coroutines = { group = "net.sigmabeta.sage", name = "common-coroutines" }
 sage-common-logging = { group = "net.sigmabeta.sage", name = "common-logging" }
 sage-common-nav = { group = "net.sigmabeta.sage", name = "common-nav" }
