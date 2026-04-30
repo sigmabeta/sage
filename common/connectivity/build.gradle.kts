@@ -5,5 +5,5 @@ plugins {
 base.archivesName.set("common-connectivity")
 
 dependencies {
-    implementation("net.sigmabeta.sage:common-coroutines")
+    implementation(projects.common.coroutines)
 }

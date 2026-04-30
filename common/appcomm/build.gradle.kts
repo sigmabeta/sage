@@ -8,7 +8,7 @@ base.archivesName.set("common-appcomm")
 dependencies {
     implementation(libs.hilt.core)
     implementation(libs.moshi)
-    implementation("net.sigmabeta.sage:common-logging")
+    implementation(projects.common.logging)
 
     ksp(libs.hilt.compiler)
     ksp(libs.moshi.codegen)

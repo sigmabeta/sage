@@ -5,5 +5,5 @@ plugins {
 base.archivesName.set("common-analytics")
 
 dependencies {
-    api("net.sigmabeta.sage:common-appcomm")
+    api(projects.common.appcomm)
 }

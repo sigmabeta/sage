@@ -5,5 +5,5 @@ plugins {
 base.archivesName.set("common-storage-common")
 
 dependencies {
-    api("net.sigmabeta.sage:common-coroutines")
+    api(projects.common.coroutines)
 }

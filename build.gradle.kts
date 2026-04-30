@@ -6,6 +6,13 @@ plugins {
     alias(libs.plugins.ksp) apply false
 }
 
-allprojects {
-    group = "net.sigmabeta.sage"
+// Each top-level namespace gets a distinct Maven group so that modules sharing
+// the same project.name (e.g. :common:perf and :fake:perf) don't collide during
+// Gradle's module-identity unification.
+subprojects {
+    group = when {
+        path.startsWith(":android:") -> "net.sigmabeta.sage.android"
+        path.startsWith(":fake:") -> "net.sigmabeta.sage.fake"
+        else -> "net.sigmabeta.sage"
+    }
 }
