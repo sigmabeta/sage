@@ -14,13 +14,13 @@ import net.sigmabeta.sage.coroutines.VglsDispatchers
 object CoroutinesModule {
     @Singleton
     @Provides
-    internal fun provideCoroutineScope(
+    fun provideCoroutineScope(
         vglsDispatchers: VglsDispatchers
     ) = CoroutineScope(vglsDispatchers.computation)
 
     @Singleton
     @Provides
-    internal fun provideRegularDispatchers() = VglsDispatchers(
+    fun provideRegularDispatchers() = VglsDispatchers(
         computation = Dispatchers.Default,
         disk = Dispatchers.IO,
         network = Dispatchers.IO,

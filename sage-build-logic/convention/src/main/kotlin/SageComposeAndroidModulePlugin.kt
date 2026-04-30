@@ -1,4 +1,4 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import net.sigmabeta.sage.plugins.components.configureAndroidCompose
 import net.sigmabeta.sage.plugins.components.libs
 import org.gradle.api.Plugin
