@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-
 android {
     namespace = "net.sigmabeta.sage.themes"
 }

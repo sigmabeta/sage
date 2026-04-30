@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-
 dependencies {
     implementation(libs.hilt.core)
     implementation(libs.moshi)

@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-
 android {
     namespace = "net.sigmabeta.sage.perf.analytics.firebase"
 }

@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.sage.jvm)
 }
 
-
 dependencies {
     api(libs.kotlinx.collections.immutable)
     api(projects.common.appcomm)
