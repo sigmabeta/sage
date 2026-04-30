@@ -19,53 +19,53 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 
 | Module | Coordinates | Description |
 |--------|-------------|-------------|
-| `analytics` | `net.sigmabeta.sage:common-analytics` | Analytics event abstraction |
-| `appcomm` | `net.sigmabeta.sage:common-appcomm` | App-wide communication bus (Moshi + KSP) |
-| `appinfo` | `net.sigmabeta.sage:common-appinfo` | App version / build info |
-| `connectivity` | `net.sigmabeta.sage:common-connectivity` | Network connectivity state |
-| `coroutines` | `net.sigmabeta.sage:common-coroutines` | Coroutine dispatcher providers |
-| `debug` | `net.sigmabeta.sage:common-debug` | Debug-only utilities |
-| `events` | `net.sigmabeta.sage:common-events` | Event dispatcher |
-| `images` | `net.sigmabeta.sage:common-images` | Image loading abstractions |
-| `list` | `net.sigmabeta.sage:common-list` | List model types |
-| `logging` | `net.sigmabeta.sage:common-logging` | `Hatchet` logging abstraction |
-| `nav` | `net.sigmabeta.sage:common-nav` | Navigation destination types |
-| `pdf` | `net.sigmabeta.sage:common-pdf` | PDF config model types |
-| `perf` | `net.sigmabeta.sage:common-perf` | Performance monitoring abstraction |
-| `settings/general` | `net.sigmabeta.sage:common-settings-general` | General settings model |
-| `settings/environment` | `net.sigmabeta.sage:common-settings-environment` | Environment/server settings |
-| `storage/common` | `net.sigmabeta.sage:common-storage-common` | Storage abstractions |
-| `time` | `net.sigmabeta.sage:common-time` | Time/date utilities (ThreeTen) |
-| `ui/components` | `net.sigmabeta.sage:common-ui-components` | Shared UI component model types |
-| `ui/icons` | `net.sigmabeta.sage:common-ui-icons` | Icon abstractions |
-| `ui/strings` | `net.sigmabeta.sage:common-ui-strings` | String resource abstractions |
-| `wakelocks` | `net.sigmabeta.sage:common-wakelocks` | Wakelock abstraction |
+| `analytics` | `net.sigmabeta.sage:analytics` | Analytics event abstraction |
+| `appcomm` | `net.sigmabeta.sage:appcomm` | App-wide communication bus (Moshi + KSP) |
+| `appinfo` | `net.sigmabeta.sage:appinfo` | App version / build info |
+| `connectivity` | `net.sigmabeta.sage:connectivity` | Network connectivity state |
+| `coroutines` | `net.sigmabeta.sage:coroutines` | Coroutine dispatcher providers |
+| `debug` | `net.sigmabeta.sage:debug` | Debug-only utilities |
+| `events` | `net.sigmabeta.sage:events` | Event dispatcher |
+| `images` | `net.sigmabeta.sage:images` | Image loading abstractions |
+| `list` | `net.sigmabeta.sage:list` | List model types |
+| `logging` | `net.sigmabeta.sage:logging` | `Hatchet` logging abstraction |
+| `nav` | `net.sigmabeta.sage:nav` | Navigation destination types |
+| `pdf` | `net.sigmabeta.sage:pdf` | PDF config model types |
+| `perf` | `net.sigmabeta.sage:perf` | Performance monitoring abstraction |
+| `settings/general` | `net.sigmabeta.sage:general` | General settings model |
+| `settings/environment` | `net.sigmabeta.sage:environment` | Environment/server settings |
+| `storage/common` | `net.sigmabeta.sage:common` | Storage abstractions |
+| `time` | `net.sigmabeta.sage:time` | Time/date utilities (ThreeTen) |
+| `ui/components` | `net.sigmabeta.sage:components` | Shared UI component model types |
+| `ui/icons` | `net.sigmabeta.sage:icons` | Icon abstractions |
+| `ui/strings` | `net.sigmabeta.sage:strings` | String resource abstractions |
+| `wakelocks` | `net.sigmabeta.sage:wakelocks` | Wakelock abstraction |
 
 ### `android/` — Android library modules
 
 | Module | Coordinates | Description |
 |--------|-------------|-------------|
-| `analytics` | `net.sigmabeta.sage.android:android-analytics` | Firebase/analytics implementation |
-| `bitmaps` | `net.sigmabeta.sage.android:android-bitmaps` | Bitmap generation (loading indicators, PDF thumbnails) |
-| `connectivity` | `net.sigmabeta.sage.android:android-connectivity` | Android connectivity implementation |
-| `coroutines` | `net.sigmabeta.sage.android:android-coroutines` | Android coroutine dispatcher impl |
-| `firebase` | `net.sigmabeta.sage.android:android-firebase` | Firebase setup |
-| `logging` | `net.sigmabeta.sage.android:android-logging` | `AndroidHatchet` implementation |
-| `perf` | `net.sigmabeta.sage.android:android-perf` | Compose performance monitoring |
-| `resources` | `net.sigmabeta.sage.android:android-resources` | Android resource utilities |
-| `ui/colors` | `net.sigmabeta.sage.android:android-ui-colors` | Color tokens |
-| `ui/fonts` | `net.sigmabeta.sage.android:android-ui-fonts` | Font tokens (MuseJazz) |
-| `ui/icons` | `net.sigmabeta.sage.android:android-ui-icons` | Icon implementations |
-| `ui/strings` | `net.sigmabeta.sage.android:android-ui-strings` | String resource implementations |
-| `ui/themes` | `net.sigmabeta.sage.android:android-ui-themes` | `VglsMaterial` Compose theme |
-| `wakelocks` | `net.sigmabeta.sage.android:android-wakelocks` | Android wakelock implementation |
+| `analytics` | `net.sigmabeta.sage.android:analytics` | Firebase/analytics implementation |
+| `bitmaps` | `net.sigmabeta.sage.android:bitmaps` | Bitmap generation (loading indicators, PDF thumbnails) |
+| `connectivity` | `net.sigmabeta.sage.android:connectivity` | Android connectivity implementation |
+| `coroutines` | `net.sigmabeta.sage.android:coroutines` | Android coroutine dispatcher impl |
+| `firebase` | `net.sigmabeta.sage.android:firebase` | Firebase setup |
+| `logging` | `net.sigmabeta.sage.android:logging` | `AndroidHatchet` implementation |
+| `perf` | `net.sigmabeta.sage.android:perf` | Compose performance monitoring |
+| `resources` | `net.sigmabeta.sage.android:resources` | Android resource utilities |
+| `ui/colors` | `net.sigmabeta.sage.android:colors` | Color tokens |
+| `ui/fonts` | `net.sigmabeta.sage.android:fonts` | Font tokens (MuseJazz) |
+| `ui/icons` | `net.sigmabeta.sage.android:icons` | Icon implementations |
+| `ui/strings` | `net.sigmabeta.sage.android:strings` | String resource implementations |
+| `ui/themes` | `net.sigmabeta.sage.android:themes` | `VglsMaterial` Compose theme |
+| `wakelocks` | `net.sigmabeta.sage.android:wakelocks` | Android wakelock implementation |
 
 ### `fake/` — test doubles
 
 | Module | Coordinates | Description |
 |--------|-------------|-------------|
-| `analytics` | `net.sigmabeta.sage.fake:fake-analytics` | No-op analytics (Hilt module) |
-| `perf` | `net.sigmabeta.sage.fake:fake-perf` | No-op performance monitoring |
+| `analytics` | `net.sigmabeta.sage.fake:analytics` | No-op analytics (Hilt module) |
+| `perf` | `net.sigmabeta.sage.fake:perf` | No-op performance monitoring |
 
 ## Convention Plugins
 
@@ -73,7 +73,7 @@ Defined in `sage-build-logic/`. All plugins auto-apply detekt and configure JVM 
 
 | Plugin ID | Use for | Auto-deps |
 |-----------|---------|-----------|
-| `sage.android` | Android library modules | `kotlin-stdlib`, `common-logging`, core library desugaring |
+| `sage.android` | Android library modules | `kotlin-stdlib`, `logging`, core library desugaring |
 | `sage.jvm` | Pure Kotlin/JVM modules | `kotlin-stdlib` |
 | `sage.compose.android` | Android library modules with Compose | same as `sage.android` + Compose compiler |
 
@@ -93,15 +93,8 @@ In your app's `settings.gradle.kts`:
 // 1. Plugin resolution — must be top-level (not inside pluginManagement)
 includeBuild("../sage/sage-build-logic")
 
-// 2. Library modules — explicit substitution rules required because SAGE uses
-//    archivesName for stable IDs rather than project.name
-includeBuild("../sage") {
-    dependencySubstitution {
-        substitute(module("net.sigmabeta.sage:common-logging")).using(project(":common:logging"))
-        substitute(module("net.sigmabeta.sage:android-ui-themes")).using(project(":android:ui:themes"))
-        // ... one entry per SAGE module you depend on
-    }
-}
+// 2. Library modules — auto-substitution handles wiring; no explicit rules needed
+includeBuild("../sage")
 
 pluginManagement {
     repositories {
@@ -167,3 +160,4 @@ See `/home/sigma/projects/android/sage-smoke-test` for a minimal working referen
 
 - `sage-build-logic/` is intentionally **not** named `build-logic/` to avoid a Gradle composite build path collision when both the consumer and SAGE use `build-logic/` as their own build-logic directory.
 - Each top-level namespace uses a distinct Maven group so modules sharing the same `project.name` across namespaces (e.g. `:common:perf` and `:fake:perf`) don't cause module-identity collisions during dependency resolution.
+- Module coordinates follow Gradle's auto-substitution formula: `group:project.name` (last path segment). The root `build.gradle.kts` assigns groups only to projects with a build file, preventing virtual parent directories (`:common`, `:android:ui`, etc.) from registering conflicting coordinates.
