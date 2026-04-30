@@ -87,14 +87,38 @@ Defined in `sage-build-logic/`. All plugins auto-apply detekt and configure JVM 
 
 ## How to Consume SAGE
 
-In your app's `settings.gradle.kts`:
+### 1. Add SAGE as a submodule
+
+```bash
+git submodule add git@github.com:sigmabeta/sage.git sage
+```
+
+This pins the consumer repo to a specific SAGE commit. To update SAGE later:
+
+```bash
+git -C sage pull
+git add sage
+git commit -m "Bump SAGE"
+```
+
+Anyone cloning the consumer repo needs to initialize the submodule:
+
+```bash
+git clone --recurse-submodules <repo-url>
+# or, after a plain clone:
+git submodule update --init --recursive
+```
+
+### 2. Wire into Gradle
+
+In `settings.gradle.kts` (paths are relative to the submodule directory `sage/`):
 
 ```kotlin
-// 1. Plugin resolution — must be top-level (not inside pluginManagement)
-includeBuild("../sage/sage-build-logic")
+// Plugin resolution — must be top-level (not inside pluginManagement)
+includeBuild("sage/sage-build-logic")
 
-// 2. Library modules — auto-substitution handles wiring; no explicit rules needed
-includeBuild("../sage")
+// Library modules — auto-substitution handles wiring; no explicit rules needed
+includeBuild("sage")
 
 pluginManagement {
     repositories {
@@ -108,7 +132,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     versionCatalogs {
         create("libs") {
-            from(files("../sage/gradle/libs.versions.toml"))
+            from(files("sage/gradle/libs.versions.toml"))
         }
     }
     repositories {
@@ -147,6 +171,14 @@ dependencies {
 
 > **Note:** SAGE imports the shared version catalog, so you get all library version aliases
 > (`libs.hilt`, `libs.androidx.compose.bom`, etc.) without maintaining a separate TOML file.
+
+### 3. CI setup
+
+After `checkout`, initialize the submodule before running Gradle:
+
+```bash
+git submodule sync && git submodule update --init --recursive
+```
 
 See `/home/sigma/projects/android/sage-smoke-test` for a minimal working reference.
 
