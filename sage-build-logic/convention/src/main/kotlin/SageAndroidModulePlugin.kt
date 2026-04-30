@@ -1,4 +1,4 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import net.sigmabeta.sage.plugins.components.configureKotlinAndroid
 import net.sigmabeta.sage.plugins.components.libs
 import org.gradle.api.Plugin
@@ -11,13 +11,11 @@ class SageAndroidModulePlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
                 apply("io.gitlab.arturbosch.detekt")
             }
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 36
             }
 
             dependencies {
