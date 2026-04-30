@@ -149,6 +149,7 @@ sage-android-resources = { group = "net.sigmabeta.sage.android", name = "resourc
 sage-android-ui-colors = { group = "net.sigmabeta.sage.android", name = "colors" }
 sage-android-ui-fonts = { group = "net.sigmabeta.sage.android", name = "fonts" }
 sage-android-ui-icons = { group = "net.sigmabeta.sage.android", name = "icons" }
+sage-android-ui-list = { group = "net.sigmabeta.sage.android", name = "list" }
 sage-android-ui-strings = { group = "net.sigmabeta.sage.android", name = "strings" }
 sage-android-ui-themes = { group = "net.sigmabeta.sage.android", name = "themes" }
 sage-android-wakelocks = { group = "net.sigmabeta.sage.android", name = "wakelocks" }

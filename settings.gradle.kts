@@ -72,6 +72,7 @@ include(
     ":android:ui:colors",
     ":android:ui:fonts",
     ":android:ui:icons",
+    ":android:ui:list",
     ":android:ui:strings",
     ":android:ui:themes",
     ":android:wakelocks",
