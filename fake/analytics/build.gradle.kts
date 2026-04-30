@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-base.archivesName.set("fake-analytics")
 
 android {
     namespace = "net.sigmabeta.sage.fake.analytics"

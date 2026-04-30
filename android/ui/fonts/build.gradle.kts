@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-base.archivesName.set("android-ui-fonts")
 
 android {
     namespace = "net.sigmabeta.sage.fonts"

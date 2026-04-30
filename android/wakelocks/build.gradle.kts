@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.sage.android)
 }
 
-base.archivesName.set("android-wakelocks")
 
 android {
     namespace = "net.sigmabeta.sage.wakelocks"

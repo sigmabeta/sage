@@ -22,7 +22,7 @@ class SageAndroidModulePlugin : Plugin<Project> {
 
             dependencies {
                 add("implementation", libs.findLibrary("kotlin.stdlib").get())
-                add("implementation", "net.sigmabeta.sage:common-logging")
+                add("implementation", "net.sigmabeta.sage:logging")
             }
         }
     }

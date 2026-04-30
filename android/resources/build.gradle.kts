@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-base.archivesName.set("android-resources")
 
 android {
     namespace = "net.sigmabeta.sage.resources"

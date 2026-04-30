@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-base.archivesName.set("common-appcomm")
 
 dependencies {
     implementation(libs.hilt.core)

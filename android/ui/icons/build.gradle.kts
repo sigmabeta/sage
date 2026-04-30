@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-base.archivesName.set("android-ui-icons")
 
 android {
     namespace = "net.sigmabeta.sage.ui.icons"

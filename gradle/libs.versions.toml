@@ -115,44 +115,45 @@ threeten = { group = "com.jakewharton.threetenabp", name = "threetenabp", versio
 webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref = "webview" }
 zoomable-image-coil3 = { group = "me.saket.telephoto", name = "zoomable-image-coil3", version.ref = "zoomable" }
 
-# SAGE module coordinates
-sage-common-analytics = { group = "net.sigmabeta.sage", name = "common-analytics" }
-sage-common-appcomm = { group = "net.sigmabeta.sage", name = "common-appcomm" }
-sage-common-appinfo = { group = "net.sigmabeta.sage", name = "common-appinfo" }
-sage-common-connectivity = { group = "net.sigmabeta.sage", name = "common-connectivity" }
-sage-common-storage-common = { group = "net.sigmabeta.sage", name = "common-storage-common" }
-sage-common-coroutines = { group = "net.sigmabeta.sage", name = "common-coroutines" }
-sage-common-logging = { group = "net.sigmabeta.sage", name = "common-logging" }
-sage-common-nav = { group = "net.sigmabeta.sage", name = "common-nav" }
-sage-common-time = { group = "net.sigmabeta.sage", name = "common-time" }
-sage-common-ui-icons = { group = "net.sigmabeta.sage", name = "common-ui-icons" }
-sage-common-ui-strings = { group = "net.sigmabeta.sage", name = "common-ui-strings" }
-sage-common-wakelocks = { group = "net.sigmabeta.sage", name = "common-wakelocks" }
-sage-common-debug = { group = "net.sigmabeta.sage", name = "common-debug" }
-sage-common-events = { group = "net.sigmabeta.sage", name = "common-events" }
-sage-common-images = { group = "net.sigmabeta.sage", name = "common-images" }
-sage-common-list = { group = "net.sigmabeta.sage", name = "common-list" }
-sage-common-pdf = { group = "net.sigmabeta.sage", name = "common-pdf" }
-sage-common-perf = { group = "net.sigmabeta.sage", name = "common-perf" }
-sage-common-settings-general = { group = "net.sigmabeta.sage", name = "common-settings-general" }
-sage-common-settings-environment = { group = "net.sigmabeta.sage", name = "common-settings-environment" }
-sage-common-ui-components = { group = "net.sigmabeta.sage", name = "common-ui-components" }
-sage-android-analytics = { group = "net.sigmabeta.sage", name = "android-analytics" }
-sage-android-bitmaps = { group = "net.sigmabeta.sage", name = "android-bitmaps" }
-sage-android-connectivity = { group = "net.sigmabeta.sage", name = "android-connectivity" }
-sage-android-coroutines = { group = "net.sigmabeta.sage", name = "android-coroutines" }
-sage-android-firebase = { group = "net.sigmabeta.sage", name = "android-firebase" }
-sage-android-logging = { group = "net.sigmabeta.sage", name = "android-logging" }
-sage-android-perf = { group = "net.sigmabeta.sage", name = "android-perf" }
-sage-android-resources = { group = "net.sigmabeta.sage", name = "android-resources" }
-sage-android-ui-colors = { group = "net.sigmabeta.sage", name = "android-ui-colors" }
-sage-android-ui-fonts = { group = "net.sigmabeta.sage", name = "android-ui-fonts" }
-sage-android-ui-icons = { group = "net.sigmabeta.sage", name = "android-ui-icons" }
-sage-android-ui-strings = { group = "net.sigmabeta.sage", name = "android-ui-strings" }
-sage-android-ui-themes = { group = "net.sigmabeta.sage", name = "android-ui-themes" }
-sage-android-wakelocks = { group = "net.sigmabeta.sage", name = "android-wakelocks" }
-sage-fake-analytics = { group = "net.sigmabeta.sage", name = "fake-analytics" }
-sage-fake-perf = { group = "net.sigmabeta.sage", name = "fake-perf" }
+# SAGE module coordinates — group:name matches auto-substitution (group set in root build.gradle.kts,
+# name = last path segment of the module path so Gradle can substitute without explicit rules)
+sage-common-analytics = { group = "net.sigmabeta.sage", name = "analytics" }
+sage-common-appcomm = { group = "net.sigmabeta.sage", name = "appcomm" }
+sage-common-appinfo = { group = "net.sigmabeta.sage", name = "appinfo" }
+sage-common-connectivity = { group = "net.sigmabeta.sage", name = "connectivity" }
+sage-common-storage-common = { group = "net.sigmabeta.sage", name = "common" }
+sage-common-coroutines = { group = "net.sigmabeta.sage", name = "coroutines" }
+sage-common-logging = { group = "net.sigmabeta.sage", name = "logging" }
+sage-common-nav = { group = "net.sigmabeta.sage", name = "nav" }
+sage-common-time = { group = "net.sigmabeta.sage", name = "time" }
+sage-common-ui-icons = { group = "net.sigmabeta.sage", name = "icons" }
+sage-common-ui-strings = { group = "net.sigmabeta.sage", name = "strings" }
+sage-common-wakelocks = { group = "net.sigmabeta.sage", name = "wakelocks" }
+sage-common-debug = { group = "net.sigmabeta.sage", name = "debug" }
+sage-common-events = { group = "net.sigmabeta.sage", name = "events" }
+sage-common-images = { group = "net.sigmabeta.sage", name = "images" }
+sage-common-list = { group = "net.sigmabeta.sage", name = "list" }
+sage-common-pdf = { group = "net.sigmabeta.sage", name = "pdf" }
+sage-common-perf = { group = "net.sigmabeta.sage", name = "perf" }
+sage-common-settings-general = { group = "net.sigmabeta.sage", name = "general" }
+sage-common-settings-environment = { group = "net.sigmabeta.sage", name = "environment" }
+sage-common-ui-components = { group = "net.sigmabeta.sage", name = "components" }
+sage-android-analytics = { group = "net.sigmabeta.sage.android", name = "analytics" }
+sage-android-bitmaps = { group = "net.sigmabeta.sage.android", name = "bitmaps" }
+sage-android-connectivity = { group = "net.sigmabeta.sage.android", name = "connectivity" }
+sage-android-coroutines = { group = "net.sigmabeta.sage.android", name = "coroutines" }
+sage-android-firebase = { group = "net.sigmabeta.sage.android", name = "firebase" }
+sage-android-logging = { group = "net.sigmabeta.sage.android", name = "logging" }
+sage-android-perf = { group = "net.sigmabeta.sage.android", name = "perf" }
+sage-android-resources = { group = "net.sigmabeta.sage.android", name = "resources" }
+sage-android-ui-colors = { group = "net.sigmabeta.sage.android", name = "colors" }
+sage-android-ui-fonts = { group = "net.sigmabeta.sage.android", name = "fonts" }
+sage-android-ui-icons = { group = "net.sigmabeta.sage.android", name = "icons" }
+sage-android-ui-strings = { group = "net.sigmabeta.sage.android", name = "strings" }
+sage-android-ui-themes = { group = "net.sigmabeta.sage.android", name = "themes" }
+sage-android-wakelocks = { group = "net.sigmabeta.sage.android", name = "wakelocks" }
+sage-fake-analytics = { group = "net.sigmabeta.sage.fake", name = "analytics" }
+sage-fake-perf = { group = "net.sigmabeta.sage.fake", name = "perf" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
