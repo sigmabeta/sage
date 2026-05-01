@@ -2,19 +2,19 @@ package net.sigmabeta.sage.android.wakelocks
 
 import android.app.Activity
 import android.view.WindowManager
-import net.sigmabeta.sage.wakelocks.WakeLockManager
-import net.sigmabeta.sage.appcomm.ActionSink
-import net.sigmabeta.sage.appcomm.EventDispatcher
-import net.sigmabeta.sage.appcomm.VglsAction
-import net.sigmabeta.sage.appcomm.VglsEvent
-import net.sigmabeta.sage.coroutines.VglsDispatchers
-import net.sigmabeta.sage.ui.StringId
-import net.sigmabeta.sage.ui.StringProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.sigmabeta.sage.appcomm.ActionSink
+import net.sigmabeta.sage.appcomm.EventDispatcher
+import net.sigmabeta.sage.appcomm.VglsAction
+import net.sigmabeta.sage.appcomm.VglsEvent
+import net.sigmabeta.sage.coroutines.SageDispatchers
+import net.sigmabeta.sage.ui.StringId
+import net.sigmabeta.sage.ui.StringProvider
+import net.sigmabeta.sage.wakelocks.WakeLockManager
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -23,7 +23,7 @@ class WakeLockManagerImpl(
     private val eventDispatcher: EventDispatcher,
     private val stringProvider: StringProvider,
     private val coroutineScope: CoroutineScope,
-    private val dispatchers: VglsDispatchers,
+    private val dispatchers: SageDispatchers,
 ) : WakeLockManager,
     ActionSink {
     private var screenOnTimerJob: Job? = null

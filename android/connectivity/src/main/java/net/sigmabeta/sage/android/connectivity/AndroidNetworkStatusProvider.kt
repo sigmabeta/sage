@@ -6,10 +6,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
-import net.sigmabeta.sage.connectivity.NetworkStatus
-import net.sigmabeta.sage.connectivity.NetworkStatusProvider
-import net.sigmabeta.sage.coroutines.VglsDispatchers
-import net.sigmabeta.sage.logging.Hatchet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
@@ -19,12 +15,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import net.sigmabeta.sage.connectivity.NetworkStatus
+import net.sigmabeta.sage.connectivity.NetworkStatusProvider
+import net.sigmabeta.sage.coroutines.SageDispatchers
+import net.sigmabeta.sage.logging.Hatchet
 import java.io.IOException
 
 class AndroidNetworkStatusProvider(
     context: Context,
     private val hatchet: Hatchet,
-    dispatchers: VglsDispatchers,
+    dispatchers: SageDispatchers,
     private val apiProbe: suspend () -> Boolean,
 ) : NetworkStatusProvider {
     private val _status = MutableStateFlow(NetworkStatus.OFFLINE)

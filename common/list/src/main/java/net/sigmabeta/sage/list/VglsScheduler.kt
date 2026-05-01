@@ -1,10 +1,10 @@
 package net.sigmabeta.sage.list
 
-import net.sigmabeta.sage.coroutines.VglsDispatchers
 import kotlinx.coroutines.CoroutineScope
+import net.sigmabeta.sage.coroutines.SageDispatchers
 
 interface VglsScheduler {
-    val dispatchers: VglsDispatchers
+    val dispatchers: SageDispatchers
     val coroutineScope: CoroutineScope
     val delayManager: DelayManager
 }

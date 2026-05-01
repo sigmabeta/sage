@@ -1,11 +1,11 @@
 package net.sigmabeta.sage.perf
 
-import net.sigmabeta.sage.coroutines.VglsDispatchers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import net.sigmabeta.sage.coroutines.SageDispatchers
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.nanoseconds
 
@@ -18,7 +18,7 @@ import kotlin.time.Duration.Companion.nanoseconds
 )
 class PerfMeasurerImpl(
     private val perfBackend: PerfBackend,
-    private val dispatchers: VglsDispatchers
+    private val dispatchers: SageDispatchers
 ) : PerfMeasurer {
     private val perfCoroutineScope = CoroutineScope(dispatchers.main)
 

@@ -2,15 +2,15 @@ package net.sigmabeta.sage.android.analytics
 
 import android.content.Context
 import com.google.firebase.analytics.FirebaseAnalytics
-import net.sigmabeta.sage.analytics.Analytics
-import net.sigmabeta.sage.android.analytics.firebase.FirebaseAnalyticsImpl
-import net.sigmabeta.sage.coroutines.VglsDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
+import net.sigmabeta.sage.analytics.Analytics
+import net.sigmabeta.sage.android.analytics.firebase.FirebaseAnalyticsImpl
+import net.sigmabeta.sage.coroutines.SageDispatchers
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -24,7 +24,7 @@ object AnalyticsModule {
     @Singleton
     fun provideAnalyticsImpl(
         firebaseAnalytics: FirebaseAnalytics,
-        dispatchers: VglsDispatchers,
+        dispatchers: SageDispatchers,
         coroutineScope: CoroutineScope
     ): Analytics = FirebaseAnalyticsImpl(
             firebaseAnalytics,

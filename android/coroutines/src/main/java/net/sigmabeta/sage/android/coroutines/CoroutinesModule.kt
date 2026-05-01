@@ -4,10 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import net.sigmabeta.sage.coroutines.VglsDispatchers
+import net.sigmabeta.sage.coroutines.SageDispatchers
+import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -15,12 +15,12 @@ object CoroutinesModule {
     @Singleton
     @Provides
     fun provideCoroutineScope(
-        vglsDispatchers: VglsDispatchers
-    ) = CoroutineScope(vglsDispatchers.computation)
+        sageDispatchers: SageDispatchers
+    ) = CoroutineScope(sageDispatchers.computation)
 
     @Singleton
     @Provides
-    fun provideRegularDispatchers() = VglsDispatchers(
+    fun provideRegularDispatchers() = SageDispatchers(
         computation = Dispatchers.Default,
         disk = Dispatchers.IO,
         network = Dispatchers.IO,

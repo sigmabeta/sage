@@ -43,5 +43,23 @@ gradlePlugin {
             implementationClass = "SageComposeAndroidModulePlugin"
             version = "1.0"
         }
+
+        register("sageDiAndroid") {
+            id = "sage.di.android"
+            implementationClass = "SageDiAndroidModulePlugin"
+            version = "1.0"
+        }
+
+        register("sageDiJvm") {
+            id = "sage.di.jvm"
+            implementationClass = "SageDiJvmModulePlugin"
+            version = "1.0"
+        }
+
+        register("sageDiWorkerAndroid") {
+            id = "sage.di.worker.android"
+            implementationClass = "SageDiWorkerAndroidModulePlugin"
+            version = "1.0"
+        }
     }
 }

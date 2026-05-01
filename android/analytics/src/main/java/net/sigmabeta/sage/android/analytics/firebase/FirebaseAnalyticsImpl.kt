@@ -2,19 +2,19 @@ package net.sigmabeta.sage.android.analytics.firebase
 
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import net.sigmabeta.sage.analytics.Analytics
 import net.sigmabeta.sage.analytics.AnalyticsScreen
 import net.sigmabeta.sage.analytics.getDetails
 import net.sigmabeta.sage.appcomm.VglsAction
 import net.sigmabeta.sage.appcomm.VglsEvent
-import net.sigmabeta.sage.coroutines.VglsDispatchers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import net.sigmabeta.sage.coroutines.SageDispatchers
 
 @Suppress("TooManyFunctions")
 class FirebaseAnalyticsImpl(
     private val firebaseAnalytics: FirebaseAnalytics,
-    private val dispatchers: VglsDispatchers,
+    private val dispatchers: SageDispatchers,
     private val coroutineScope: CoroutineScope,
 ) : Analytics {
     override fun logScreenView(
