@@ -1,6 +1,6 @@
 package net.sigmabeta.sage.components
 
-import net.sigmabeta.sage.appcomm.VglsAction
+import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.ui.Icon
 
 data class IconNameCaptionListModel(
@@ -8,7 +8,7 @@ data class IconNameCaptionListModel(
     val name: String,
     val caption: String,
     val icon: Icon,
-    val clickAction: VglsAction
+    val clickAction: SageAction
 ) : ListModel() {
     override val columns = ListModel.COLUMNS_ALL
 }

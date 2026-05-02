@@ -9,8 +9,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.sigmabeta.sage.appcomm.ActionSink
 import net.sigmabeta.sage.appcomm.EventDispatcher
-import net.sigmabeta.sage.appcomm.VglsAction
-import net.sigmabeta.sage.appcomm.VglsEvent
+import net.sigmabeta.sage.appcomm.SageAction
+import net.sigmabeta.sage.appcomm.SageEvent
 import net.sigmabeta.sage.coroutines.SageDispatchers
 import net.sigmabeta.sage.ui.StringId
 import net.sigmabeta.sage.ui.StringProvider
@@ -34,15 +34,15 @@ class WakeLockManagerImpl(
 
     override fun allowScreenOff() {
         eventDispatcher.sendEvent(
-            VglsEvent.ScreenOnTimerEnded(
+            SageEvent.ScreenOnTimerEnded(
                 reason = "Disabled"
             )
         )
         endTimer()
     }
 
-    override fun sendAction(action: VglsAction) {
-        if (action == VglsAction.KeepScreenOnSnackCtaClicked) {
+    override fun sendAction(action: SageAction) {
+        if (action == SageAction.KeepScreenOnSnackCtaClicked) {
             startTimer()
         }
     }
@@ -50,7 +50,7 @@ class WakeLockManagerImpl(
     private fun startTimer() {
         screenOnTimerJob?.cancel()
         screenOnTimerJob = coroutineScope.launch(dispatchers.computation) {
-            eventDispatcher.sendEvent(VglsEvent.ScreenOnTimerStarted)
+            eventDispatcher.sendEvent(SageEvent.ScreenOnTimerStarted)
             timerImpl()
         }
     }
@@ -69,7 +69,7 @@ class WakeLockManagerImpl(
         delay(DURATION_SCREEN_ON)
 
         eventDispatcher.sendEvent(
-            VglsEvent.ScreenOnTimerEnded(
+            SageEvent.ScreenOnTimerEnded(
                 reason = "Expired"
             )
         )
@@ -79,14 +79,14 @@ class WakeLockManagerImpl(
     }
 
     private fun showScreenOffSnackbar() {
-        val actionDetails = VglsEvent.ShowSnackbar.SnackbarActionDetails(
+        val actionDetails = SageEvent.ShowSnackbar.SnackbarActionDetails(
             actionSink = this@WakeLockManagerImpl,
-            clickAction = VglsAction.KeepScreenOnSnackCtaClicked,
+            clickAction = SageAction.KeepScreenOnSnackCtaClicked,
             clickActionLabel = stringProvider.getString(StringId.SNACKBAR_CTA_SCREEN_OFF)
         )
 
         eventDispatcher.sendEvent(
-            VglsEvent.ShowSnackbar(
+            SageEvent.ShowSnackbar(
                 message = stringProvider.getString(StringId.SNACKBAR_SCREEN_OFF),
                 withDismissAction = false,
                 actionDetails = actionDetails,

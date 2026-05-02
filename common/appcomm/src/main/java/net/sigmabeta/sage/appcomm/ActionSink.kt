@@ -1,5 +1,5 @@
 package net.sigmabeta.sage.appcomm
 
 fun interface ActionSink {
-    fun sendAction(action: VglsAction)
+    fun sendAction(action: SageAction)
 }

@@ -117,6 +117,7 @@ zoomable-image-coil3 = { group = "me.saket.telephoto", name = "zoomable-image-co
 
 # SAGE module coordinates — group:name matches auto-substitution (group set in root build.gradle.kts,
 # name = last path segment of the module path so Gradle can substitute without explicit rules)
+vgls-common-appcomm = { group = "com.vgleadsheets", name = "appcomm" }
 sage-common-analytics = { group = "net.sigmabeta.sage", name = "analytics" }
 sage-common-appcomm = { group = "net.sigmabeta.sage", name = "appcomm" }
 sage-common-appinfo = { group = "net.sigmabeta.sage", name = "appinfo" }

@@ -1,26 +1,26 @@
 package net.sigmabeta.sage.analytics
 
-import net.sigmabeta.sage.appcomm.VglsAction
+import net.sigmabeta.sage.appcomm.SageAction
 
-fun VglsAction.isInitAction() = when (this) {
-    is VglsAction.InitNoArgs,
-    is VglsAction.InitWithId,
-    is VglsAction.InitWithString,
-    is VglsAction.InitWithPageNumber -> true
+fun SageAction.isInitAction() = when (this) {
+    is SageAction.InitNoArgs,
+    is SageAction.InitWithId,
+    is SageAction.InitWithString,
+    is SageAction.InitWithPageNumber -> true
 
     else -> false
 }
 
-fun VglsAction.getDetails(): String? {
+fun SageAction.getDetails(): String? {
     if (!isInitAction()) {
         return null
     }
 
     return when (this) {
-        is VglsAction.InitNoArgs -> null
-        is VglsAction.InitWithId -> id.toString()
-        is VglsAction.InitWithString -> arg
-        is VglsAction.InitWithPageNumber -> "$id:$pageNumber"
+        is SageAction.InitNoArgs -> null
+        is SageAction.InitWithId -> id.toString()
+        is SageAction.InitWithString -> arg
+        is SageAction.InitWithPageNumber -> "$id:$pageNumber"
         else -> null
     }
 }

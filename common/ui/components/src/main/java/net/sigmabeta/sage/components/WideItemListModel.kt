@@ -1,6 +1,6 @@
 package net.sigmabeta.sage.components
 
-import net.sigmabeta.sage.appcomm.VglsAction
+import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.ui.Icon
 
 data class WideItemListModel(
@@ -9,7 +9,7 @@ data class WideItemListModel(
     val sourceInfo: String?,
     val imagePlaceholder: Icon,
     val actionableId: Long? = null,
-    val clickAction: VglsAction
+    val clickAction: SageAction
 ) : ListModel() {
     override val columns = 1
 }

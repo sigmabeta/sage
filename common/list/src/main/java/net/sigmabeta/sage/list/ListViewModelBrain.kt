@@ -1,12 +1,5 @@
 package net.sigmabeta.sage.list
 
-import net.sigmabeta.sage.analytics.Analytics
-import net.sigmabeta.sage.analytics.AnalyticsScreen
-import net.sigmabeta.sage.analytics.isInitAction
-import net.sigmabeta.sage.appcomm.VglsAction
-import net.sigmabeta.sage.appcomm.VglsEvent
-import net.sigmabeta.sage.logging.Hatchet
-import net.sigmabeta.sage.ui.StringProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
@@ -21,6 +14,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import net.sigmabeta.sage.analytics.Analytics
+import net.sigmabeta.sage.analytics.AnalyticsScreen
+import net.sigmabeta.sage.analytics.isInitAction
+import net.sigmabeta.sage.appcomm.SageAction
+import net.sigmabeta.sage.appcomm.SageEvent
+import net.sigmabeta.sage.logging.Hatchet
+import net.sigmabeta.sage.ui.StringProvider
 
 abstract class ListViewModelBrain(
     private val stringProvider: StringProvider,
@@ -32,11 +32,11 @@ abstract class ListViewModelBrain(
 
     abstract val screenIdentifier: AnalyticsScreen
 
-    protected abstract fun handleAction(action: VglsAction)
+    protected abstract fun handleAction(action: SageAction)
 
-    protected open fun handleEvent(event: VglsEvent) {}
+    protected open fun handleEvent(event: SageEvent) {}
 
-    protected val internalUiEvents = MutableSharedFlow<VglsEvent>(
+    protected val internalUiEvents = MutableSharedFlow<SageEvent>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
@@ -47,7 +47,7 @@ abstract class ListViewModelBrain(
     val uiStateActual = internalUiStateActual
         .asStateFlow()
 
-    fun sendAction(action: VglsAction) {
+    fun sendAction(action: SageAction) {
         hatchet.d("${this.javaClass.simpleName} - Handling action: $action")
 
         if (action.isInitAction()) {
@@ -56,20 +56,20 @@ abstract class ListViewModelBrain(
             analytics.logVglsAction(action, screenIdentifier)
         }
 
-        if (action is VglsAction.DeviceBack) {
-            emitEvent(VglsEvent.NavigateBack(this.javaClass.simpleName))
+        if (action is SageAction.DeviceBack) {
+            emitEvent(SageEvent.NavigateBack(this.javaClass.simpleName))
             return
         }
 
-        if (action is VglsAction.Resume) {
-            emitEvent(VglsEvent.ShowUiChrome)
+        if (action is SageAction.Resume) {
+            emitEvent(SageEvent.ShowUiChrome)
 
             val state = internalUiState.value
             val titleModel = state.title(stringProvider)
 
             if (titleModel.title != null) {
                 emitEvent(
-                    VglsEvent.UpdateTitle(
+                    SageEvent.UpdateTitle(
                         title = titleModel.title,
                         subtitle = titleModel.subtitle,
                         shouldShowBack = titleModel.shouldShowBack,
@@ -84,7 +84,7 @@ abstract class ListViewModelBrain(
         }
     }
 
-    fun sendEvent(event: VglsEvent) {
+    fun sendEvent(event: SageEvent) {
         scheduler.coroutineScope.launch(scheduler.dispatchers.main) {
             hatchet.d("${this@ListViewModelBrain.javaClass.simpleName} - Handling event: $event")
             handleEvent(event)
@@ -101,7 +101,7 @@ abstract class ListViewModelBrain(
         }
     }
 
-    protected fun emitEvent(event: VglsEvent) {
+    protected fun emitEvent(event: SageEvent) {
         scheduler.coroutineScope.launch(scheduler.dispatchers.main) {
             hatchet.d("Emitting event: $event")
             internalUiEvents.tryEmit(event)

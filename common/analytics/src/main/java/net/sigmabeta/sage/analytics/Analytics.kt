@@ -1,12 +1,12 @@
 package net.sigmabeta.sage.analytics
 
-import net.sigmabeta.sage.appcomm.VglsAction
-import net.sigmabeta.sage.appcomm.VglsEvent
+import net.sigmabeta.sage.appcomm.SageAction
+import net.sigmabeta.sage.appcomm.SageEvent
 
 @Suppress("TooManyFunctions")
 interface Analytics {
     fun logScreenView(
-        action: VglsAction,
+        action: SageAction,
         screen: AnalyticsScreen,
     )
 
@@ -31,12 +31,12 @@ interface Analytics {
     )
 
     fun logVglsAction(
-        action: VglsAction,
+        action: SageAction,
         fromScreen: AnalyticsScreen,
     )
 
     fun logVglsEvent(
-        event: VglsEvent,
+        event: SageEvent,
     )
 
     /**

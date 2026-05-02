@@ -19,13 +19,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.toImmutableList
 import net.sigmabeta.sage.appcomm.ActionSink
-import net.sigmabeta.sage.appcomm.VglsAction
+import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.components.HorizontalScrollerListModel
 import net.sigmabeta.sage.components.ListModel
 import net.sigmabeta.sage.components.SectionListModel
 import net.sigmabeta.sage.list.ListStateActual
-import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 @Suppress("MagicNumber", "LongMethod")
@@ -45,7 +45,7 @@ fun GridScreen(
 
     if (title.title != null) {
         LaunchedEffect(title.title) {
-            actionSink.sendAction(VglsAction.Resume)
+            actionSink.sendAction(SageAction.Resume)
         }
     }
 

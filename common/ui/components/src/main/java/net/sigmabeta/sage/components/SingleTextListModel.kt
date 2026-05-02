@@ -1,10 +1,10 @@
 package net.sigmabeta.sage.components
 
-import net.sigmabeta.sage.appcomm.VglsAction
+import net.sigmabeta.sage.appcomm.SageAction
 
 data class SingleTextListModel(
     val name: String,
-    val clickAction: VglsAction,
+    val clickAction: SageAction,
     override val dataId: Long = name.hashCode().toLong(),
 ) : ListModel() {
     override val columns = ListModel.COLUMNS_ALL

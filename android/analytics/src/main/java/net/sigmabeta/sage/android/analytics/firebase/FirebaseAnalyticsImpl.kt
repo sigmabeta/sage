@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 import net.sigmabeta.sage.analytics.Analytics
 import net.sigmabeta.sage.analytics.AnalyticsScreen
 import net.sigmabeta.sage.analytics.getDetails
-import net.sigmabeta.sage.appcomm.VglsAction
-import net.sigmabeta.sage.appcomm.VglsEvent
+import net.sigmabeta.sage.appcomm.SageAction
+import net.sigmabeta.sage.appcomm.SageEvent
 import net.sigmabeta.sage.coroutines.SageDispatchers
 
 @Suppress("TooManyFunctions")
@@ -18,7 +18,7 @@ class FirebaseAnalyticsImpl(
     private val coroutineScope: CoroutineScope,
 ) : Analytics {
     override fun logScreenView(
-        action: VglsAction,
+        action: SageAction,
         screen: AnalyticsScreen
     ) {
         val detailsBundle = Bundle()
@@ -70,7 +70,7 @@ class FirebaseAnalyticsImpl(
         logEventInBackground(EVENT_SONG_VIEW, details)
     }
 
-    override fun logVglsAction(action: VglsAction, fromScreen: AnalyticsScreen) {
+    override fun logVglsAction(action: SageAction, fromScreen: AnalyticsScreen) {
         val detailsBundle = Bundle()
 
         detailsBundle.putString(PARAM_VGLS_ACTION_NAME, action.javaClass.simpleName)
@@ -79,7 +79,7 @@ class FirebaseAnalyticsImpl(
         logEventInBackground(EVENT_VGLS_ACTION, detailsBundle)
     }
 
-    override fun logVglsEvent(event: VglsEvent) {
+    override fun logVglsEvent(event: SageEvent) {
         val detailsBundle = Bundle()
 
         detailsBundle.putString(PARAM_VGLS_EVENT_NAME, event.javaClass.simpleName)

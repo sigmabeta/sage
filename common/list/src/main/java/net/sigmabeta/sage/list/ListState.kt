@@ -1,7 +1,9 @@
 package net.sigmabeta.sage.list
 
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import net.sigmabeta.sage.appcomm.LCE
-import net.sigmabeta.sage.appcomm.VglsState
+import net.sigmabeta.sage.appcomm.SageState
 import net.sigmabeta.sage.components.ErrorStateListModel
 import net.sigmabeta.sage.components.HorizontalScrollerListModel
 import net.sigmabeta.sage.components.ListModel
@@ -12,10 +14,8 @@ import net.sigmabeta.sage.components.SectionListModel
 import net.sigmabeta.sage.components.TitleBarModel
 import net.sigmabeta.sage.ui.StringId
 import net.sigmabeta.sage.ui.StringProvider
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.toImmutableList
 
-abstract class ListState : VglsState {
+abstract class ListState : SageState {
     abstract fun title(stringProvider: StringProvider): TitleBarModel
     abstract fun toListItems(stringProvider: StringProvider): List<ListModel>
 

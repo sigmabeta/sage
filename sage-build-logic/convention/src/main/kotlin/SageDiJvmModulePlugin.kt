@@ -15,5 +15,5 @@ class SageDiJvmModulePlugin : Plugin<Project> {
                 "ksp"(libs.findLibrary("hilt.compiler").get())
             }
         }
-    }m
+    }
 }

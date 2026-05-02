@@ -1,10 +1,7 @@
 package net.sigmabeta.sage.analytics
 
-import net.sigmabeta.sage.analytics.Analytics
-import net.sigmabeta.sage.analytics.AnalyticsScreen
-import net.sigmabeta.sage.analytics.getDetails
-import net.sigmabeta.sage.appcomm.VglsAction
-import net.sigmabeta.sage.appcomm.VglsEvent
+import net.sigmabeta.sage.appcomm.SageAction
+import net.sigmabeta.sage.appcomm.SageEvent
 import net.sigmabeta.sage.logging.Hatchet
 
 @Suppress("TooManyFunctions")
@@ -24,7 +21,7 @@ class NoopAnalytics(
     }
 
     override fun logScreenView(
-        action: VglsAction,
+        action: SageAction,
         screen: AnalyticsScreen
     ) {
         hatchet.v("Screen view: $screen:${action.getDetails()}")
@@ -51,11 +48,11 @@ class NoopAnalytics(
         hatchet.i("Song $gameName - $songName, for $transposition")
     }
 
-    override fun logVglsAction(action: VglsAction, fromScreen: AnalyticsScreen) {
+    override fun logVglsAction(action: SageAction, fromScreen: AnalyticsScreen) {
         hatchet.d("Logging Action $action")
     }
 
-    override fun logVglsEvent(event: VglsEvent) {
+    override fun logVglsEvent(event: SageEvent) {
         hatchet.d("Logging Event $event")
     }
 }
