@@ -35,12 +35,12 @@ kotlin = "2.2.0"
 kotlinxCollections = "0.4.0"
 kotlinxCoroutines = "1.10.2"
 ksp = "2.2.0-2.0.2"
-licensePlugin = "0.9.8"
+# licensePlugin = "0.9.8" # No support for AGP 9 yet
 material = "1.12.0"
 mavericks = "3.0.10"
 moshi = "1.15.2"
 okhttp = "4.12.0"
-paparazzi = "2.0.0-alpha02"
+paparazzi = "2.0.0-alpha04"
 retrofit = "3.0.0"
 room = "2.7.2"
 splash = "1.0.1"
@@ -178,7 +178,7 @@ gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-licenses = { id = "com.jaredsburrows.license", version.ref = "licensePlugin" }
+# licenses = { id = "com.jaredsburrows.license", version.ref = "licensePlugin" }  # No support for AGP 9 yet
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 
 # SAGE convention plugins
