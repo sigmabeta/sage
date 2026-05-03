@@ -70,7 +70,7 @@ class FirebaseAnalyticsImpl(
         logEventInBackground(EVENT_SONG_VIEW, details)
     }
 
-    override fun logVglsAction(action: SageAction, fromScreen: AnalyticsScreen) {
+    override fun logSageAction(action: SageAction, fromScreen: AnalyticsScreen) {
         val detailsBundle = Bundle()
 
         detailsBundle.putString(PARAM_VGLS_ACTION_NAME, action.javaClass.simpleName)
@@ -79,7 +79,7 @@ class FirebaseAnalyticsImpl(
         logEventInBackground(EVENT_VGLS_ACTION, detailsBundle)
     }
 
-    override fun logVglsEvent(event: SageEvent) {
+    override fun logSageEvent(event: SageEvent) {
         val detailsBundle = Bundle()
 
         detailsBundle.putString(PARAM_VGLS_EVENT_NAME, event.javaClass.simpleName)

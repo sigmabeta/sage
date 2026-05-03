@@ -11,7 +11,7 @@ class EventDispatcherReal(
     private val eventSinks = mutableSetOf<EventSink>()
 
     override val sendEvent: (SageEvent) -> Unit = { event ->
-        analytics.logVglsEvent(event)
+        analytics.logSageEvent(event)
         sendToSinks(event)
     }
 

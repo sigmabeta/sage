@@ -53,7 +53,7 @@ abstract class ListViewModelBrain(
         if (action.isInitAction()) {
             analytics.logScreenView(action, screenIdentifier)
         } else {
-            analytics.logVglsAction(action, screenIdentifier)
+            analytics.logSageAction(action, screenIdentifier)
         }
 
         if (action is SageAction.DeviceBack) {

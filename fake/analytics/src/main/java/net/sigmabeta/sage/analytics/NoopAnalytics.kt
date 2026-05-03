@@ -48,11 +48,11 @@ class NoopAnalytics(
         hatchet.i("Song $gameName - $songName, for $transposition")
     }
 
-    override fun logVglsAction(action: SageAction, fromScreen: AnalyticsScreen) {
+    override fun logSageAction(action: SageAction, fromScreen: AnalyticsScreen) {
         hatchet.d("Logging Action $action")
     }
 
-    override fun logVglsEvent(event: SageEvent) {
+    override fun logSageEvent(event: SageEvent) {
         hatchet.d("Logging Event $event")
     }
 }

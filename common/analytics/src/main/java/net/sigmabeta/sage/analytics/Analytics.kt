@@ -30,12 +30,12 @@ interface Analytics {
         transposition: String?,
     )
 
-    fun logVglsAction(
+    fun logSageAction(
         action: SageAction,
         fromScreen: AnalyticsScreen,
     )
 
-    fun logVglsEvent(
+    fun logSageEvent(
         event: SageEvent,
     )
 
