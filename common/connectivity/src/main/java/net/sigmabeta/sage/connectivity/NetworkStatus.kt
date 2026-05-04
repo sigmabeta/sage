@@ -8,9 +8,9 @@ enum class NetworkStatus {
 
     ONLINE,
 
-    /** OS-validated internet, but the VGLS API itself failed to respond to a probe. */
+    /** OS-validated internet, but the configured API failed to respond to a probe. */
     ONLINE_API_UNREACHABLE,
 }
 
-val NetworkStatus.allowsVglsRequests: Boolean
+val NetworkStatus.allowsApiRequests: Boolean
     get() = this == NetworkStatus.ONLINE

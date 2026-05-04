@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.sigmabeta.sage.ui.VglsMaterialVectors
+import net.sigmabeta.sage.ui.SageMaterialVectors
 
-internal val VglsMaterialVectors.IcRemove24dp: ImageVector
+internal val SageMaterialVectors.IcRemove24dp: ImageVector
     get() {
         if (_icRemove24 != null) {
             return _icRemove24!!

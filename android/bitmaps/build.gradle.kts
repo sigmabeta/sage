@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.sage.android)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -8,8 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
-    implementation(projects.android.ui.fonts)
-    implementation(libs.hilt)
-    ksp(libs.hilt.compiler)
+    api(libs.kotlin.stdlib)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.sage.common.logging)
 }

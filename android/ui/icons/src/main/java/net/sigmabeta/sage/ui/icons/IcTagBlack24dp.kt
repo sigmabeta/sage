@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.sigmabeta.sage.ui.VglsMaterialVectors
+import net.sigmabeta.sage.ui.SageMaterialVectors
 
-internal val VglsMaterialVectors.IcTagBlack24dp: ImageVector
+internal val SageMaterialVectors.IcTagBlack24dp: ImageVector
     get() {
         if (_icTagBlack24dp != null) {
             return _icTagBlack24dp!!

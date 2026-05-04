@@ -5,9 +5,9 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.sigmabeta.sage.ui.VglsMaterialVectors
+import net.sigmabeta.sage.ui.SageMaterialVectors
 
-val VglsMaterialVectors.IcCloudDone24dp: ImageVector
+val SageMaterialVectors.IcCloudDone24dp: ImageVector
     get() {
         if (_icCloudDone24dp != null) {
             return _icCloudDone24dp!!

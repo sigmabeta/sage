@@ -11,5 +11,4 @@ dependencies {
     api(projects.common.wakelocks)
     implementation(projects.common.appcomm)
     implementation(projects.common.coroutines)
-    implementation(projects.common.ui.strings)
 }

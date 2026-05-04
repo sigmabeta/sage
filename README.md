@@ -39,7 +39,6 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | `ui/components` | `net.sigmabeta.sage:components` | Shared UI component model types |
 | `ui/icons` | `net.sigmabeta.sage:icons` | Icon abstractions |
 | `ui/strings` | `net.sigmabeta.sage:strings` | String resource abstractions |
-| `wakelocks` | `net.sigmabeta.sage:wakelocks` | Wakelock abstraction |
 
 ### `android/` — Android library modules
 
@@ -53,12 +52,8 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | `logging` | `net.sigmabeta.sage.android:logging` | `AndroidHatchet` implementation |
 | `perf` | `net.sigmabeta.sage.android:perf` | Compose performance monitoring |
 | `resources` | `net.sigmabeta.sage.android:resources` | Android resource utilities |
-| `ui/colors` | `net.sigmabeta.sage.android:colors` | Color tokens |
-| `ui/fonts` | `net.sigmabeta.sage.android:fonts` | Font tokens (MuseJazz) |
 | `ui/icons` | `net.sigmabeta.sage.android:icons` | Icon implementations |
-| `ui/strings` | `net.sigmabeta.sage.android:strings` | String resource implementations |
-| `ui/themes` | `net.sigmabeta.sage.android:themes` | `VglsMaterial` Compose theme |
-| `wakelocks` | `net.sigmabeta.sage.android:wakelocks` | Android wakelock implementation |
+| `ui/themes` | `net.sigmabeta.sage.android:themes` | `SageMaterial` / `SageMaterialMenu` composables — accepts `lightColors`, `darkColors`, and `typography` from the caller |
 
 ### `fake/` — test doubles
 

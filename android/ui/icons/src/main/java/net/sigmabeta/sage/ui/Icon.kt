@@ -1,7 +1,6 @@
 package net.sigmabeta.sage.ui
 
 import androidx.compose.material.icons.Icons
-import net.sigmabeta.sage.ui.Icon
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.List
@@ -19,34 +18,34 @@ import net.sigmabeta.sage.ui.icons.IcBarChart24dp
 import net.sigmabeta.sage.ui.icons.IcCloudDone24dp
 import net.sigmabeta.sage.ui.icons.IcCrossOut24dp
 import net.sigmabeta.sage.ui.icons.IcDescription24dp
-import net.sigmabeta.sage.ui.icons.IcJamFilled
-import net.sigmabeta.sage.ui.icons.IcJamUnfilled
+import net.sigmabeta.sage.ui.icons.IcFavoriteEmpty
+import net.sigmabeta.sage.ui.icons.IcFavoriteFilled
 import net.sigmabeta.sage.ui.icons.IcOutlineCloudDownload24dp
 import net.sigmabeta.sage.ui.icons.IcPlayCircleFilled24
 import net.sigmabeta.sage.ui.icons.IcRemove24dp
 import net.sigmabeta.sage.ui.icons.IcTagBlack24dp
 
 fun Icon.vector(): ImageVector = when (this) {
-        Icon.ALBUM -> VglsMaterialVectors.IcAlbum24dp
+        Icon.ALBUM -> SageMaterialVectors.IcAlbum24dp
         Icon.BACK -> Icons.AutoMirrored.Default.ArrowBack
         Icon.BROWSE -> Icons.AutoMirrored.Default.List
         Icon.CALENDAR -> Icons.Default.DateRange
         Icon.CLEAR -> Icons.Default.Clear
-        Icon.CROSSOUT -> VglsMaterialVectors.IcCrossOut24dp
-        Icon.DESCRIPTION -> VglsMaterialVectors.IcDescription24dp
-        Icon.DIFFICULTY -> VglsMaterialVectors.IcBarChart24dp
+        Icon.CROSSOUT -> SageMaterialVectors.IcCrossOut24dp
+        Icon.DESCRIPTION -> SageMaterialVectors.IcDescription24dp
+        Icon.DIFFICULTY -> SageMaterialVectors.IcBarChart24dp
         Icon.FORWARD -> Icons.AutoMirrored.Default.ArrowForward
         Icon.HOME -> Icons.Default.Home
-        Icon.JAM_EMPTY -> VglsMaterialVectors.IcJamUnfilled
-        Icon.JAM_FILLED -> VglsMaterialVectors.IcJamFilled
-        Icon.MINUS -> VglsMaterialVectors.IcRemove24dp
-        Icon.OFFLINE_FILLED -> VglsMaterialVectors.IcCloudDone24dp
-        Icon.OFFLINE_OUTLINE -> VglsMaterialVectors.IcOutlineCloudDownload24dp
+        Icon.FAVORITE_EMPTY -> SageMaterialVectors.IcFavoriteEmpty
+        Icon.FAVORITE_FILLED -> SageMaterialVectors.IcFavoriteFilled
+        Icon.MINUS -> SageMaterialVectors.IcRemove24dp
+        Icon.OFFLINE_FILLED -> SageMaterialVectors.IcCloudDone24dp
+        Icon.OFFLINE_OUTLINE -> SageMaterialVectors.IcOutlineCloudDownload24dp
         Icon.PERSON -> Icons.Default.Person
         Icon.PLUS -> Icons.Default.Add
         Icon.REFRESH -> Icons.Default.Refresh
         Icon.SEARCH -> Icons.Default.Search
-        Icon.SEARCH_YOUTUBE -> VglsMaterialVectors.IcPlayCircleFilled24
-        Icon.TAG -> VglsMaterialVectors.IcTagBlack24dp
+        Icon.SEARCH_YOUTUBE -> SageMaterialVectors.IcPlayCircleFilled24
+        Icon.TAG -> SageMaterialVectors.IcTagBlack24dp
         Icon.WARNING -> Icons.Default.Warning
     }

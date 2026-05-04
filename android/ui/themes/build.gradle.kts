@@ -9,8 +9,8 @@ android {
 
 dependencies {
     api(libs.material)
-    api(projects.android.ui.colors)
-    api(projects.android.ui.fonts)
+    api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.material3)
     implementation(libs.androidx.core.splash)
     implementation(libs.androidx.compose.ui.tooling.preview)
 }

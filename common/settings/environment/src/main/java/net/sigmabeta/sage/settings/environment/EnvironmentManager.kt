@@ -1,28 +1,29 @@
 package net.sigmabeta.sage.settings.environment
 
-import net.sigmabeta.sage.storage.common.Storage
 import kotlinx.coroutines.flow.map
+import net.sigmabeta.sage.storage.common.Storage
 
 class EnvironmentManager(
-    private val storage: Storage
+    private val storage: Storage,
+    private val environments: List<AppEnvironment>,
+    private val default: AppEnvironment,
 ) {
-    fun setEnvironment(environment: Environment) {
-        storage.saveInt(SETTING_ENVIRONMENT, environment.ordinal)
+    fun setEnvironment(environment: AppEnvironment) {
+        storage.saveInt(SETTING_ENVIRONMENT, environments.indexOf(environment))
     }
 
     fun selectedEnvironmentFlow() = storage.savedIntFlow(SETTING_ENVIRONMENT)
         .map {
             if (it == null) {
-                ENVIRONMENT_DEFAULT
-            } else if (it < 0 || it >= Environment.entries.size) {
-                ENVIRONMENT_DEFAULT
+                default
+            } else if (it < 0 || it >= environments.size) {
+                default
             } else {
-                Environment.entries[it]
+                environments[it]
             }
         }
 
     companion object {
-        private val ENVIRONMENT_DEFAULT = Environment.PROD
         private const val SETTING_ENVIRONMENT = "setting.debug.environment"
     }
 }
