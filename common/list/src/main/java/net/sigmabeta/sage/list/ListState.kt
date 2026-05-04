@@ -12,7 +12,6 @@ import net.sigmabeta.sage.components.LoadingType
 import net.sigmabeta.sage.components.NoopListModel
 import net.sigmabeta.sage.components.SectionListModel
 import net.sigmabeta.sage.components.TitleBarModel
-import net.sigmabeta.sage.ui.StringId
 import net.sigmabeta.sage.ui.StringProvider
 
 abstract class ListState : SageState {
@@ -26,7 +25,7 @@ abstract class ListState : SageState {
         val title = try {
             title(stringProvider)
         } catch (ex: Exception) {
-            TitleBarModel(stringProvider.getString(StringId.ERROR_BROKEN_SCREEN_TITLE))
+            TitleBarModel("App Error Occurred")
         }
 
         val listItems = try {
@@ -37,7 +36,7 @@ abstract class ListState : SageState {
             persistentListOf(
                 ErrorStateListModel(
                     failedOperationName = "toActual",
-                    errorString = stringProvider.getString(StringId.ERROR_BROKEN_SCREEN_TITLE),
+                    errorString = "App Error Occurred",
                     error = ex
                 )
             )
@@ -46,7 +45,7 @@ abstract class ListState : SageState {
         try {
             checkForDupes(listItems)
         } catch (ex: Exception) {
-            val errorMessage = stringProvider.getString(StringId.ERROR_BROKEN_SCREEN_DESC)
+            val errorMessage = "This screen is not working at the moment."
 
             val items = persistentListOf(
                 ErrorStateListModel(

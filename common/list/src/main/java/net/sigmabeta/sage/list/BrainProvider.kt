@@ -1,8 +1,8 @@
 package net.sigmabeta.sage.list
 
-import net.sigmabeta.sage.nav.Destination
 import kotlinx.coroutines.CoroutineScope
+import net.sigmabeta.sage.nav.RouteDescriptor
 
 interface BrainProvider {
-    fun provideBrain(destination: Destination, coroutineScope: CoroutineScope): ListViewModelBrain
+    fun provideBrain(destination: RouteDescriptor, coroutineScope: CoroutineScope): ListViewModelBrain
 }

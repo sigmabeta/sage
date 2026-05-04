@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.sigmabeta.sage.ui.VglsMaterialVectors
+import net.sigmabeta.sage.ui.SageMaterialVectors
 
-internal val VglsMaterialVectors.IcPlayCircleFilled24: ImageVector
+internal val SageMaterialVectors.IcPlayCircleFilled24: ImageVector
     get() {
         if (_icPlayCircleFilled24 != null) {
             return _icPlayCircleFilled24!!

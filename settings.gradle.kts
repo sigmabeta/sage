@@ -58,8 +58,6 @@ include(
     ":common:ui:components",
     ":common:ui:icons",
     ":common:ui:strings",
-    ":common:wakelocks",
-
     ":android:analytics",
     ":android:bitmaps",
     ":android:connectivity",
@@ -68,13 +66,9 @@ include(
     ":android:logging",
     ":android:perf",
     ":android:resources",
-    ":android:ui:colors",
-    ":android:ui:fonts",
     ":android:ui:icons",
     ":android:ui:list",
-    ":android:ui:strings",
     ":android:ui:themes",
-    ":android:wakelocks",
 
     ":fake:analytics",
     ":fake:perf",

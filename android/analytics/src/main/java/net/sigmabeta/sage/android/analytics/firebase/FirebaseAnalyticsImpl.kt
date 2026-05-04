@@ -5,21 +5,20 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import net.sigmabeta.sage.analytics.Analytics
-import net.sigmabeta.sage.analytics.AnalyticsScreen
+import net.sigmabeta.sage.analytics.AnalyticsScreenId
 import net.sigmabeta.sage.analytics.getDetails
 import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.appcomm.SageEvent
 import net.sigmabeta.sage.coroutines.SageDispatchers
 
-@Suppress("TooManyFunctions")
-class FirebaseAnalyticsImpl(
+open class FirebaseAnalyticsImpl(
     private val firebaseAnalytics: FirebaseAnalytics,
     private val dispatchers: SageDispatchers,
     private val coroutineScope: CoroutineScope,
 ) : Analytics {
     override fun logScreenView(
         action: SageAction,
-        screen: AnalyticsScreen
+        screen: AnalyticsScreenId
     ) {
         val detailsBundle = Bundle()
 
@@ -29,78 +28,24 @@ class FirebaseAnalyticsImpl(
         logEventInBackground(EVENT_SCREEN_VIEW, detailsBundle)
     }
 
-    /**
-     * Screens that matter
-     */
-
-    override fun logGameView(
-        gameName: String
-    ) {
-        val details = Bundle()
-
-        details.putString(PARAM_GAME_NAME, gameName)
-
-        logEventInBackground(EVENT_GAME_VIEW, details)
-    }
-
-    override fun logComposerView(
-        composerName: String
-    ) {
-        val details = Bundle()
-
-        details.putString(PARAM_COMPOSER_NAME, composerName)
-
-        logEventInBackground(EVENT_COMPOSER_VIEW, details)
-    }
-
-    override fun logSongView(
-        id: Long,
-        songName: String,
-        gameName: String,
-        transposition: String?
-    ) {
-        val details = Bundle()
-
-        details.putString(PARAM_ID, id.toString())
-        details.putString(PARAM_SONG_NAME, songName)
-        details.putString(PARAM_GAME_NAME, gameName)
-        details.putString(PARAM_SHEET_TITLE, "$gameName|$songName")
-        details.putString(PARAM_TRANSPOSITION, transposition)
-
-        logEventInBackground(EVENT_SONG_VIEW, details)
-    }
-
-    override fun logVglsAction(action: SageAction, fromScreen: AnalyticsScreen) {
+    override fun logAction(action: SageAction, fromScreen: AnalyticsScreenId) {
         val detailsBundle = Bundle()
 
-        detailsBundle.putString(PARAM_VGLS_ACTION_NAME, action.javaClass.simpleName)
+        detailsBundle.putString(PARAM_ACTION_NAME, action.javaClass.simpleName)
         detailsBundle.putString(PARAM_FROM_SCREEN, fromScreen.toString())
 
-        logEventInBackground(EVENT_VGLS_ACTION, detailsBundle)
+        logEventInBackground(EVENT_ACTION, detailsBundle)
     }
 
-    override fun logVglsEvent(event: SageEvent) {
+    override fun logEvent(event: SageEvent) {
         val detailsBundle = Bundle()
 
-        detailsBundle.putString(PARAM_VGLS_EVENT_NAME, event.javaClass.simpleName)
+        detailsBundle.putString(PARAM_EVENT_NAME, event.javaClass.simpleName)
 
-        logEventInBackground(EVENT_VGLS_EVENT, detailsBundle)
+        logEventInBackground(EVENT_SAGE_EVENT, detailsBundle)
     }
-
-    /**
-     * Misc events
-     */
 
     override fun logAutoRefresh() = logEventInBackground(EVENT_AUTO_REFRESH)
-
-    override fun logRandomSongView(songName: String, gameName: String, transposition: String) {
-        val details = Bundle()
-        details.putString(PARAM_SONG_NAME, songName)
-        details.putString(PARAM_GAME_NAME, gameName)
-        details.putString(PARAM_TRANSPOSITION, transposition)
-
-        logEventInBackground(EVENT_RANDOM_VIEW, details)
-    }
 
     override fun logError(failedOperationName: String, errorString: String, error: Throwable) {
         val details = Bundle()
@@ -112,40 +57,30 @@ class FirebaseAnalyticsImpl(
         logEventInBackground(EVENT_APP_ERROR, details)
     }
 
-    private fun logEventInBackground(eventName: String, detailsBundle: Bundle) {
+    protected fun logEventInBackground(eventName: String, detailsBundle: Bundle) {
         coroutineScope.launch(dispatchers.network) {
             firebaseAnalytics.logEvent(eventName, detailsBundle)
         }
     }
 
-    private fun logEventInBackground(name: String) {
+    protected fun logEventInBackground(name: String) {
         coroutineScope.launch(dispatchers.network) {
             firebaseAnalytics.logEvent(name, null)
         }
     }
 
     companion object {
-        const val EVENT_VGLS_ACTION = "vgls_action"
-        const val EVENT_VGLS_EVENT = "vgls_event"
+        const val EVENT_ACTION = "sage_action"
+        const val EVENT_SAGE_EVENT = "sage_event"
         const val EVENT_AUTO_REFRESH = "auto_refresh"
         const val EVENT_SCREEN_VIEW = "screen_view_custom"
-        const val EVENT_SONG_VIEW = "song_view"
-        const val EVENT_GAME_VIEW = "game_view"
-        const val EVENT_COMPOSER_VIEW = "composer_view"
-        const val EVENT_RANDOM_VIEW = "song_view_random"
         const val EVENT_APP_ERROR = "error_app"
 
         const val PARAM_SCREEN = "screen_name"
         const val PARAM_SCREEN_DETAILS = "screen_details"
-        const val PARAM_VGLS_ACTION_NAME = "action_name"
-        const val PARAM_VGLS_EVENT_NAME = "event_name"
+        const val PARAM_ACTION_NAME = "action_name"
+        const val PARAM_EVENT_NAME = "event_name"
         const val PARAM_FROM_SCREEN = "from_screen"
-        const val PARAM_GAME_NAME = "game_name"
-        const val PARAM_SHEET_TITLE = "sheet_title"
-        const val PARAM_ID = "id"
-        const val PARAM_SONG_NAME = "song_name"
-        const val PARAM_COMPOSER_NAME = "composer_name"
-        const val PARAM_TRANSPOSITION = "transposition"
         const val PARAM_ERROR_OP_NAME = "error_op_name"
         const val PARAM_ERROR_MESSAGE = "error_message"
         const val PARAM_ERROR_THROWABLE = "error_throwable"

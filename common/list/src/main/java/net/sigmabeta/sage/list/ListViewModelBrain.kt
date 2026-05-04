@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import net.sigmabeta.sage.analytics.Analytics
-import net.sigmabeta.sage.analytics.AnalyticsScreen
+import net.sigmabeta.sage.analytics.AnalyticsScreenId
 import net.sigmabeta.sage.analytics.isInitAction
 import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.appcomm.SageEvent
@@ -26,11 +26,11 @@ abstract class ListViewModelBrain(
     private val stringProvider: StringProvider,
     private val analytics: Analytics,
     private val hatchet: Hatchet,
-    private val scheduler: VglsScheduler,
+    private val scheduler: SageScheduler,
 ) {
     abstract fun initialState(): ListState
 
-    abstract val screenIdentifier: AnalyticsScreen
+    abstract val screenIdentifier: AnalyticsScreenId
 
     protected abstract fun handleAction(action: SageAction)
 
@@ -53,7 +53,7 @@ abstract class ListViewModelBrain(
         if (action.isInitAction()) {
             analytics.logScreenView(action, screenIdentifier)
         } else {
-            analytics.logVglsAction(action, screenIdentifier)
+            analytics.logAction(action, screenIdentifier)
         }
 
         if (action is SageAction.DeviceBack) {

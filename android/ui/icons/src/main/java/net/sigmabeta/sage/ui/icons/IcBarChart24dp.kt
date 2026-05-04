@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import net.sigmabeta.sage.ui.VglsMaterialVectors
+import net.sigmabeta.sage.ui.SageMaterialVectors
 
-internal val VglsMaterialVectors.IcBarChart24dp: ImageVector
+internal val SageMaterialVectors.IcBarChart24dp: ImageVector
     get() {
         if (_icBarChart24dp != null) {
             return _icBarChart24dp!!

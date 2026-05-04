@@ -3,49 +3,22 @@ package net.sigmabeta.sage.analytics
 import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.appcomm.SageEvent
 
-@Suppress("TooManyFunctions")
 interface Analytics {
     fun logScreenView(
         action: SageAction,
-        screen: AnalyticsScreen,
+        screen: AnalyticsScreenId,
     )
 
-    /**
-     * Screens that matter
-     */
-
-    fun logGameView(
-        gameName: String,
-    )
-
-    fun logComposerView(
-        composerName: String,
-    )
-
-    @Suppress("LongParameterList")
-    fun logSongView(
-        id: Long,
-        songName: String,
-        gameName: String,
-        transposition: String?,
-    )
-
-    fun logVglsAction(
+    fun logAction(
         action: SageAction,
-        fromScreen: AnalyticsScreen,
+        fromScreen: AnalyticsScreenId,
     )
 
-    fun logVglsEvent(
+    fun logEvent(
         event: SageEvent,
     )
 
-    /**
-     * Misc events
-     */
-
     fun logAutoRefresh()
-
-    fun logRandomSongView(songName: String, gameName: String, transposition: String)
 
     fun logError(
         failedOperationName: String,

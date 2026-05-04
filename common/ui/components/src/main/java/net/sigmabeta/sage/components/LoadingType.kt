@@ -1,7 +1,7 @@
 package net.sigmabeta.sage.components
 
 enum class LoadingType {
-    SHEET,
+    PAGE,
     SQUARE,
     NOTIF,
     WIDE_ITEM,

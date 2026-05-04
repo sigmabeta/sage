@@ -4,16 +4,11 @@ import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.appcomm.SageEvent
 import net.sigmabeta.sage.logging.Hatchet
 
-@Suppress("TooManyFunctions")
-class NoopAnalytics(
+open class NoopAnalytics(
     private val hatchet: Hatchet
 ) : Analytics {
     override fun logAutoRefresh() {
         hatchet.d("Refresh performed automatically.")
-    }
-
-    override fun logRandomSongView(songName: String, gameName: String, transposition: String) {
-        hatchet.d("Random song loaded: $gameName - $songName; for $transposition")
     }
 
     override fun logError(failedOperationName: String, errorString: String, error: Throwable) {
@@ -22,37 +17,16 @@ class NoopAnalytics(
 
     override fun logScreenView(
         action: SageAction,
-        screen: AnalyticsScreen
+        screen: AnalyticsScreenId
     ) {
         hatchet.v("Screen view: $screen:${action.getDetails()}")
     }
 
-    override fun logGameView(
-        gameName: String
-    ) {
-        hatchet.d("Game $gameName viewed")
-    }
-
-    override fun logComposerView(
-        composerName: String
-    ) {
-        hatchet.d("Composer $composerName viewed")
-    }
-
-    override fun logSongView(
-        id: Long,
-        songName: String,
-        gameName: String,
-        transposition: String?
-    ) {
-        hatchet.i("Song $gameName - $songName, for $transposition")
-    }
-
-    override fun logVglsAction(action: SageAction, fromScreen: AnalyticsScreen) {
+    override fun logAction(action: SageAction, fromScreen: AnalyticsScreenId) {
         hatchet.d("Logging Action $action")
     }
 
-    override fun logVglsEvent(event: SageEvent) {
+    override fun logEvent(event: SageEvent) {
         hatchet.d("Logging Event $event")
     }
 }
