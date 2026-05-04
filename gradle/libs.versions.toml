@@ -182,12 +182,12 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 
 # SAGE convention plugins
-sage-android = { id = "sage.android", version = "1.0" }
-sage-jvm = { id = "sage.jvm", version = "1.0" }
-sage-compose-android = { id = "sage.compose.android", version = "1.0" }
-sage-di-android = { id = "sage.di.android", version = "1.0" }
-sage-di-jvm = { id = "sage.di.jvm", version = "1.0" }
-sage-di-worker-android = { id = "sage.di.worker.android", version = "1.0" }
+sage-android = { id = "sage.android" }
+sage-jvm = { id = "sage.jvm" }
+sage-compose-android = { id = "sage.compose.android" }
+sage-di-android = { id = "sage.di.android" }
+sage-di-jvm = { id = "sage.di.jvm" }
+sage-di-worker-android = { id = "sage.di.worker.android" }
 
 # VGLS plugin aliases — app/feature plugins stay in VGLS build-logic
 vgls-android-app = { id = "vgleadsheets.android.app", version = "1.0" }
