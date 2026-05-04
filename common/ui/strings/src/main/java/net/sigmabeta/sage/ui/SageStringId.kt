@@ -1,3 +1,3 @@
 package net.sigmabeta.sage.ui
 
-interface StringId
+interface SageStringId

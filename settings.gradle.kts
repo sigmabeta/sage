@@ -68,6 +68,7 @@ include(
     ":android:resources",
     ":android:ui:icons",
     ":android:ui:list",
+    ":android:ui:strings",
     ":android:ui:themes",
 
     ":fake:analytics",
