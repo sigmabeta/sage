@@ -34,7 +34,25 @@ internal fun Project.configureAndroidCompose(
 
 private fun Project.configureKotlinCompose() {
     extensions.configure<ComposeCompilerGradlePluginExtension> {
-        stabilityConfigurationFile.set(rootProject.layout.projectDirectory.file("compose-stability.conf"))
+        // App-level overrides: <rootProject>/compose-stability.conf, if present.
+        val rootFile = rootProject.layout.projectDirectory.file("compose-stability.conf")
+        if (rootFile.asFile.exists()) {
+            stabilityConfigurationFiles.add(rootFile)
+        }
+
+        // SAGE-shipped baseline: when SAGE is an included build (e.g. consumed
+        // by a downstream app), also read its compose-stability.conf so SAGE
+        // type rules don't have to be duplicated in every consumer.
+        val sageDir = gradle.includedBuilds.firstOrNull { it.name == "sage" }?.projectDir
+        if (sageDir != null) {
+            val sageConfigFile = sageDir.resolve("compose-stability.conf")
+            if (sageConfigFile.exists()) {
+                stabilityConfigurationFiles.add(
+                    project.layout.file(project.provider { sageConfigFile })
+                )
+            }
+        }
+
         reportsDestination.set(project.layout.buildDirectory.dir("compose_compiler/reports"))
         metricsDestination.set(project.layout.buildDirectory.dir("compose_compiler/metrics"))
     }
