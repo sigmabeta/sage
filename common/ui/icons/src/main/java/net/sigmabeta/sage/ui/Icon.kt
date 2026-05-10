@@ -13,6 +13,7 @@ enum class Icon {
     FAVORITE_EMPTY,
     FAVORITE_FILLED,
     MINUS,
+    MUSIC_NOTE,
     OFFLINE_FILLED,
     OFFLINE_OUTLINE,
     PERSON,

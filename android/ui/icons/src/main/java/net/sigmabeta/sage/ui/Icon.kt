@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
@@ -39,6 +40,7 @@ fun Icon.vector(): ImageVector = when (this) {
         Icon.FAVORITE_EMPTY -> SageMaterialVectors.IcFavoriteEmpty
         Icon.FAVORITE_FILLED -> SageMaterialVectors.IcFavoriteFilled
         Icon.MINUS -> SageMaterialVectors.IcRemove24dp
+        Icon.MUSIC_NOTE -> Icons.Default.MusicNote
         Icon.OFFLINE_FILLED -> SageMaterialVectors.IcCloudDone24dp
         Icon.OFFLINE_OUTLINE -> SageMaterialVectors.IcOutlineCloudDownload24dp
         Icon.PERSON -> Icons.Default.Person
