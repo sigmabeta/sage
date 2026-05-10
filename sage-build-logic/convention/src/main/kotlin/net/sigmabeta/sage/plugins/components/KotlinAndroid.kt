@@ -18,7 +18,7 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension,
 ) {
     commonExtension.apply {
-        compileSdk = 35
+        compileSdk = 36
         ndkVersion = "29.0.14206865"
 
         defaultConfig.minSdk = 26
