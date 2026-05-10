@@ -34,6 +34,7 @@ junit4 = "4.13.2"
 kotlin = "2.3.10"
 kotlinxCollections = "0.4.0"
 kotlinxCoroutines = "1.11.0"
+kotlinxSerialization = "1.7.3"
 ksp = "2.3.7"
 # licensePlugin = "0.9.8" # No support for AGP 9 yet
 material = "1.13.0"
@@ -57,6 +58,7 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidXComposeAnimationAlpha" }
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-material3-adaptive-navigation = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation", version.ref = "adaptive" }
 androidx-compose-material3-adaptive-navigation-suite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite", version.ref = "adaptiveNavigation" }
@@ -98,6 +100,7 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", v
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxCollections" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mavericks = { group = "com.airbnb.android", name = "mavericks", version.ref = "mavericks" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
@@ -177,6 +180,7 @@ gradle-publisher = { id = "com.github.triplet.play", version.ref = "gradlePublis
 gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 # licenses = { id = "com.jaredsburrows.license", version.ref = "licensePlugin" }  # No support for AGP 9 yet
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
