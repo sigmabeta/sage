@@ -8,7 +8,8 @@ data class IconNameCaptionListModel(
     val name: String,
     val caption: String,
     val icon: Icon,
-    val clickAction: SageAction
+    val clickAction: SageAction,
+    val active: Boolean = false,
 ) : ListModel() {
     override val columns = ListModel.COLUMNS_ALL
 }

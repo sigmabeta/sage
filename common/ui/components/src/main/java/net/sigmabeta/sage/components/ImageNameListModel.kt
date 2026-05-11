@@ -10,7 +10,8 @@ data class ImageNameListModel(
     val sourceInfo: SourceInfo,
     val imagePlaceholder: Icon,
     val actionableId: Long? = null,
-    val clickAction: SageAction
+    val clickAction: SageAction,
+    val active: Boolean = false,
 ) : ListModel() {
     override val columns = COLUMNS_ALL
 }

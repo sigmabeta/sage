@@ -7,6 +7,7 @@ data class NameCaptionListModel(
     val name: String,
     val caption: String,
     val clickAction: SageAction,
+    val active: Boolean = false,
 ) : ListModel() {
     override val columns = ListModel.COLUMNS_ALL
 }

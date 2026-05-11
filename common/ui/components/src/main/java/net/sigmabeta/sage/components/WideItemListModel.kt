@@ -9,7 +9,8 @@ data class WideItemListModel(
     val sourceInfo: String?,
     val imagePlaceholder: Icon,
     val actionableId: Long? = null,
-    val clickAction: SageAction
+    val clickAction: SageAction,
+    val active: Boolean = false,
 ) : ListModel() {
     override val columns = 1
 }

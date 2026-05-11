@@ -6,7 +6,8 @@ data class LabelValueListModel(
     val label: String,
     val value: String?,
     val clickAction: SageAction,
-    override val dataId: Long = label.hashCode().toLong()
+    override val dataId: Long = label.hashCode().toLong(),
+    val active: Boolean = false,
 ) : ListModel() {
     override val columns = ListModel.COLUMNS_ALL
 }
