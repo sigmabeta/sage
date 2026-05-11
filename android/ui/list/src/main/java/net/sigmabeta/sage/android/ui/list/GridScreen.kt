@@ -89,7 +89,9 @@ fun GridScreen(
             top = 16.dp,
             start = contentPadding,
             end = contentPadding,
-            bottom = 16.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+            bottom = 16.dp +
+                WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() +
+                LocalListBottomInset.current
         )
 
         LazyVerticalStaggeredGrid(
@@ -123,7 +125,9 @@ fun GridScreen(
     } else {
         val contentPaddingWithInsets = PaddingValues(
             top = 16.dp,
-            bottom = 16.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
+            bottom = 16.dp +
+                WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() +
+                LocalListBottomInset.current,
             start = sideMargin,
             end = sideMargin,
         )

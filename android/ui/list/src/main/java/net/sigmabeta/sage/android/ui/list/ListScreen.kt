@@ -40,7 +40,9 @@ fun ListScreen(
 
     val contentPadding = PaddingValues(
         top = 16.dp,
-        bottom = 16.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+        bottom = 16.dp +
+            WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() +
+            LocalListBottomInset.current
     )
 
     LazyColumn(
