@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Shuffle
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.sigmabeta.sage.ui.icons.IcAlbum24dp
@@ -48,6 +49,7 @@ fun Icon.vector(): ImageVector = when (this) {
         Icon.REFRESH -> Icons.Default.Refresh
         Icon.SEARCH -> Icons.Default.Search
         Icon.SEARCH_YOUTUBE -> SageMaterialVectors.IcPlayCircleFilled24
+        Icon.SHUFFLE -> Icons.Default.Shuffle
         Icon.TAG -> SageMaterialVectors.IcTagBlack24dp
         Icon.WARNING -> Icons.Default.Warning
     }

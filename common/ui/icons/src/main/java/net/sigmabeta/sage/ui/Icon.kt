@@ -20,6 +20,7 @@ enum class Icon {
     PLUS,
     REFRESH,
     DIFFICULTY,
+    SHUFFLE,
     TAG,
     SEARCH,
     SEARCH_YOUTUBE,
