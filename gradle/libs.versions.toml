@@ -144,6 +144,7 @@ sage-common-wakelocks = { group = "net.sigmabeta.sage", name = "wakelocks" }
 sage-common-debug = { group = "net.sigmabeta.sage", name = "debug" }
 sage-common-events = { group = "net.sigmabeta.sage", name = "events" }
 sage-common-images = { group = "net.sigmabeta.sage", name = "images" }
+sage-common-freeform = { group = "net.sigmabeta.sage", name = "freeform" }
 sage-common-list = { group = "net.sigmabeta.sage", name = "list" }
 sage-common-pdf = { group = "net.sigmabeta.sage", name = "pdf" }
 sage-common-perf = { group = "net.sigmabeta.sage", name = "perf" }

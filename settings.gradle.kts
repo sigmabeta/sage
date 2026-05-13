@@ -45,6 +45,7 @@ include(
     ":common:coroutines",
     ":common:debug",
     ":common:events",
+    ":common:freeform",
     ":common:images",
     ":common:list",
     ":common:logging",
