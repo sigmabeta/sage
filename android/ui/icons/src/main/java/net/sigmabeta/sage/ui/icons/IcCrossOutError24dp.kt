@@ -11,51 +11,52 @@ import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 import net.sigmabeta.sage.ui.SageMaterialVectors
 
-internal val SageMaterialVectors.IcCrossOutError24dp: ImageVector
-    get() {
-        if (_icCrossOutError24dp != null) {
-            return _icCrossOutError24dp!!
-        }
-        _icCrossOutError24dp = Builder(
-            name = "IcCrossOutError24dp",
-            defaultWidth = 13.0.dp,
-            defaultHeight = 13.0.dp,
-            viewportWidth = 100.0f,
-            viewportHeight = 100.0f
-        ).apply {
-            path(
-                fill = SolidColor(Color(0xFF000000)),
-                stroke = null,
-                strokeLineWidth = 0.0f,
-                strokeLineCap = Butt,
-                strokeLineJoin = Miter,
-                strokeLineMiter = 4.0f,
-                pathFillType = NonZero
-            ) {
-                moveTo(13.0f, 17.0f)
-                lineTo(83.0f, 87.0f)
-                lineTo(87.0f, 83.0f)
-                lineTo(17.0f, 13.0f)
-                close()
-            }
-            path(
-                fill = SolidColor(Color(0xFF000000)),
-                stroke = null,
-                strokeLineWidth = 0.0f,
-                strokeLineCap = Butt,
-                strokeLineJoin = Miter,
-                strokeLineMiter = 4.0f,
-                pathFillType = NonZero
-            ) {
-                moveTo(13.0f, 17.0f)
-                lineTo(83.0f, 87.0f)
-                lineTo(79.0f, 91.0f)
-                lineTo(9.0f, 21.0f)
-                close()
-            }
-        }
-            .build()
-        return _icCrossOutError24dp!!
-    }
+sealed interface CrossOutErrorColor {
+    data object Line : CrossOutErrorColor
+    data object Halo : CrossOutErrorColor
+}
 
-private var _icCrossOutError24dp: ImageVector? = null
+fun SageMaterialVectors.IcCrossOutError24dp(
+    colors: Map<CrossOutErrorColor, Color> = emptyMap(),
+): ImageVector {
+    val line = colors[CrossOutErrorColor.Line] ?: Color.Black
+    val halo = colors[CrossOutErrorColor.Halo] ?: Color.Black
+    return Builder(
+        name = "IcCrossOutError24dp",
+        defaultWidth = 13.0.dp,
+        defaultHeight = 13.0.dp,
+        viewportWidth = 100.0f,
+        viewportHeight = 100.0f,
+    ).apply {
+        path(
+            fill = SolidColor(line),
+            stroke = null,
+            strokeLineWidth = 0.0f,
+            strokeLineCap = Butt,
+            strokeLineJoin = Miter,
+            strokeLineMiter = 4.0f,
+            pathFillType = NonZero,
+        ) {
+            moveTo(13.0f, 17.0f)
+            lineTo(83.0f, 87.0f)
+            lineTo(87.0f, 83.0f)
+            lineTo(17.0f, 13.0f)
+            close()
+        }
+        path(
+            fill = SolidColor(halo),
+            stroke = null,
+            strokeLineWidth = 0.0f,
+            strokeLineCap = Butt,
+            strokeLineJoin = Miter,
+            strokeLineMiter = 4.0f,
+            pathFillType = NonZero,
+        ) {
+            moveTo(13.0f, 17.0f)
+            lineTo(83.0f, 87.0f)
+            lineTo(79.0f, 91.0f)
+            lineTo(9.0f, 21.0f)
+            close()
+        }
+    }.build()
+}

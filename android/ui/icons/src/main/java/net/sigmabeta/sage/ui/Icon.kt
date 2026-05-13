@@ -19,6 +19,8 @@ import net.sigmabeta.sage.ui.icons.IcAlbum24dp
 import net.sigmabeta.sage.ui.icons.IcBarChart24dp
 import net.sigmabeta.sage.ui.icons.IcCloudDone24dp
 import net.sigmabeta.sage.ui.icons.IcCrossOut24dp
+import net.sigmabeta.sage.ui.icons.IcCrossOutError24dp
+import net.sigmabeta.sage.ui.icons.IcCrossOutMenu24dp
 import net.sigmabeta.sage.ui.icons.IcDescription24dp
 import net.sigmabeta.sage.ui.icons.IcFavoriteEmpty
 import net.sigmabeta.sage.ui.icons.IcFavoriteFilled
@@ -28,28 +30,30 @@ import net.sigmabeta.sage.ui.icons.IcRemove24dp
 import net.sigmabeta.sage.ui.icons.IcTagBlack24dp
 
 fun Icon.vector(): ImageVector = when (this) {
-        Icon.ALBUM -> SageMaterialVectors.IcAlbum24dp
-        Icon.BACK -> Icons.AutoMirrored.Default.ArrowBack
-        Icon.BROWSE -> Icons.AutoMirrored.Default.List
-        Icon.CALENDAR -> Icons.Default.DateRange
-        Icon.CLEAR -> Icons.Default.Clear
-        Icon.CROSSOUT -> SageMaterialVectors.IcCrossOut24dp
-        Icon.DESCRIPTION -> SageMaterialVectors.IcDescription24dp
-        Icon.DIFFICULTY -> SageMaterialVectors.IcBarChart24dp
-        Icon.FORWARD -> Icons.AutoMirrored.Default.ArrowForward
-        Icon.HOME -> Icons.Default.Home
-        Icon.FAVORITE_EMPTY -> SageMaterialVectors.IcFavoriteEmpty
-        Icon.FAVORITE_FILLED -> SageMaterialVectors.IcFavoriteFilled
-        Icon.MINUS -> SageMaterialVectors.IcRemove24dp
-        Icon.MUSIC_NOTE -> Icons.Default.MusicNote
-        Icon.OFFLINE_FILLED -> SageMaterialVectors.IcCloudDone24dp
-        Icon.OFFLINE_OUTLINE -> SageMaterialVectors.IcOutlineCloudDownload24dp
-        Icon.PERSON -> Icons.Default.Person
-        Icon.PLUS -> Icons.Default.Add
-        Icon.REFRESH -> Icons.Default.Refresh
-        Icon.SEARCH -> Icons.Default.Search
-        Icon.SEARCH_YOUTUBE -> SageMaterialVectors.IcPlayCircleFilled24
-        Icon.SHUFFLE -> Icons.Default.Shuffle
-        Icon.TAG -> SageMaterialVectors.IcTagBlack24dp
-        Icon.WARNING -> Icons.Default.Warning
-    }
+    is Icon.Album -> SageMaterialVectors.IcAlbum24dp
+    is Icon.Back -> Icons.AutoMirrored.Default.ArrowBack
+    is Icon.Browse -> Icons.AutoMirrored.Default.List
+    is Icon.Calendar -> Icons.Default.DateRange
+    is Icon.Clear -> Icons.Default.Clear
+    is Icon.CrossOut -> SageMaterialVectors.IcCrossOut24dp()
+    is Icon.CrossOutError -> SageMaterialVectors.IcCrossOutError24dp()
+    is Icon.CrossOutMenu -> SageMaterialVectors.IcCrossOutMenu24dp()
+    is Icon.Description -> SageMaterialVectors.IcDescription24dp
+    is Icon.Difficulty -> SageMaterialVectors.IcBarChart24dp
+    is Icon.Forward -> Icons.AutoMirrored.Default.ArrowForward
+    is Icon.Home -> Icons.Default.Home
+    is Icon.FavoriteEmpty -> SageMaterialVectors.IcFavoriteEmpty
+    is Icon.FavoriteFilled -> SageMaterialVectors.IcFavoriteFilled
+    is Icon.Minus -> SageMaterialVectors.IcRemove24dp
+    is Icon.MusicNote -> Icons.Default.MusicNote
+    is Icon.OfflineFilled -> SageMaterialVectors.IcCloudDone24dp
+    is Icon.OfflineOutline -> SageMaterialVectors.IcOutlineCloudDownload24dp
+    is Icon.Person -> Icons.Default.Person
+    is Icon.Plus -> Icons.Default.Add
+    is Icon.Refresh -> Icons.Default.Refresh
+    is Icon.Search -> Icons.Default.Search
+    is Icon.SearchYoutube -> SageMaterialVectors.IcPlayCircleFilled24
+    is Icon.Shuffle -> Icons.Default.Shuffle
+    is Icon.Tag -> SageMaterialVectors.IcTagBlack24dp
+    is Icon.Warning -> Icons.Default.Warning
+}
