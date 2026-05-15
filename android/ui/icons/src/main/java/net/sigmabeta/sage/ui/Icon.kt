@@ -9,12 +9,12 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Computer
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Shuffle
-import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.sigmabeta.sage.ui.icons.IcAlbum24dp
@@ -36,9 +36,9 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.Back -> Icons.AutoMirrored.Default.ArrowBack
     is Icon.Browse -> Icons.AutoMirrored.Default.List
     is Icon.Calendar -> Icons.Default.DateRange
+    is Icon.Chip -> Icons.Default.Memory
     is Icon.Clear -> Icons.Default.Clear
     is Icon.Computer -> Icons.Default.Computer
-    is Icon.Console -> Icons.Default.VideogameAsset
     is Icon.CrossOut -> SageMaterialVectors.IcCrossOut24dp()
     is Icon.CrossOutError -> SageMaterialVectors.IcCrossOutError24dp()
     is Icon.CrossOutMenu -> SageMaterialVectors.IcCrossOutMenu24dp()

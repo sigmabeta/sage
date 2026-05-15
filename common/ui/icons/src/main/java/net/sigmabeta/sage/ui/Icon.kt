@@ -5,9 +5,9 @@ sealed interface Icon {
     data object Back : Icon
     data object Browse : Icon
     data object Calendar : Icon
+    data object Chip : Icon
     data object Clear : Icon
     data object Computer : Icon
-    data object Console : Icon
     data object CrossOut : Icon
     data object CrossOutError : Icon
     data object CrossOutMenu : Icon
