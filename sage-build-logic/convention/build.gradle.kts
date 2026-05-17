@@ -6,14 +6,17 @@ plugins {
 
 group = "net.sigmabeta.sage.buildlogic"
 
+// Build-logic only — runs inside the Gradle daemon (JDK 21). Targeting 21 here lets the
+// convention classpath consume Gradle plugins published for Java 21 (e.g. Paparazzi 2.0.0-alpha).
+// This does NOT change app/module targets, which the convention plugins still set to JVM 17.
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_17
+        jvmTarget = JvmTarget.JVM_21
     }
 }
 
@@ -22,6 +25,10 @@ dependencies {
     compileOnly(libs.detekt.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.kotlin.compose.compiler.gradlePlugin)
+    // Not compileOnly: SageScreenshotModulePlugin applies "app.cash.paparazzi" by id, so the
+    // plugin must be on the build-logic runtime classpath (unlike AGP/Kotlin, which consuming
+    // modules already bring via their own plugins blocks).
+    implementation(libs.paparazzi)
 }
 
 gradlePlugin {
@@ -59,6 +66,12 @@ gradlePlugin {
         register("sageDiWorkerAndroid") {
             id = "sage.di.worker.android"
             implementationClass = "SageDiWorkerAndroidModulePlugin"
+            version = "1.0"
+        }
+
+        register("sageScreenshot") {
+            id = "sage.screenshot"
+            implementationClass = "SageScreenshotModulePlugin"
             version = "1.0"
         }
     }

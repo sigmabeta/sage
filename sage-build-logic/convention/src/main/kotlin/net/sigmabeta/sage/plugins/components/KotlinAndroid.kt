@@ -69,5 +69,6 @@ private fun Project.configureDetekt() {
 
     extensions.configure<DetektExtension> {
         config.setFrom("${rootDir.absolutePath}/detekt-config.yml")
+        baseline = file("detekt-baseline.xml")
     }
 }
