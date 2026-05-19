@@ -191,6 +191,7 @@ gradle-publisher = { id = "com.github.triplet.play", version.ref = "gradlePublis
 gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 # licenses = { id = "com.jaredsburrows.license", version.ref = "licensePlugin" }  # No support for AGP 9 yet
@@ -199,6 +200,7 @@ paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 # SAGE convention plugins
 sage-android = { id = "sage.android" }
 sage-jvm = { id = "sage.jvm" }
+sage-kmp = { id = "sage.kmp" }
 sage-compose-android = { id = "sage.compose.android" }
 sage-di-android = { id = "sage.di.android" }
 sage-di-jvm = { id = "sage.di.jvm" }

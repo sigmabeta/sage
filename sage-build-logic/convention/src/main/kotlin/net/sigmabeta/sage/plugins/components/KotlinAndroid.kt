@@ -17,6 +17,18 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension,
 ) {
+    configureAndroidLibraryDefaults(commonExtension)
+    configureKotlin<KotlinAndroidProjectExtension>()
+}
+
+/**
+ * Android library DSL defaults shared by the Android and KMP conventions: SDK levels, NDK, and
+ * Java 17 source/target. The KMP convention reuses this for its `androidTarget()` while driving
+ * Kotlin compiler options through the multiplatform extension instead of [configureKotlin].
+ */
+internal fun Project.configureAndroidLibraryDefaults(
+    commonExtension: CommonExtension,
+) {
     commonExtension.apply {
         compileSdk = 36
         ndkVersion = "29.0.14206865"
@@ -28,8 +40,6 @@ internal fun Project.configureKotlinAndroid(
             targetCompatibility = JavaVersion.VERSION_17
         }
     }
-
-    configureKotlin<KotlinAndroidProjectExtension>()
 }
 
 internal fun Project.configureKotlinJvm() {
@@ -62,7 +72,7 @@ private inline fun <reified T : KotlinTopLevelExtension> Project.configureKotlin
     }
 }
 
-private fun Project.configureDetekt() {
+internal fun Project.configureDetekt() {
     with(pluginManager) {
         apply("io.gitlab.arturbosch.detekt")
     }

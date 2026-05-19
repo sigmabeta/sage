@@ -45,6 +45,12 @@ gradlePlugin {
             version = "1.0"
         }
 
+        register("sageKmp") {
+            id = "sage.kmp"
+            implementationClass = "SageKmpModulePlugin"
+            version = "1.0"
+        }
+
         register("sageComposeAndroid") {
             id = "sage.compose.android"
             implementationClass = "SageComposeAndroidModulePlugin"
