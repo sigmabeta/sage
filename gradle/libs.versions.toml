@@ -186,6 +186,7 @@ sage-common-ui-icons = { group = "net.sigmabeta.sage", name = "icons" }
 sage-common-ui-strings = { group = "net.sigmabeta.sage", name = "strings" }
 sage-common-wakelocks = { group = "net.sigmabeta.sage", name = "wakelocks" }
 sage-common-debug = { group = "net.sigmabeta.sage", name = "debug" }
+sage-common-di = { group = "net.sigmabeta.sage", name = "di" }
 sage-common-events = { group = "net.sigmabeta.sage", name = "events" }
 sage-common-images = { group = "net.sigmabeta.sage", name = "images" }
 sage-common-freeform = { group = "net.sigmabeta.sage", name = "freeform" }

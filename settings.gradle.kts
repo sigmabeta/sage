@@ -44,6 +44,7 @@ include(
     ":common:connectivity",
     ":common:coroutines",
     ":common:debug",
+    ":common:di",
     ":common:events",
     ":common:freeform",
     ":common:images",
