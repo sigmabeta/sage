@@ -25,6 +25,10 @@ dependencies {
     compileOnly(libs.detekt.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.kotlin.compose.compiler.gradlePlugin)
+    // implementation, not compileOnly: SageDiAndroidModulePlugin calls
+    // pluginManager.apply("dev.zacsweers.metro"), so the plugin's classes have to be on
+    // the convention plugin's runtime classpath, not just its compile classpath.
+    implementation(libs.metro.gradlePlugin)
     // Not compileOnly: SageScreenshotModulePlugin applies "app.cash.paparazzi" by id, so the
     // plugin must be on the build-logic runtime classpath (unlike AGP/Kotlin, which consuming
     // modules already bring via their own plugins blocks).

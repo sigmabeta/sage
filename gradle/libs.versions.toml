@@ -227,6 +227,9 @@ kotlin-compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-
 # replacement (see docs/metro-migration.md).
 metrox-viewmodel = { group = "dev.zacsweers.metro", name = "metrox-viewmodel", version.ref = "metro" }
 metrox-viewmodel-compose = { group = "dev.zacsweers.metro", name = "metrox-viewmodel-compose", version.ref = "metro" }
+# Used by sage-build-logic's SageDiAndroidModulePlugin to configure the metro extension —
+# the convention plugin needs MetroPluginExtension on its compile classpath.
+metro-gradlePlugin = { group = "dev.zacsweers.metro", name = "gradle-plugin", version.ref = "metro" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
