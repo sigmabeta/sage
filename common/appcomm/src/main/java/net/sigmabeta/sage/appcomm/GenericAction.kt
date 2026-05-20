@@ -1,11 +1,11 @@
 package net.sigmabeta.sage.appcomm
 
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class GenericAction(
     val type: String,
     val argIdOne: Long? = null,
     val argIdTwo: Long? = null,
-    val argString: String? = null
+    val argString: String? = null,
 )

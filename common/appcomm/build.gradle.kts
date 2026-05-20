@@ -1,13 +1,19 @@
 plugins {
-    alias(libs.plugins.sage.jvm)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.sage.kmp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
-dependencies {
-    implementation(libs.hilt.core)
-    implementation(libs.moshi)
-    implementation(projects.common.logging)
+kotlin {
+    androidLibrary {
+        namespace = "net.sigmabeta.sage.common.appcomm"
+    }
 
-    ksp(libs.hilt.compiler)
-    ksp(libs.moshi.codegen)
+    sourceSets {
+        named("jvmSharedMain") {
+            dependencies {
+                implementation(libs.kotlinx.serialization.core)
+                implementation(projects.common.logging)
+            }
+        }
+    }
 }

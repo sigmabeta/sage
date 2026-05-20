@@ -1,8 +1,17 @@
 plugins {
-    alias(libs.plugins.sage.jvm)
+    alias(libs.plugins.sage.kmp)
 }
 
-dependencies {
-    implementation(libs.moshi)
-    implementation(projects.common.connectivity)
+kotlin {
+    androidLibrary {
+        namespace = "net.sigmabeta.sage.common.ui.strings"
+    }
+
+    sourceSets {
+        named("jvmSharedMain") {
+            dependencies {
+                implementation(projects.common.connectivity)
+            }
+        }
+    }
 }
