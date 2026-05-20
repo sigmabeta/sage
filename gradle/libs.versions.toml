@@ -47,6 +47,9 @@ okhttp = "5.3.2"
 paparazzi = "2.0.0-alpha04"
 retrofit = "3.0.0"
 room = "2.8.4"
+# Bundled SQLite driver for Room KMP (Android + JVM/desktop + native). Paired
+# with Room 2.8.x.
+sqliteBundled = "2.6.0"
 splash = "1.2.0"
 supportSqlite = "3.49.0"
 threeten = "1.4.9"
@@ -122,6 +125,7 @@ retrofit-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", v
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqliteBundled" }
 support-sqlite = { group = "com.github.requery", name = "sqlite-android", version.ref = "supportSqlite" }
 threeten = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threeten" }
 webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref = "webview" }
