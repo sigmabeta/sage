@@ -1,7 +1,17 @@
 plugins {
-    alias(libs.plugins.sage.jvm)
+    alias(libs.plugins.sage.kmp)
 }
 
-dependencies {
-    api(projects.common.appcomm)
+kotlin {
+    androidLibrary {
+        namespace = "net.sigmabeta.sage.common.analytics"
+    }
+
+    sourceSets {
+        named("jvmSharedMain") {
+            dependencies {
+                api(projects.common.appcomm)
+            }
+        }
+    }
 }

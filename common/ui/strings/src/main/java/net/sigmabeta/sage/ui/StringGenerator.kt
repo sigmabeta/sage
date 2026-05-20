@@ -40,7 +40,11 @@ class StringGenerator(private val random: Random) {
             .trimMargin()
             .split(" ")
             .map { it.trim() }
-            .map { it.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.getDefault()) else c.toString() } }
+            .map { word ->
+                word.replaceFirstChar { c ->
+                    if (c.isLowerCase()) c.titlecase(Locale.getDefault()) else c.toString()
+                }
+            }
             .toList()
 
         val FIRST_NAMES = listOf(
