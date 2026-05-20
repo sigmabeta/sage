@@ -65,6 +65,11 @@ sqliteBundled = "2.6.0"
 splash = "1.2.0"
 supportSqlite = "3.49.0"
 threeten = "1.4.9"
+# Voyager — Compose Multiplatform navigation library. Latest stable is 1.0.1; 1.1.0 is in
+# beta. Picked over `androidx.navigation:navigation-compose` because the AndroidX CMP fork
+# (2.9.8) publishes JVM variants but `jvmStubsRuntimeElements-published` has zero files —
+# it's compile-time stubs only, no runnable desktop implementation.
+voyager = "1.0.1"
 tracing = "1.11.1"
 webview = "0.33.6"
 zoomable = "0.19.0"
@@ -158,6 +163,7 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqliteBundled" }
 support-sqlite = { group = "com.github.requery", name = "sqlite-android", version.ref = "supportSqlite" }
 threeten = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threeten" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref = "webview" }
 zoomable-image-coil3 = { group = "me.saket.telephoto", name = "zoomable-image-coil3", version.ref = "zoomable" }
 
