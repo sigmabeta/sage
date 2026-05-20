@@ -22,6 +22,12 @@ androidxUiautomator = "2.3.0"
 androidxWindowManager = "1.5.1"
 androidxWorkManager = "2.11.2"
 coil = "3.4.0"
+# Compose Multiplatform — desktop runtime + window/Skia bits. 1.9.0 is the latest stable
+# at the time of writing; newer lines (1.10/1.11) ship the Gradle plugin but the lib jars
+# (material3, foundation, etc.) only go up to 1.9.0 stable. Bump when both sides advance.
+# JetBrains CMP tolerates newer Kotlin than it bundles (the @Composable codegen lives in
+# the Kotlin `compose-compiler` plugin, not in CMP itself).
+composeMultiplatform = "1.9.0"
 detekt = "1.23.8"
 firebaseBom = "34.13.0"
 firebaseCrashlyticsPlugin = "3.0.7"
@@ -109,6 +115,16 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "hilt" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "hilt" }
 hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+
+# JetBrains Compose Multiplatform — platform-agnostic UI libs that build for both Android
+# (alongside androidx-compose-*) and JVM/desktop. The per-OS Skia native artifact is pulled
+# via `compose.desktop.currentOs` from the JetBrains Compose Gradle plugin extension (only
+# applied in apps/jvm, not in the sage.compose.kmp convention).
+jetbrains-compose-runtime    = { module = "org.jetbrains.compose.runtime:runtime",       version.ref = "composeMultiplatform" }
+jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
+jetbrains-compose-material3  = { module = "org.jetbrains.compose.material3:material3",   version.ref = "composeMultiplatform" }
+jetbrains-compose-ui         = { module = "org.jetbrains.compose.ui:ui",                 version.ref = "composeMultiplatform" }
+
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
@@ -192,6 +208,11 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+# JetBrains Compose Multiplatform Gradle plugin. Provides the `compose.desktop.currentOs`
+# dependency notation for the per-OS Skia native; applied only by apps with a desktop
+# entry point. Shared KMP UI modules use `sage.compose.kmp` (no JetBrains plugin) and pull
+# the platform-agnostic libs directly from the catalog.
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
@@ -211,6 +232,7 @@ sage-android = { id = "sage.android" }
 sage-jvm = { id = "sage.jvm" }
 sage-kmp = { id = "sage.kmp" }
 sage-compose-android = { id = "sage.compose.android" }
+sage-compose-kmp = { id = "sage.compose.kmp" }
 sage-di-android = { id = "sage.di.android" }
 sage-di-jvm = { id = "sage.di.jvm" }
 sage-di-worker-android = { id = "sage.di.worker.android" }
