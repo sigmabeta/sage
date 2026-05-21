@@ -1,7 +1,11 @@
+import com.android.build.api.dsl.LibraryExtension
+import net.sigmabeta.sage.plugins.components.chipboxNamespace
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.withType
 
 /**
@@ -9,15 +13,14 @@ import org.gradle.kotlin.dsl.withType
  *
  * Such a module renders a screen's SAGE [net.sigmabeta.sage.list.ListState] through the real
  * list pipeline with deterministic fake data and Paparazzi-snapshots it across a device matrix.
- * This plugin captures the project-agnostic boilerplate; each module still declares its own
- * screen-specific dependencies (its feature `:real`, the previews scaffolding module, models).
+ * Each module only needs to declare its own sibling `:real` dependency — this plugin contributes
+ * the namespace, the previews scaffolding module, the chipbox models module, and the SAGE
+ * appcomm/list libraries every screenshot test needs.
  *
- * Applies the Android + Compose conventions and the Paparazzi plugin, wires the SAGE list /
- * appcomm libraries every screenshot needs (`WidthClass`, `LCE`), and disables the JUnit test
- * reports — Paparazzi 2.0.0-alpha04's HTML reporter calls `TestResultsProvider.hasOutput(...)`,
- * which Gradle 9.x removed; snapshots still record/verify in the test JVM, only the post-run
- * HTML summary crashes the task. Remove the report opt-out once Paparazzi ships a Gradle-9
- * compatible build.
+ * Disables the JUnit test reports — Paparazzi 2.0.0-alpha04's HTML reporter calls
+ * `TestResultsProvider.hasOutput(...)`, which Gradle 9.x removed; snapshots still record/verify
+ * in the test JVM, only the post-run HTML summary crashes the task. Remove the report opt-out
+ * once Paparazzi ships a Gradle-9 compatible build.
  */
 class SageScreenshotModulePlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -28,9 +31,15 @@ class SageScreenshotModulePlugin : Plugin<Project> {
                 apply("app.cash.paparazzi")
             }
 
+            extensions.configure<LibraryExtension> {
+                namespace = chipboxNamespace()
+            }
+
             dependencies {
                 add("implementation", "net.sigmabeta.sage:appcomm")
                 add("implementation", "net.sigmabeta.sage:list")
+                add("implementation", project(":cbox:android:ui:previews"))
+                add("implementation", project(":cbox:common:models:api"))
             }
 
             tasks.withType<Test>().configureEach {

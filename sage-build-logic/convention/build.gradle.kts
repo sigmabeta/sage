@@ -25,6 +25,10 @@ dependencies {
     compileOnly(libs.detekt.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.kotlin.compose.compiler.gradlePlugin)
+    // implementation, not compileOnly: SageFeatureApiPlugin calls
+    // pluginManager.apply("org.jetbrains.kotlin.plugin.serialization"), so the plugin's classes
+    // have to be on the convention plugin's runtime classpath, not just its compile classpath.
+    implementation(libs.kotlin.serialization.gradlePlugin)
     // implementation, not compileOnly: SageDiAndroidModulePlugin calls
     // pluginManager.apply("dev.zacsweers.metro"), so the plugin's classes have to be on
     // the convention plugin's runtime classpath, not just its compile classpath.
@@ -88,6 +92,48 @@ gradlePlugin {
         register("sageScreenshot") {
             id = "sage.screenshot"
             implementationClass = "SageScreenshotModulePlugin"
+            version = "1.0"
+        }
+
+        register("sageFeatureApi") {
+            id = "sage.feature.api"
+            implementationClass = "SageFeatureApiPlugin"
+            version = "1.0"
+        }
+
+        register("sageFeatureReal") {
+            id = "sage.feature.real"
+            implementationClass = "SageFeatureRealPlugin"
+            version = "1.0"
+        }
+
+        register("sageEmulatorApi") {
+            id = "sage.emulator.api"
+            implementationClass = "SageEmulatorApiPlugin"
+            version = "1.0"
+        }
+
+        register("sageEmulatorReal") {
+            id = "sage.emulator.real"
+            implementationClass = "SageEmulatorRealPlugin"
+            version = "1.0"
+        }
+
+        register("sageEmulatorDi") {
+            id = "sage.emulator.di"
+            implementationClass = "SageEmulatorDiPlugin"
+            version = "1.0"
+        }
+
+        register("sageEmulatorNative") {
+            id = "sage.emulator.native"
+            implementationClass = "SageEmulatorNativePlugin"
+            version = "1.0"
+        }
+
+        register("sageEmulatorAll") {
+            id = "sage.emulator.all"
+            implementationClass = "SageEmulatorAllPlugin"
             version = "1.0"
         }
     }

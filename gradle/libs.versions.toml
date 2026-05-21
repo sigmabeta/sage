@@ -242,6 +242,7 @@ firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "fir
 firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-serialization-gradlePlugin = { group = "org.jetbrains.kotlin.plugin.serialization", name = "org.jetbrains.kotlin.plugin.serialization.gradle.plugin", version.ref = "kotlin" }
 
 # Metro DI extensions — the core runtime is auto-added by the dev.zacsweers.metro Gradle
 # plugin; metrox-viewmodel + metrox-viewmodel-compose are the @HiltViewModel / hiltViewModel()
@@ -283,6 +284,13 @@ sage-di-android = { id = "sage.di.android" }
 sage-di-jvm = { id = "sage.di.jvm" }
 sage-di-worker-android = { id = "sage.di.worker.android" }
 sage-screenshot = { id = "sage.screenshot" }
+sage-feature-api = { id = "sage.feature.api" }
+sage-feature-real = { id = "sage.feature.real" }
+sage-emulator-api = { id = "sage.emulator.api" }
+sage-emulator-real = { id = "sage.emulator.real" }
+sage-emulator-di = { id = "sage.emulator.di" }
+sage-emulator-native = { id = "sage.emulator.native" }
+sage-emulator-all = { id = "sage.emulator.all" }
 
 # VGLS plugin aliases — app/feature plugins stay in VGLS build-logic
 vgls-android-app = { id = "vgleadsheets.android.app", version = "1.0" }
