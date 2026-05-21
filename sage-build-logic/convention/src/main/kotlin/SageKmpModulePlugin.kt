@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import net.sigmabeta.sage.plugins.components.configureDetekt
+import net.sigmabeta.sage.plugins.components.configureUniqueArchiveBaseName
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
@@ -72,6 +73,7 @@ class SageKmpModulePlugin : Plugin<Project> {
             }
 
             configureDetekt()
+            configureUniqueArchiveBaseName()
 
             tasks.withType<KotlinJvmCompile>().configureEach {
                 compilerOptions.jvmTarget.set(JvmTarget.JVM_17)

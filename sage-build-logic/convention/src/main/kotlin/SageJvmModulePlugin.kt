@@ -1,4 +1,5 @@
 import net.sigmabeta.sage.plugins.components.configureKotlinJvm
+import net.sigmabeta.sage.plugins.components.configureUniqueArchiveBaseName
 import net.sigmabeta.sage.plugins.components.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,6 +14,7 @@ class SageJvmModulePlugin : Plugin<Project> {
             }
 
             configureKotlinJvm()
+            configureUniqueArchiveBaseName()
 
             dependencies {
                 add("implementation", libs.findLibrary("kotlin.stdlib").get())
