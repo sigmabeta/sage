@@ -13,12 +13,18 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  * (externalNativeBuild can't live in an AGP KMP library), and the JVM target host-builds it.
  *
  * Every emulator `:real` is byte-identical except for the namespace, so the plugin contributes
- * the namespace and the three `jvmSharedMain` deps every wrapper needs.
+ * the namespace, the three `jvmSharedMain` deps every wrapper needs, and a `runtimeOnly` dep
+ * on the sibling `:native` companion (androidMain only — that's what packages the .so into
+ * the APK; the JVM target host-builds its own .so).
  */
 class SageEmulatorRealPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply("sage.kmp")
+
+            val parentPath = checkNotNull(project.parent) {
+                "sage.emulator.real must be applied to a `:<emu>:real` module under a parent emulator project"
+            }.path
 
             val derivedNamespace = chipboxNamespace()
             extensions.configure<KotlinMultiplatformExtension> {
@@ -32,6 +38,10 @@ class SageEmulatorRealPlugin : Plugin<Project> {
                     api(project(":cbox:common:player:common:api"))
                     api(project(":cbox:common:player:emulators:api"))
                     implementation(project(":cbox:common:repository:api"))
+                }
+
+                sourceSets.getByName("androidMain").dependencies {
+                    runtimeOnly(project("$parentPath:native"))
                 }
             }
         }

@@ -287,7 +287,6 @@ sage-screenshot = { id = "sage.screenshot" }
 sage-feature-api = { id = "sage.feature.api" }
 sage-feature-real = { id = "sage.feature.real" }
 sage-emulator-real = { id = "sage.emulator.real" }
-sage-emulator-di = { id = "sage.emulator.di" }
 sage-emulator-native = { id = "sage.emulator.native" }
 
 # VGLS plugin aliases — app/feature plugins stay in VGLS build-logic

@@ -113,12 +113,6 @@ gradlePlugin {
             version = "1.0"
         }
 
-        register("sageEmulatorDi") {
-            id = "sage.emulator.di"
-            implementationClass = "SageEmulatorDiPlugin"
-            version = "1.0"
-        }
-
         register("sageEmulatorNative") {
             id = "sage.emulator.native"
             implementationClass = "SageEmulatorNativePlugin"
