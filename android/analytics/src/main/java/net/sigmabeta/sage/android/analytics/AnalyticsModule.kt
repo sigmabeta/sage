@@ -3,17 +3,13 @@ package net.sigmabeta.sage.android.analytics
 import android.annotation.SuppressLint
 import android.content.Context
 import com.google.firebase.analytics.FirebaseAnalytics
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
+import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
-import javax.inject.Singleton
+import dev.zacsweers.metro.Provides
+import dev.zacsweers.metro.SingleIn
 import net.sigmabeta.sage.di.AppScope
 
-@InstallIn(SingletonComponent::class)
-@Module
+@BindingContainer
 @ContributesTo(AppScope::class)
 object AnalyticsModule {
     // firebase-analytics's manifest declares INTERNET / ACCESS_NETWORK_STATE / WAKE_LOCK
@@ -22,8 +18,8 @@ object AnalyticsModule {
     // analytics-ktx → firebase-analytics; the older artifact's lint metadata didn't run this
     // check on the call site.
     @Provides
-    @Singleton
+    @SingleIn(AppScope::class)
     @SuppressLint("MissingPermission")
-    fun provideFirebaseAnalytics(@ApplicationContext context: Context): FirebaseAnalytics =
+    fun provideFirebaseAnalytics(context: Context): FirebaseAnalytics =
         FirebaseAnalytics.getInstance(context)
 }

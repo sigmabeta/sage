@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.sage.android)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.metro)
 }
 
@@ -17,6 +16,4 @@ metro {
 dependencies {
     api(projects.common.coroutines)
     implementation(projects.common.di)
-    implementation(libs.hilt)
-    ksp(libs.hilt.compiler)
 }

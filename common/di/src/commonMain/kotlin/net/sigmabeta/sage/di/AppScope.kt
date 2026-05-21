@@ -7,7 +7,7 @@ package net.sigmabeta.sage.di
  *  - `@DependencyGraph(AppScope::class)` on the app's graph: declares that the graph owns
  *    instances scoped to this marker.
  *  - `@SingleIn(AppScope::class)` on `@Inject` classes or `@Provides` methods: marks the
- *    binding as a singleton within an `AppScope`-scoped graph (replaces `@Singleton`).
+ *    binding as a singleton within an `AppScope`-scoped graph (replaces `@SingleIn(AppScope::class)`).
  *  - `@ContributesTo(AppScope::class)` on interfaces / objects with `@Provides` / `@Binds`
  *    members: Anvil-style module aggregation (replaces Hilt's
  *    `@InstallIn(SingletonComponent::class)`).

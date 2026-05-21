@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.sage.android)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -12,6 +11,4 @@ dependencies {
     api(platform(libs.firebase.bom))
     api(libs.firebase.performance)
     implementation(projects.android.coroutines)
-    implementation(libs.hilt)
-    ksp(libs.hilt.compiler)
 }

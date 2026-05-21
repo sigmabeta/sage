@@ -2,26 +2,22 @@ package net.sigmabeta.sage.android.resources.di
 
 import android.content.Context
 import android.content.res.Resources
+import dev.zacsweers.metro.BindingContainer
+import dev.zacsweers.metro.ContributesTo
+import dev.zacsweers.metro.Provides
+import dev.zacsweers.metro.SingleIn
 import net.sigmabeta.sage.android.resources.RealResourceProvider
 import net.sigmabeta.sage.android.resources.ResourceProvider
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import dev.zacsweers.metro.ContributesTo
-import javax.inject.Singleton
 import net.sigmabeta.sage.di.AppScope
 
-@InstallIn(SingletonComponent::class)
-@Module
+@BindingContainer
 @ContributesTo(AppScope::class)
 object ResourcesModule {
     @Provides
-    @Singleton
-    fun provideResources(@ApplicationContext context: Context): Resources = context.resources
+    @SingleIn(AppScope::class)
+    fun provideResources(context: Context): Resources = context.resources
 
     @Provides
-    @Singleton
+    @SingleIn(AppScope::class)
     fun provideResourceProvider(resources: Resources): ResourceProvider = RealResourceProvider(resources)
 }
