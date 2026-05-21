@@ -197,7 +197,6 @@ sage-common-settings-general = { group = "net.sigmabeta.sage", name = "general" 
 sage-common-settings-environment = { group = "net.sigmabeta.sage", name = "environment" }
 sage-common-ui-components = { group = "net.sigmabeta.sage", name = "components" }
 sage-android-analytics = { group = "net.sigmabeta.sage.android", name = "analytics" }
-sage-android-bitmaps = { group = "net.sigmabeta.sage.android", name = "bitmaps" }
 sage-android-connectivity = { group = "net.sigmabeta.sage.android", name = "connectivity" }
 sage-android-coroutines = { group = "net.sigmabeta.sage.android", name = "coroutines" }
 sage-android-firebase = { group = "net.sigmabeta.sage.android", name = "firebase" }

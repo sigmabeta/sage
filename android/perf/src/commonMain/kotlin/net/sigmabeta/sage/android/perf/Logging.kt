@@ -2,18 +2,31 @@
 
 package net.sigmabeta.sage.android.perf
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import net.sigmabeta.sage.logging.BasicHatchet
 import net.sigmabeta.sage.logging.Hatchet
-import net.sigmabeta.sage.perf.BuildConfig
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 import kotlin.time.toDuration
 
 val LocalLogger = staticCompositionLocalOf<Hatchet> { BasicHatchet() }
+
+/**
+ * Gates the `measureTime { content() }` wrapping in [WithMeasurementScreen] /
+ * [WithMeasurementComponent]. Default `true` so the JVM/desktop dev build gets the same
+ * slow-component visibility the Android debug build does. The Android Application sets this
+ * to `BuildConfig.DEBUG` at startup so release APKs skip the measurement overhead — pre-KMP
+ * this was a compile-time constant via the module's `BuildConfig.DEBUG`; AGP 9's KMP Android
+ * Library extension doesn't expose `buildConfig = true`, so it's a runtime toggle now.
+ */
+var isPerfMeasurementEnabled: Boolean = true
+
+// Hatchet severity ints follow the Android Log.* convention (V=2, D=3, I=4, W=5, E=6).
+private const val SEVERITY_INFO = 4
+private const val SEVERITY_WARN = 5
+private const val SEVERITY_ERROR = 6
 
 private const val THRESHOLD_WARNING_MS_SCREEN_PREVIEW = 1
 private const val THRESHOLD_ERROR_MS_SCREEN_PREVIEW = 5
@@ -40,7 +53,7 @@ fun WithMeasurementScreen(
     errorThreshold: Duration,
     content: @Composable () -> Unit
 ) {
-    if (!BuildConfig.DEBUG) {
+    if (!isPerfMeasurementEnabled) {
         content()
         return
     }
@@ -50,9 +63,9 @@ fun WithMeasurementScreen(
     }
 
     val severity = when {
-        duration < warningThreshold -> Log.INFO
-        duration < errorThreshold -> Log.WARN
-        else -> Log.ERROR
+        duration < warningThreshold -> SEVERITY_INFO
+        duration < errorThreshold -> SEVERITY_WARN
+        else -> SEVERITY_ERROR
     }
 
     val hatchet = LocalLogger.current
@@ -70,7 +83,7 @@ fun WithMeasurementComponent(
     errorThreshold: Duration,
     content: @Composable () -> Unit
 ) {
-    if (!BuildConfig.DEBUG) {
+    if (!isPerfMeasurementEnabled) {
         content()
         return
     }
@@ -81,8 +94,8 @@ fun WithMeasurementComponent(
 
     val severity = when {
         duration < warningThreshold -> return
-        duration < errorThreshold -> Log.WARN
-        else -> Log.ERROR
+        duration < errorThreshold -> SEVERITY_WARN
+        else -> SEVERITY_ERROR
     }
 
     val hatchet = LocalLogger.current

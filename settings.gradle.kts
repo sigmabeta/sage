@@ -61,7 +61,6 @@ include(
     ":common:ui:icons",
     ":common:ui:strings",
     ":android:analytics",
-    ":android:bitmaps",
     ":android:connectivity",
     ":android:coroutines",
     ":android:firebase",

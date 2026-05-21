@@ -1,18 +1,18 @@
 plugins {
-    alias(libs.plugins.sage.android)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.sage.kmp)
+    alias(libs.plugins.sage.compose.kmp)
 }
 
-android {
-    namespace = "net.sigmabeta.sage.perf"
-
-    buildFeatures {
-        buildConfig = true
+kotlin {
+    androidLibrary {
+        namespace = "net.sigmabeta.sage.perf"
     }
-}
 
-dependencies {
-    api(projects.common.logging)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.foundation)
+    sourceSets {
+        named("commonMain") {
+            dependencies {
+                api(projects.common.logging)
+            }
+        }
+    }
 }
