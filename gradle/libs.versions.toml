@@ -141,6 +141,10 @@ hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", ver
 jetbrains-compose-runtime    = { module = "org.jetbrains.compose.runtime:runtime",                 version.ref = "composeMultiplatform" }
 jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation",           version.ref = "composeMultiplatform" }
 jetbrains-compose-material3  = { module = "org.jetbrains.compose.material3:material3",             version.ref = "composeMultiplatform" }
+# JetBrains-published twin of androidx.compose.material3:material3-adaptive-navigation-suite —
+# NavigationSuiteScaffold + NavigationSuiteScope on Android + JVM/desktop (the AndroidX artifact
+# is Android-only). Used by ChipboxAppUi to render the bottom nav bar / nav rail on both targets.
+jetbrains-compose-material3-adaptive-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "composeMultiplatform" }
 jetbrains-compose-ui         = { module = "org.jetbrains.compose.ui:ui",                           version.ref = "composeMultiplatform" }
 # Material icons — `Icons.Default.X` + `Icons.AutoMirrored.Default.X`. The JetBrains fork mirrors
 # androidx.compose.material:material-icons-extended and builds for both Android and JVM/desktop.
