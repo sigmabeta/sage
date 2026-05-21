@@ -138,6 +138,13 @@ jetbrains-compose-runtime    = { module = "org.jetbrains.compose.runtime:runtime
 jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation",           version.ref = "composeMultiplatform" }
 jetbrains-compose-material3  = { module = "org.jetbrains.compose.material3:material3",             version.ref = "composeMultiplatform" }
 jetbrains-compose-ui         = { module = "org.jetbrains.compose.ui:ui",                           version.ref = "composeMultiplatform" }
+# Material icons — `Icons.Default.X` + `Icons.AutoMirrored.Default.X`. The JetBrains fork mirrors
+# androidx.compose.material:material-icons-extended and builds for both Android and JVM/desktop.
+# JetBrains stopped publishing this artifact after 1.7.3 (same status as androidx — last released
+# 1.7.8); the older ABI stays binary-compatible with composeMultiplatform 1.9 since these icon
+# files only depend on Compose UI vector primitives, which haven't changed. Core is a subset of
+# extended (extended includes Shuffle, Memory, Computer, MusicNote, … that core lacks).
+jetbrains-compose-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version = "1.7.3" }
 # Compose Multiplatform resources — the `Res.font.*` / `Res.drawable.*` codegen surface. Needs
 # the `org.jetbrains.compose` Gradle plugin applied for the generated `Res` object to appear.
 jetbrains-compose-resources  = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
