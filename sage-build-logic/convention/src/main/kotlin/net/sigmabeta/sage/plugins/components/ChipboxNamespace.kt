@@ -26,7 +26,7 @@ import org.gradle.api.Project
  * `chipbox/colors/`) keep an explicit `namespace = "..."` override in their build file; moving
  * those source trees is out of scope for the convention-plugin sweep.
  */
-internal fun Project.chipboxNamespace(): String {
+fun Project.chipboxNamespace(): String {
     val segments = path.removePrefix(":").split(":")
     val cleaned = segments
         .filterNot { it == "cbox" || it == "android" }
