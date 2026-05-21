@@ -66,11 +66,15 @@ sqliteBundled = "2.6.0"
 splash = "1.2.0"
 supportSqlite = "3.49.0"
 threeten = "1.4.9"
-# Voyager — Compose Multiplatform navigation library. Latest stable is 1.0.1; 1.1.0 is in
-# beta. Picked over `androidx.navigation:navigation-compose` because the AndroidX CMP fork
-# (2.9.8) publishes JVM variants but `jvmStubsRuntimeElements-published` has zero files —
-# it's compile-time stubs only, no runnable desktop implementation.
-voyager = "1.0.1"
+# Voyager — Compose Multiplatform navigation library. Picked over
+# `androidx.navigation:navigation-compose` because the AndroidX CMP fork (2.9.8) publishes
+# JVM variants but `jvmStubsRuntimeElements-published` has zero files — compile-time stubs
+# only, no runnable desktop implementation. Pinned to a 1.1.0 beta rather than 1.0.1 stable
+# because 1.0.1's `AndroidScreenLifecycleOwner` throws
+# `State is 'DESTROYED' and cannot be moved to 'STARTED'` on pop+recompose against
+# androidx.lifecycle 2.10.x (e.g. ArtistDetail → back → GameDetail recomposes). Fixed in
+# the 1.1.0 line; bump to 1.1.0 stable when it lands.
+voyager = "1.1.0-beta03"
 tracing = "1.11.1"
 webview = "0.33.6"
 zoomable = "0.19.0"
@@ -179,6 +183,8 @@ sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.r
 support-sqlite = { group = "com.github.requery", name = "sqlite-android", version.ref = "supportSqlite" }
 threeten = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threeten" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref = "webview" }
 zoomable-image-coil3 = { group = "me.saket.telephoto", name = "zoomable-image-coil3", version.ref = "zoomable" }
 
