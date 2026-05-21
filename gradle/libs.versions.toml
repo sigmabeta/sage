@@ -154,6 +154,11 @@ kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", v
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxCollections" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+# Swing Dispatchers.Main implementation. Compose Multiplatform's desktop backend runs on the
+# AWT event queue and ViewModel.viewModelScope.launch posts to Dispatchers.Main — without this
+# artifact on the runtime classpath the JVM target throws "Module with the Main dispatcher is
+# missing" the moment any VM tries to schedule on main.
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mavericks = { group = "com.airbnb.android", name = "mavericks", version.ref = "mavericks" }
