@@ -8,8 +8,8 @@ import org.gradle.kotlin.dsl.project
 
 /**
  * Convention for `:cbox:android:player:emulators:<emu>:di` modules. Pulls the sibling
- * `:api`, `:real`, and `:native` companions into the Android app classpath so the emulator's
- * Metro bindings and packaged `.so` reach `:apps:android`.
+ * `:real` and `:native` companions into the Android app classpath so the emulator's Metro
+ * bindings and packaged `.so` reach `:apps:android`.
  *
  * The `:native` runtime-only dep is what packages the `.so` into the APK — a KMP `:real`
  * can't host the CMake trigger because AGP 9's KMP library DSL has no `externalNativeBuild`.
@@ -31,7 +31,6 @@ class SageEmulatorDiPlugin : Plugin<Project> {
             }.path
 
             dependencies {
-                add("api", project("$parentPath:api"))
                 add("api", project("$parentPath:real"))
                 add("runtimeOnly", project("$parentPath:native"))
             }

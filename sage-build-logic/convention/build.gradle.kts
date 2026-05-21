@@ -107,12 +107,6 @@ gradlePlugin {
             version = "1.0"
         }
 
-        register("sageEmulatorApi") {
-            id = "sage.emulator.api"
-            implementationClass = "SageEmulatorApiPlugin"
-            version = "1.0"
-        }
-
         register("sageEmulatorReal") {
             id = "sage.emulator.real"
             implementationClass = "SageEmulatorRealPlugin"
@@ -128,12 +122,6 @@ gradlePlugin {
         register("sageEmulatorNative") {
             id = "sage.emulator.native"
             implementationClass = "SageEmulatorNativePlugin"
-            version = "1.0"
-        }
-
-        register("sageEmulatorAll") {
-            id = "sage.emulator.all"
-            implementationClass = "SageEmulatorAllPlugin"
             version = "1.0"
         }
     }
