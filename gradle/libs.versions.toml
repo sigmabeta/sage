@@ -60,6 +60,11 @@ material = "1.13.0"
 mavericks = "3.1.0"
 media3 = "1.10.0"
 metro = "1.1.1"
+# Mordant — terminal styling + interactive widgets (the arrow-key select list) for the JVM CLI
+# app (:apps:cli). The plain `mordant` artifact resolves to `mordant-jvm`, which pulls all three
+# JVM terminal backends (JNA / FFM / GraalVM); JNA is the one that works on the Java 17 toolchain
+# (FFM needs JDK 22+), and Mordant auto-selects it at runtime.
+mordant = "3.0.2"
 moshi = "1.15.2"
 okhttp = "5.3.2"
 paparazzi = "2.0.0-alpha04"
@@ -176,6 +181,7 @@ kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mavericks = { group = "com.airbnb.android", name = "mavericks", version.ref = "mavericks" }
+mordant = { group = "com.github.ajalt.mordant", name = "mordant", version.ref = "mordant" }
 androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
 androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
