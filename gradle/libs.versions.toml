@@ -67,6 +67,7 @@ metro = "1.1.1"
 mordant = "3.0.2"
 moshi = "1.15.2"
 okhttp = "5.3.2"
+okio = "3.9.1"
 paparazzi = "2.0.0-alpha04"
 retrofit = "3.0.0"
 room = "2.8.4"
@@ -189,6 +190,8 @@ moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 moshi-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
+okio-fakefilesystem = { group = "com.squareup.okio", name = "okio-fakefilesystem", version.ref = "okio" }
 paparazzi = { group = "app.cash.paparazzi", name = "paparazzi-gradle-plugin", version.ref = "paparazzi" }
 paparazzi-runtime = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
