@@ -3,6 +3,8 @@ plugins {
 }
 
 kotlin {
+    js { nodejs() }
+
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.nav"
     }

@@ -48,7 +48,7 @@ abstract class ListViewModelBrain(
         .asStateFlow()
 
     fun sendAction(action: SageAction) {
-        hatchet.d("${this.javaClass.simpleName} - Handling action: $action")
+        hatchet.d("${this::class.simpleName} - Handling action: $action")
 
         if (action.isInitAction()) {
             analytics.logScreenView(action, screenIdentifier)
@@ -57,7 +57,7 @@ abstract class ListViewModelBrain(
         }
 
         if (action is SageAction.DeviceBack) {
-            emitEvent(SageEvent.NavigateBack(this.javaClass.simpleName))
+            emitEvent(SageEvent.NavigateBack(this::class.simpleName.orEmpty()))
             return
         }
 
@@ -73,7 +73,7 @@ abstract class ListViewModelBrain(
                         title = titleModel.title,
                         subtitle = titleModel.subtitle,
                         shouldShowBack = titleModel.shouldShowBack,
-                        source = this.javaClass.simpleName
+                        source = this::class.simpleName.orEmpty()
                     )
                 )
             }
@@ -86,7 +86,7 @@ abstract class ListViewModelBrain(
 
     fun sendEvent(event: SageEvent) {
         scheduler.coroutineScope.launch(scheduler.dispatchers.main) {
-            hatchet.d("${this@ListViewModelBrain.javaClass.simpleName} - Handling event: $event")
+            hatchet.d("${this@ListViewModelBrain::class.simpleName} - Handling event: $event")
             handleEvent(event)
         }
     }
