@@ -13,8 +13,8 @@ val Project.libs
 /**
  * Derive each module's Jar `archiveBaseName` from its Gradle path so that flat distributions
  * (the `application` plugin's `installDist` / `distZip`) don't collide on `api.jar` / `real.jar`.
- * `:cbox:common:appui:api` becomes `cbox-common-appui-api.jar`; KMP target suffixes (`-jvm`,
- * `-androidJvm`) still tack on as usual, so KMP modules end up at e.g. `cbox-...-api-jvm.jar`.
+ * `:foo:bar:api` becomes `foo-bar-api.jar`; KMP target suffixes (`-jvm`, `-androidJvm`) still tack
+ * on as usual, so KMP modules end up at e.g. `foo-bar-api-jvm.jar`.
  *
  * Applies to every `Jar` task — `jar`, `sourcesJar`, KMP per-target jars — so any future task
  * that emits a jar inherits the unique name without further wiring.

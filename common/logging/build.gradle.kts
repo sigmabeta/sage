@@ -10,7 +10,7 @@ plugins {
 kotlin {
     // A non-JVM target makes commonMain compile against the common stdlib, so `java.*` is a real
     // error here instead of silently allowed (both JVM-family targets would otherwise permit it).
-    // logging is the keystone dependency for most cbox modules, so enforcing it first lets the
+    // logging is the keystone dependency for most consumer modules, so enforcing it first lets the
     // non-JVM target spread up the graph. JS is the cheapest such target (no native toolchain).
     js { nodejs() }
 

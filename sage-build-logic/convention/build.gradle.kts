@@ -83,34 +83,5 @@ gradlePlugin {
             version = "1.0"
         }
 
-        register("sageScreenshot") {
-            id = "sage.screenshot"
-            implementationClass = "SageScreenshotModulePlugin"
-            version = "1.0"
-        }
-
-        register("sageFeatureApi") {
-            id = "sage.feature.api"
-            implementationClass = "SageFeatureApiPlugin"
-            version = "1.0"
-        }
-
-        register("sageFeatureReal") {
-            id = "sage.feature.real"
-            implementationClass = "SageFeatureRealPlugin"
-            version = "1.0"
-        }
-
-        register("sageEmulatorReal") {
-            id = "sage.emulator.real"
-            implementationClass = "SageEmulatorRealPlugin"
-            version = "1.0"
-        }
-
-        register("sageEmulatorNative") {
-            id = "sage.emulator.native"
-            implementationClass = "SageEmulatorNativePlugin"
-            version = "1.0"
-        }
     }
 }

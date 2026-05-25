@@ -10,7 +10,7 @@ android {
 // Metro applied alongside Hilt during the migration; interop.includeDagger() recognises
 // existing @Module / @Provides / @Inject / @Singleton annotations as Metro contributions.
 // @ContributesTo(AppScope::class) on this module's @Module declaration flows the bindings
-// into whichever Metro graph declares AppScope (downstream: chipbox's ChipboxAppGraph).
+// into whichever Metro graph the downstream consumer declares for AppScope.
 metro {
     interop {
         includeDagger()

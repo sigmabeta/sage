@@ -155,7 +155,7 @@ jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foun
 jetbrains-compose-material3  = { module = "org.jetbrains.compose.material3:material3",             version.ref = "composeMultiplatform" }
 # JetBrains-published twin of androidx.compose.material3:material3-adaptive-navigation-suite —
 # NavigationSuiteScaffold + NavigationSuiteScope on Android + JVM/desktop (the AndroidX artifact
-# is Android-only). Used by ChipboxAppUi to render the bottom nav bar / nav rail on both targets.
+# is Android-only). Used by consumer app UIs to render the bottom nav bar / nav rail on both targets.
 jetbrains-compose-material3-adaptive-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "composeMultiplatform" }
 jetbrains-compose-ui         = { module = "org.jetbrains.compose.ui:ui",                           version.ref = "composeMultiplatform" }
 # Material icons — `Icons.Default.X` + `Icons.AutoMirrored.Default.X`. The JetBrains fork mirrors
@@ -300,11 +300,6 @@ sage-compose-android = { id = "sage.compose.android" }
 sage-compose-kmp = { id = "sage.compose.kmp" }
 sage-di = { id = "sage.di" }
 sage-di-worker-android = { id = "sage.di.worker.android" }
-sage-screenshot = { id = "sage.screenshot" }
-sage-feature-api = { id = "sage.feature.api" }
-sage-feature-real = { id = "sage.feature.real" }
-sage-emulator-real = { id = "sage.emulator.real" }
-sage-emulator-native = { id = "sage.emulator.native" }
 
 # VGLS plugin aliases — app/feature plugins stay in VGLS build-logic
 vgls-android-app = { id = "vgleadsheets.android.app", version = "1.0" }
