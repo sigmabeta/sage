@@ -8,6 +8,12 @@ plugins {
 // sage.kmp maps to jvmSharedMain. Other downstream sage libs that depend on logging (appcomm,
 // list, ui/components, ui/strings) follow when their own slices land.
 kotlin {
+    // A non-JVM target makes commonMain compile against the common stdlib, so `java.*` is a real
+    // error here instead of silently allowed (both JVM-family targets would otherwise permit it).
+    // logging is the keystone dependency for most cbox modules, so enforcing it first lets the
+    // non-JVM target spread up the graph. JS is the cheapest such target (no native toolchain).
+    js { nodejs() }
+
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.logging"
     }
