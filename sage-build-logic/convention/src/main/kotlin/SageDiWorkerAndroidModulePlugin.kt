@@ -8,7 +8,7 @@ class SageDiWorkerAndroidModulePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply(plugin = "sage.di.android")
+                apply(plugin = "sage.di")
             }
 
             dependencies {

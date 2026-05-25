@@ -266,8 +266,8 @@ kotlin-serialization-gradlePlugin = { group = "org.jetbrains.kotlin.plugin.seria
 # replacement (see docs/metro-migration.md).
 metrox-viewmodel = { group = "dev.zacsweers.metro", name = "metrox-viewmodel", version.ref = "metro" }
 metrox-viewmodel-compose = { group = "dev.zacsweers.metro", name = "metrox-viewmodel-compose", version.ref = "metro" }
-# Used by sage-build-logic's SageDiAndroidModulePlugin to configure the metro extension —
-# the convention plugin needs MetroPluginExtension on its compile classpath.
+# Used by sage-build-logic: SageDiModulePlugin applies the Metro plugin and SageFeatureRealPlugin
+# configures MetroPluginExtension (the KT-82395 hint-codegen gate) — both need it on the classpath.
 metro-gradlePlugin = { group = "dev.zacsweers.metro", name = "gradle-plugin", version.ref = "metro" }
 
 [plugins]
@@ -298,8 +298,7 @@ sage-jvm = { id = "sage.jvm" }
 sage-kmp = { id = "sage.kmp" }
 sage-compose-android = { id = "sage.compose.android" }
 sage-compose-kmp = { id = "sage.compose.kmp" }
-sage-di-android = { id = "sage.di.android" }
-sage-di-jvm = { id = "sage.di.jvm" }
+sage-di = { id = "sage.di" }
 sage-di-worker-android = { id = "sage.di.worker.android" }
 sage-screenshot = { id = "sage.screenshot" }
 sage-feature-api = { id = "sage.feature.api" }

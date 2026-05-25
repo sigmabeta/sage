@@ -1,8 +1,8 @@
+import net.sigmabeta.sage.plugins.components.configureComposeCompiler
 import net.sigmabeta.sage.plugins.components.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 /**
@@ -23,35 +23,15 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  * override deps we want pinned via the catalog. App targets that need the per-OS Skia native
  * (e.g. `apps/jvm`) apply that plugin themselves and reference `compose.desktop.currentOs`.
  *
- * Stability-config / reports wiring duplicates the body of `configureKotlinCompose()` in
- * `components/AndroidCompose.kt`; that helper is `private` to the Android path today.
- * Extracting it for reuse is a fine follow-up if a third Compose-flavoured convention plugin
- * ever shows up.
+ * Stability-config / reports wiring is shared with the Android path via
+ * [configureComposeCompiler] in `components/ComposeCompiler.kt`.
  */
 class SageComposeKmpModulePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
 
-            extensions.configure<ComposeCompilerGradlePluginExtension> {
-                val rootFile = rootProject.layout.projectDirectory.file("compose-stability.conf")
-                if (rootFile.asFile.exists()) {
-                    stabilityConfigurationFiles.add(rootFile)
-                }
-
-                val sageDir = gradle.includedBuilds.firstOrNull { it.name == "sage" }?.projectDir
-                if (sageDir != null) {
-                    val sageConfigFile = sageDir.resolve("compose-stability.conf")
-                    if (sageConfigFile.exists()) {
-                        stabilityConfigurationFiles.add(
-                            layout.file(provider { sageConfigFile })
-                        )
-                    }
-                }
-
-                reportsDestination.set(layout.buildDirectory.dir("compose_compiler/reports"))
-                metricsDestination.set(layout.buildDirectory.dir("compose_compiler/metrics"))
-            }
+            configureComposeCompiler()
 
             extensions.configure<KotlinMultiplatformExtension> {
                 sourceSets.getByName("commonMain").dependencies {

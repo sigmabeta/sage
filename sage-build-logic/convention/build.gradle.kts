@@ -29,7 +29,7 @@ dependencies {
     // pluginManager.apply("org.jetbrains.kotlin.plugin.serialization"), so the plugin's classes
     // have to be on the convention plugin's runtime classpath, not just its compile classpath.
     implementation(libs.kotlin.serialization.gradlePlugin)
-    // implementation, not compileOnly: SageDiAndroidModulePlugin calls
+    // implementation, not compileOnly: SageDiModulePlugin / SageFeatureRealPlugin call
     // pluginManager.apply("dev.zacsweers.metro"), so the plugin's classes have to be on
     // the convention plugin's runtime classpath, not just its compile classpath.
     implementation(libs.metro.gradlePlugin)
@@ -71,15 +71,9 @@ gradlePlugin {
             version = "1.0"
         }
 
-        register("sageDiAndroid") {
-            id = "sage.di.android"
-            implementationClass = "SageDiAndroidModulePlugin"
-            version = "1.0"
-        }
-
-        register("sageDiJvm") {
-            id = "sage.di.jvm"
-            implementationClass = "SageDiJvmModulePlugin"
+        register("sageDi") {
+            id = "sage.di"
+            implementationClass = "SageDiModulePlugin"
             version = "1.0"
         }
 
