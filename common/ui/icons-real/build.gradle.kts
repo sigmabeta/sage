@@ -4,6 +4,8 @@ plugins {
 }
 
 kotlin {
+    js { nodejs() }
+
     androidLibrary {
         namespace = "net.sigmabeta.sage.ui.icons"
     }
@@ -11,7 +13,7 @@ kotlin {
     sourceSets {
         named("commonMain") {
             dependencies {
-                implementation(projects.common.ui.icons)
+                implementation(projects.common.ui.iconsApi)
 
                 api(libs.jetbrains.compose.material.icons.extended)
             }

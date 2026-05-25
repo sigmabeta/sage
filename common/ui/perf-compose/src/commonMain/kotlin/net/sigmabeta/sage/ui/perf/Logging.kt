@@ -1,6 +1,6 @@
 @file:Suppress("MaxLineLength")
 
-package net.sigmabeta.sage.android.perf
+package net.sigmabeta.sage.ui.perf
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf

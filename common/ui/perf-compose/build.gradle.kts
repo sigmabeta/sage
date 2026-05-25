@@ -4,8 +4,10 @@ plugins {
 }
 
 kotlin {
+    js { nodejs() }
+
     androidLibrary {
-        namespace = "net.sigmabeta.sage.perf"
+        namespace = "net.sigmabeta.sage.ui.perf"
     }
 
     sourceSets {

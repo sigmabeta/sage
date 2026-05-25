@@ -16,7 +16,7 @@ kotlin {
                 api(projects.common.appcomm)
                 api(projects.common.images)
                 api(projects.common.pdf)
-                api(projects.common.ui.icons)
+                api(projects.common.ui.iconsApi)
             }
         }
     }
