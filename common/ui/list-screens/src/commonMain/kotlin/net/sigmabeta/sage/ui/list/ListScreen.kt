@@ -1,4 +1,4 @@
-package net.sigmabeta.sage.android.ui.list
+package net.sigmabeta.sage.ui.list
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets

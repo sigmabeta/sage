@@ -5,12 +5,12 @@ plugins {
 
 // ListScreen + GridScreen are pure Compose Multiplatform — LazyColumn /
 // LazyVerticalGrid / LazyVerticalStaggeredGrid and WindowInsets.navigationBars all
-// resolve from CMP foundation. NavArgType pins to the Android-only AndroidX
-// navigation library and stays in androidMain until a multiplatform replacement
-// (Voyager — see Milestone 6 slice 6) lands here too.
+// resolve from CMP foundation. (The old NavArgType androidMain helper that pinned to
+// AndroidX navigation was dropped after the Voyager migration — the module is now
+// fully multiplatform with no androidMain code.)
 kotlin {
     androidLibrary {
-        namespace = "net.sigmabeta.sage.android.ui.list"
+        namespace = "net.sigmabeta.sage.ui.list"
     }
 
     sourceSets {
@@ -20,11 +20,6 @@ kotlin {
                 api(projects.common.list)
                 api(projects.common.nav)
                 api(projects.common.ui.components)
-            }
-        }
-        named("androidMain") {
-            dependencies {
-                api(libs.androidx.navigation.compose)
             }
         }
     }

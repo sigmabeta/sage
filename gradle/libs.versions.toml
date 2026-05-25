@@ -223,6 +223,7 @@ sage-common-time = { group = "net.sigmabeta.sage", name = "time" }
 sage-common-ui-iconsApi = { group = "net.sigmabeta.sage", name = "icons-api" }
 sage-common-ui-iconsReal = { group = "net.sigmabeta.sage", name = "icons-real" }
 sage-common-ui-perfCompose = { group = "net.sigmabeta.sage", name = "perf-compose" }
+sage-common-ui-listScreens = { group = "net.sigmabeta.sage", name = "list-screens" }
 sage-common-ui-strings = { group = "net.sigmabeta.sage", name = "strings" }
 sage-common-wakelocks = { group = "net.sigmabeta.sage", name = "wakelocks" }
 sage-common-debug = { group = "net.sigmabeta.sage", name = "debug" }
@@ -244,7 +245,6 @@ sage-android-logging = { group = "net.sigmabeta.sage.android", name = "logging" 
 sage-android-resources = { group = "net.sigmabeta.sage.android", name = "resources" }
 sage-android-ui-colors = { group = "net.sigmabeta.sage.android", name = "colors" }
 sage-android-ui-fonts = { group = "net.sigmabeta.sage.android", name = "fonts" }
-sage-android-ui-list = { group = "net.sigmabeta.sage.android", name = "list" }
 sage-android-ui-strings = { group = "net.sigmabeta.sage.android", name = "strings" }
 sage-android-ui-themes = { group = "net.sigmabeta.sage.android", name = "themes" }
 sage-android-wakelocks = { group = "net.sigmabeta.sage.android", name = "wakelocks" }

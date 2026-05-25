@@ -61,6 +61,7 @@ include(
     ":common:ui:icons-api",
     ":common:ui:icons-real",
     ":common:ui:perf-compose",
+    ":common:ui:list-screens",
     ":common:ui:strings",
     ":android:analytics",
     ":android:connectivity",
@@ -68,7 +69,6 @@ include(
     ":android:firebase",
     ":android:logging",
     ":android:resources",
-    ":android:ui:list",
     ":android:ui:strings",
     ":android:ui:themes",
 
