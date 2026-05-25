@@ -3,12 +3,14 @@ plugins {
 }
 
 kotlin {
+    js { nodejs() }
+
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.ui.components"
     }
 
     sourceSets {
-        named("jvmSharedMain") {
+        named("commonMain") {
             dependencies {
                 api(libs.kotlinx.collections.immutable)
                 api(projects.common.appcomm)

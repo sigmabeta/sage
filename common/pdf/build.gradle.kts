@@ -3,12 +3,14 @@ plugins {
 }
 
 kotlin {
+    js { nodejs() }
+
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.pdf"
     }
 
     sourceSets {
-        named("jvmSharedMain") {
+        named("commonMain") {
             dependencies {
                 implementation(projects.common.images)
             }

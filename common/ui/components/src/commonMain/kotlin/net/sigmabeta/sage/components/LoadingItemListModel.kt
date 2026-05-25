@@ -5,7 +5,7 @@ data class LoadingItemListModel(
     val loadOperationName: String,
     val loadPositionOffset: Int
 ) : ListModel() {
-    override val dataId = "${this.javaClass.simpleName}.$loadOperationName".hashCode().toLong() + loadPositionOffset
+    override val dataId = "${this::class.simpleName}.$loadOperationName".hashCode().toLong() + loadPositionOffset
     override val columns = when (loadingType) {
         LoadingType.PAGE, LoadingType.SQUARE, LoadingType.NOTIF, LoadingType.WIDE_ITEM -> 1
         else -> COLUMNS_ALL
