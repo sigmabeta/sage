@@ -7,14 +7,15 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 /**
- * Convention for `:cbox:android:player:emulators:<emu>:real` modules — the pure-Kotlin JNI
+ * Convention for `:cbox:common:player:emulators:<emu>:real` modules — the pure-Kotlin JNI
  * wrapper that builds for both the Android and JVM variants. The native `.so` is produced
- * outside this module: Android packages it via the sibling `:native` companion
- * (externalNativeBuild can't live in an AGP KMP library), and the JVM target host-builds it.
+ * outside this module: Android packages it via the `:native` companion that stays under
+ * `:cbox:android:player:emulators:<emu>` (externalNativeBuild can't live in an AGP KMP
+ * library), and the JVM target host-builds it.
  *
  * Every emulator `:real` is byte-identical except for the namespace, so the plugin contributes
  * the namespace, the three `jvmSharedMain` deps every wrapper needs, and a `runtimeOnly` dep
- * on the sibling `:native` companion (androidMain only — that's what packages the .so into
+ * on the android `:native` companion (androidMain only — that's what packages the .so into
  * the APK; the JVM target host-builds its own .so).
  */
 class SageEmulatorRealPlugin : Plugin<Project> {
@@ -22,9 +23,9 @@ class SageEmulatorRealPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply("sage.kmp")
 
-            val parentPath = checkNotNull(project.parent) {
+            val emulatorName = checkNotNull(project.parent) {
                 "sage.emulator.real must be applied to a `:<emu>:real` module under a parent emulator project"
-            }.path
+            }.name
 
             val derivedNamespace = chipboxNamespace()
             extensions.configure<KotlinMultiplatformExtension> {
@@ -41,7 +42,10 @@ class SageEmulatorRealPlugin : Plugin<Project> {
                 }
 
                 sourceSets.getByName("androidMain").dependencies {
-                    runtimeOnly(project("$parentPath:native"))
+                    // The :native companion (Android-only — it packages the .so into the APK)
+                    // stays under :cbox:android while :real now lives under :cbox:common, so it
+                    // can no longer be reached as a sibling; reference the fixed android path.
+                    runtimeOnly(project(":cbox:android:player:emulators:$emulatorName:native"))
                 }
             }
         }
