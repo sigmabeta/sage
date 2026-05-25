@@ -196,6 +196,7 @@ paparazzi = { group = "app.cash.paparazzi", name = "paparazzi-gradle-plugin", ve
 paparazzi-runtime = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+room-common = { group = "androidx.room", name = "room-common", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
