@@ -4,12 +4,14 @@ plugins {
 }
 
 kotlin {
+    js { nodejs() }
+
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.appcomm"
     }
 
     sourceSets {
-        named("jvmSharedMain") {
+        named("commonMain") {
             dependencies {
                 implementation(libs.kotlinx.serialization.core)
                 implementation(projects.common.logging)
