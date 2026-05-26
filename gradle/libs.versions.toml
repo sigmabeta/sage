@@ -179,6 +179,10 @@ kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 # artifact on the runtime classpath the JVM target throws "Module with the Main dispatcher is
 # missing" the moment any VM tries to schedule on main.
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
+# Dispatchers.setMain + runTest + TestScope + StandardTestDispatcher / UnconfinedTestDispatcher.
+# Required by any commonTest source set that drives a coroutine-based ViewModel, repository, or
+# state machine. Pinned to the same `kotlinxCoroutines` ref so test and production runtimes agree.
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
