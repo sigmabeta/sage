@@ -1,9 +1,9 @@
 package net.sigmabeta.sage.android.logging
 
 import android.util.Log
-import java.util.regex.Pattern
 import net.sigmabeta.sage.logging.BuildConfig
 import net.sigmabeta.sage.logging.Hatchet
+import java.util.regex.Pattern
 
 class AndroidHatchet : Hatchet {
     override fun v(message: String) {
@@ -43,7 +43,7 @@ class AndroidHatchet : Hatchet {
         }
 
         val threadName = Thread.currentThread().name
-        val string = "Thr: $threadName | Msg: $message"
+        val string = "$threadName || Msg: $message"
 
         if (string.length < MAX_LOG_LENGTH) {
             if (severity == Log.ASSERT) {
