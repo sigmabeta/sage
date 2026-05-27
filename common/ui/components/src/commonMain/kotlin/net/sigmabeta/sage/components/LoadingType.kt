@@ -3,6 +3,7 @@ package net.sigmabeta.sage.components
 enum class LoadingType {
     PAGE,
     SQUARE,
+    COVER,
     NOTIF,
     WIDE_ITEM,
     BIG_IMAGE,
