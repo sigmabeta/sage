@@ -17,4 +17,12 @@ kotlin {
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.logging"
     }
+
+    sourceSets {
+        named("commonTest") {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+    }
 }
