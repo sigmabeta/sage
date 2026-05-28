@@ -7,11 +7,11 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | Tool | Version |
 |------|---------|
 | JDK | 17 |
-| Gradle | 8.14.2 |
-| Android Gradle Plugin | 8.11.0 |
-| Kotlin | 2.2.0 |
-| compileSdk / targetSdk | 35 / 36 |
-| minSdk | 21 |
+| Gradle | 9.5.0 |
+| Android Gradle Plugin | 9.2.1 |
+| Kotlin | 2.3.20 |
+| compileSdk | 36 |
+| minSdk | 26 |
 
 ## Module Inventory
 
@@ -25,7 +25,9 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | `connectivity` | `net.sigmabeta.sage:connectivity` | Network connectivity state |
 | `coroutines` | `net.sigmabeta.sage:coroutines` | Coroutine dispatcher providers |
 | `debug` | `net.sigmabeta.sage:debug` | Debug-only utilities |
+| `di` | `net.sigmabeta.sage:di` | DI marker / scope types |
 | `events` | `net.sigmabeta.sage:events` | Event dispatcher |
+| `freeform` | `net.sigmabeta.sage:freeform` | Freeform / loosely-typed utilities |
 | `images` | `net.sigmabeta.sage:images` | Image loading abstractions |
 | `list` | `net.sigmabeta.sage:list` | List model types |
 | `logging` | `net.sigmabeta.sage:logging` | `Hatchet` logging abstraction |
@@ -37,7 +39,10 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | `storage/common` | `net.sigmabeta.sage:common` | Storage abstractions |
 | `time` | `net.sigmabeta.sage:time` | Time/date utilities (ThreeTen) |
 | `ui/components` | `net.sigmabeta.sage:components` | Shared UI component model types |
-| `ui/icons` | `net.sigmabeta.sage:icons` | Icon abstractions |
+| `ui/icons-api` | `net.sigmabeta.sage:icons-api` | Icon-set API (Compose-free) |
+| `ui/icons-real` | `net.sigmabeta.sage:icons-real` | Compose implementation of `icons-api` |
+| `ui/list-screens` | `net.sigmabeta.sage:list-screens` | Shared Compose list/screen scaffolds |
+| `ui/perf-compose` | `net.sigmabeta.sage:perf-compose` | Compose performance instrumentation |
 | `ui/strings` | `net.sigmabeta.sage:strings` | String resource abstractions |
 
 ### `android/` — Android library modules
@@ -45,21 +50,19 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | Module | Coordinates | Description |
 |--------|-------------|-------------|
 | `analytics` | `net.sigmabeta.sage.android:analytics` | Firebase/analytics implementation |
-| `bitmaps` | `net.sigmabeta.sage.android:bitmaps` | Bitmap generation (loading indicators, PDF thumbnails) |
 | `connectivity` | `net.sigmabeta.sage.android:connectivity` | Android connectivity implementation |
 | `coroutines` | `net.sigmabeta.sage.android:coroutines` | Android coroutine dispatcher impl |
 | `firebase` | `net.sigmabeta.sage.android:firebase` | Firebase setup |
 | `logging` | `net.sigmabeta.sage.android:logging` | `AndroidHatchet` implementation |
-| `perf` | `net.sigmabeta.sage.android:perf` | Compose performance monitoring |
 | `resources` | `net.sigmabeta.sage.android:resources` | Android resource utilities |
-| `ui/icons` | `net.sigmabeta.sage.android:icons` | Icon implementations |
+| `ui/strings` | `net.sigmabeta.sage.android:strings` | Android string-resource implementation |
 | `ui/themes` | `net.sigmabeta.sage.android:themes` | `SageMaterial` / `SageMaterialMenu` composables — accepts `lightColors`, `darkColors`, and `typography` from the caller |
 
 ### `fake/` — test doubles
 
 | Module | Coordinates | Description |
 |--------|-------------|-------------|
-| `analytics` | `net.sigmabeta.sage.fake:analytics` | No-op analytics (Hilt module) |
+| `analytics` | `net.sigmabeta.sage.fake:analytics` | No-op analytics (Metro contribution) |
 | `perf` | `net.sigmabeta.sage.fake:perf` | No-op performance monitoring |
 
 ## Convention Plugins
@@ -70,12 +73,16 @@ Defined in `sage-build-logic/`. All plugins auto-apply detekt and configure JVM 
 |-----------|---------|-----------|
 | `sage.android` | Android library modules | `kotlin-stdlib`, `logging`, core library desugaring |
 | `sage.jvm` | Pure Kotlin/JVM modules | `kotlin-stdlib` |
+| `sage.kmp` | Kotlin Multiplatform modules (`commonMain`-hoisted) | `kotlin-stdlib`, JVM + Android targets |
 | `sage.compose.android` | Android library modules with Compose | same as `sage.android` + Compose compiler |
+| `sage.compose.kmp` | Multiplatform Compose modules | same as `sage.kmp` + Compose Multiplatform |
+| `sage.di` | Modules wiring Metro / DI graphs | Metro + KSP setup |
+| `sage.di.worker.android` | Android modules contributing WorkManager workers | DI + Android WorkManager bindings |
 
 ### What `sage.android` configures
 
 - `com.android.library` + `org.jetbrains.kotlin.android` + `io.gitlab.arturbosch.detekt`
-- compileSdk 35, targetSdk 36, minSdk 21
+- compileSdk 36, minSdk 26
 - JVM 17 source/target compatibility
 - Core library desugaring enabled
 - `detekt-config.yml` from repo root
@@ -174,8 +181,6 @@ After `checkout`, initialize the submodule before running Gradle:
 ```bash
 git submodule sync && git submodule update --init --recursive
 ```
-
-See `/home/sigma/projects/android/sage-smoke-test` for a minimal working reference.
 
 ## Standalone Build
 
