@@ -18,7 +18,7 @@ androidXTest = "1.7.0"
 androidXTestRules = "1.7.0"
 androidXTestExtJunit = "1.3.0"
 androidxBenchmark = "1.4.1"
-androidxTracing = "1.2.0"
+androidxTracing = "1.3.0"
 androidxUiautomator = "2.3.0"
 androidxWindowManager = "1.5.1"
 androidxWorkManager = "2.11.2"
@@ -53,7 +53,14 @@ junit4 = "4.13.2"
 kotlin = "2.3.21"
 kotlinxCollections = "0.4.0"
 kotlinxCoroutines = "1.11.0"
-kotlinxSerialization = "1.7.3"
+kotlinxSerialization = "1.11.0"
+# Ktor — HTTP server (apps/server) + JS client (apps/js → server). 3.x is built for K2 and works
+# on Kotlin 2.3.21. Server uses ktor-server-netty + content-negotiation + partial-content (Range)
+# + status-pages + cors + call-logging; client uses ktor-client-js + content-negotiation.
+ktor = "3.5.0"
+# Logback — SLF4J backend Ktor uses for its own logging. Classic, not slim, since this is a
+# server deployment where one extra MB doesn't matter for one extra dep.
+logback = "1.5.33"
 # Kover — JVM/Android unit-test coverage. 0.9.2 was the first release with AGP 9 KMP-library
 # support; 0.9.4/0.9.5 finished it. Applied via chipbox's root build.gradle.kts only.
 kover = "0.9.8"
@@ -61,7 +68,7 @@ ksp = "2.3.7"
 # licensePlugin = "0.9.8" # No support for AGP 9 yet
 material = "1.13.0"
 mavericks = "3.1.0"
-media3 = "1.10.0"
+media3 = "1.10.1"
 metro = "1.1.1"
 # Mordant — terminal styling + interactive widgets (the arrow-key select list) for the JVM CLI
 # app (:apps:cli). The plain `mordant` artifact resolves to `mordant-jvm`, which pulls all three
@@ -70,13 +77,13 @@ metro = "1.1.1"
 mordant = "3.0.2"
 moshi = "1.15.2"
 okhttp = "5.3.2"
-okio = "3.9.1"
-paparazzi = "2.0.0-alpha04"
+okio = "3.17.0"
+paparazzi = "2.0.0-alpha05"
 retrofit = "3.0.0"
 room = "2.8.4"
 # Bundled SQLite driver for Room KMP (Android + JVM/desktop + native). Paired
 # with Room 2.8.x.
-sqliteBundled = "2.6.0"
+sqliteBundled = "2.6.2"
 splash = "1.2.0"
 supportSqlite = "3.49.0"
 threeten = "1.4.9"
@@ -89,7 +96,7 @@ threeten = "1.4.9"
 # androidx.lifecycle 2.10.x (e.g. ArtistDetail → back → GameDetail recomposes). Fixed in
 # the 1.1.0 line; bump to 1.1.0 stable when it lands.
 voyager = "1.1.0-beta03"
-tracing = "1.11.1"
+tracing = "1.11.2"
 webview = "0.33.6"
 zoomable = "0.19.0"
 
@@ -215,6 +222,26 @@ voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", 
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref = "webview" }
 zoomable-image-coil3 = { group = "me.saket.telephoto", name = "zoomable-image-coil3", version.ref = "zoomable" }
+
+# Ktor server (apps/server) — Netty engine, JSON content negotiation, status pages for clean
+# error responses, CORS for the dev-server cross-origin setup, partial-content for Range
+# requests on /api/files/{trackId}, call-logging for request traces in stdout.
+ktor-server-core               = { group = "io.ktor", name = "ktor-server-core",                version.ref = "ktor" }
+ktor-server-netty              = { group = "io.ktor", name = "ktor-server-netty",               version.ref = "ktor" }
+ktor-server-content-negotiation = { group = "io.ktor", name = "ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-status-pages       = { group = "io.ktor", name = "ktor-server-status-pages",        version.ref = "ktor" }
+ktor-server-cors               = { group = "io.ktor", name = "ktor-server-cors",                version.ref = "ktor" }
+ktor-server-partial-content    = { group = "io.ktor", name = "ktor-server-partial-content",     version.ref = "ktor" }
+ktor-server-auto-head-response = { group = "io.ktor", name = "ktor-server-auto-head-response",  version.ref = "ktor" }
+ktor-server-call-logging       = { group = "io.ktor", name = "ktor-server-call-logging",        version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Ktor JS client (apps/js → server) — kotlinx-serialization JSON wire format, JS engine binding.
+ktor-client-core               = { group = "io.ktor", name = "ktor-client-core",                version.ref = "ktor" }
+ktor-client-js                 = { group = "io.ktor", name = "ktor-client-js",                  version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+
+logback-classic                = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
 # SAGE module coordinates — group:name matches auto-substitution (group set in root build.gradle.kts,
 # name = last path segment of the module path so Gradle can substitute without explicit rules)
