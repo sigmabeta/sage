@@ -333,6 +333,7 @@ paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 sage-android = { id = "sage.android" }
 sage-jvm = { id = "sage.jvm" }
 sage-kmp = { id = "sage.kmp" }
+sage-kmp-js = { id = "sage.kmp.js" }
 sage-compose-android = { id = "sage.compose.android" }
 sage-compose-kmp = { id = "sage.compose.kmp" }
 sage-di = { id = "sage.di" }

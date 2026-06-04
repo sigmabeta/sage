@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.sage.kmp)
+    alias(libs.plugins.sage.kmp.js)
 }
 
 // First sage submodule library to convert from sage.jvm to sage.kmp. Hatchet's interface and
@@ -12,8 +13,6 @@ kotlin {
     // error here instead of silently allowed (both JVM-family targets would otherwise permit it).
     // logging is the keystone dependency for most consumer modules, so enforcing it first lets the
     // non-JVM target spread up the graph. JS is the cheapest such target (no native toolchain).
-    js { nodejs() }
-
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.logging"
     }

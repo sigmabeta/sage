@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.sage.kmp)
+    alias(libs.plugins.sage.kmp.js)
     alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
-    js { nodejs() }
-
     androidLibrary {
         namespace = "net.sigmabeta.sage.common.appcomm"
     }
