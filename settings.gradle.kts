@@ -9,13 +9,20 @@ pluginManagement {
 }
 
 plugins {
-    id("com.gradle.develocity") version "3.17.3"
+    id("com.gradle.develocity") version "4.4.2"
 }
 
 develocity {
     buildScan {
-        termsOfUseUrl = "https://gradle.com/terms-of-service"
+        // Free public Build Scan service (scans.gradle.com) — accept its terms non-interactively.
+        termsOfUseUrl = "https://gradle.com/help/legal-terms-of-use"
         termsOfUseAgree = "yes"
+
+        // Auto-publish on CI only; locally publish on demand with `--scan` (which overrides
+        // this predicate). Reading via providers keeps it configuration-cache safe.
+        val isCi = providers.environmentVariable("CI").isPresent
+        publishing.onlyIf { isCi }
+        if (isCi) tag("CI")
     }
 }
 
