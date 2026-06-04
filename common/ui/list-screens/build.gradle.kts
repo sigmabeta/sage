@@ -10,7 +10,7 @@ plugins {
 // AndroidX navigation was dropped after the Voyager migration — the module is now
 // fully multiplatform with no androidMain code.)
 kotlin {
-    androidLibrary {
+    android {
         namespace = "net.sigmabeta.sage.ui.list"
     }
 

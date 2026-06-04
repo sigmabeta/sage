@@ -8,7 +8,7 @@ plugins {
 // @ContributesTo / @SingleIn / @ContributesBinding annotations. Hosted in sage so any module
 // (sage or downstream) can contribute to the same scope without a sage → app cycle.
 kotlin {
-    androidLibrary {
+    android {
         namespace = "net.sigmabeta.sage.common.di"
     }
 }

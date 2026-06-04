@@ -25,7 +25,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
  * `src/main/java` / `src/test/java` directories, so a module can adopt this plugin with no file
  * moves and no code changes; `java.*` stays available there. Pure code can be hoisted up into
  * `commonMain` incrementally later. Per-module `namespace` is set in the module build file via
- * `kotlin { androidLibrary { namespace = "..." } }`.
+ * `kotlin { android { namespace = "..." } }`.
  */
 class SageKmpModulePlugin : Plugin<Project> {
     override fun apply(target: Project) {
