@@ -14,5 +14,6 @@ class AndroidStringProvider(
 
     override fun getStringOneInt(string: SageStringId, arg: Int) = resources.getString(toResourceId(string), arg)
 
-    override fun getStringTwoArgs(string: SageStringId, first: String, second: String) = resources.getString(toResourceId(string), first, second)
+    override fun getStringTwoArgs(string: SageStringId, first: String, second: String) =
+        resources.getString(toResourceId(string), first, second)
 }
