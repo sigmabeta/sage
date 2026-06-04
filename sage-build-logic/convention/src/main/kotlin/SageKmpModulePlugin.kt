@@ -46,6 +46,12 @@ class SageKmpModulePlugin : Plugin<Project> {
                 ) {
                     compileSdk = 36
                     minSdk = 26
+                    // Enable the JVM-host (not on-device) test component for the Android target.
+                    // Every shared module has a commonTest source set; without this AGP can't run
+                    // those tests against the Android target and warns once per module at configure
+                    // time. It also activates the `androidHostTest` source set the dependsOn wiring
+                    // below targets. CI is unaffected — it invokes `jvmTest` explicitly, not `check`.
+                    withHostTest { }
                 }
 
                 compilerOptions {
