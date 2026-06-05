@@ -32,6 +32,17 @@ buildCache {
     }
 }
 
+// Per-module Maven `group`. The Android platform-split modules share a project.name with their
+// common API counterpart (e.g. :android:analytics vs :common:analytics), so the `:android:` tree
+// gets a distinct group to avoid colliding during Gradle's module-identity unification. Done via
+// beforeProject (runs lazily per project) rather than a root `subprojects {}` block, which would
+// force every project to configure and defeat configuration-on-demand.
+gradle.lifecycle.beforeProject {
+    if (buildFile.exists()) {
+        group = if (path.startsWith(":android:")) "net.sigmabeta.sage.android" else "net.sigmabeta.sage"
+    }
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
