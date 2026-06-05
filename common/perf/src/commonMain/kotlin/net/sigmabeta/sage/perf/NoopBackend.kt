@@ -1,8 +1,5 @@
 package net.sigmabeta.sage.perf
 
-import net.sigmabeta.sage.perf.PerfStage
-import net.sigmabeta.sage.perf.PerfBackend
-
 class NoopBackend : PerfBackend {
     override fun startScreen(screenName: String) = Unit
 

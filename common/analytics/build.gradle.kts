@@ -12,6 +12,8 @@ kotlin {
         named("commonMain") {
             dependencies {
                 api(projects.common.appcomm)
+                // NoopAnalytics logs through Hatchet.
+                implementation(projects.common.logging)
             }
         }
     }

@@ -78,7 +78,4 @@ include(
     ":android:resources",
     ":android:ui:strings",
     ":android:ui:themes",
-
-    ":fake:analytics",
-    ":fake:perf",
 )

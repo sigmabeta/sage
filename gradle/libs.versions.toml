@@ -285,8 +285,6 @@ sage-android-ui-fonts = { group = "net.sigmabeta.sage.android", name = "fonts" }
 sage-android-ui-strings = { group = "net.sigmabeta.sage.android", name = "strings" }
 sage-android-ui-themes = { group = "net.sigmabeta.sage.android", name = "themes" }
 sage-android-wakelocks = { group = "net.sigmabeta.sage.android", name = "wakelocks" }
-sage-fake-analytics = { group = "net.sigmabeta.sage.fake", name = "analytics" }
-sage-fake-perf = { group = "net.sigmabeta.sage.fake", name = "perf" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
