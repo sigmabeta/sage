@@ -9,12 +9,22 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Computer
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.LibraryMusic
 import androidx.compose.material.icons.filled.Memory
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.MusicNote
+import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Repeat
+import androidx.compose.material.icons.filled.RepeatOne
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Shuffle
+import androidx.compose.material.icons.filled.SkipNext
+import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.sigmabeta.sage.ui.icons.IcAlbum24dp
@@ -36,6 +46,7 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.Back -> Icons.AutoMirrored.Default.ArrowBack
     is Icon.Browse -> Icons.AutoMirrored.Default.List
     is Icon.Calendar -> Icons.Default.DateRange
+    is Icon.Caret -> Icons.Default.KeyboardArrowDown
     is Icon.Chip -> Icons.Default.Memory
     is Icon.Clear -> Icons.Default.Clear
     is Icon.Computer -> Icons.Default.Computer
@@ -48,16 +59,25 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.Home -> Icons.Default.Home
     is Icon.FavoriteEmpty -> SageMaterialVectors.IcFavoriteEmpty
     is Icon.FavoriteFilled -> SageMaterialVectors.IcFavoriteFilled
+    is Icon.Library -> Icons.Default.LibraryMusic
+    is Icon.Menu -> Icons.Default.Menu
     is Icon.Minus -> SageMaterialVectors.IcRemove24dp
     is Icon.MusicNote -> Icons.Default.MusicNote
     is Icon.OfflineFilled -> SageMaterialVectors.IcCloudDone24dp
     is Icon.OfflineOutline -> SageMaterialVectors.IcOutlineCloudDownload24dp
+    is Icon.Overflow -> Icons.Default.MoreVert
+    is Icon.Pause -> Icons.Default.Pause
     is Icon.Person -> Icons.Default.Person
+    is Icon.Play -> Icons.Default.PlayArrow
     is Icon.Plus -> Icons.Default.Add
     is Icon.Refresh -> Icons.Default.Refresh
+    is Icon.Repeat -> Icons.Default.Repeat
+    is Icon.RepeatOne -> Icons.Default.RepeatOne
     is Icon.Search -> Icons.Default.Search
     is Icon.SearchYoutube -> SageMaterialVectors.IcPlayCircleFilled24
     is Icon.Shuffle -> Icons.Default.Shuffle
+    is Icon.SkipNext -> Icons.Default.SkipNext
+    is Icon.SkipPrevious -> Icons.Default.SkipPrevious
     is Icon.Tag -> SageMaterialVectors.IcTagBlack24dp
     is Icon.Warning -> Icons.Default.Warning
 }
