@@ -37,6 +37,10 @@ dependencies {
     // plugin must be on the build-logic runtime classpath (unlike AGP/Kotlin, which consuming
     // modules already bring via their own plugins blocks).
     implementation(libs.paparazzi)
+    // implementation, not compileOnly: SageComposeUiTestModulePlugin applies "org.jetbrains.compose"
+    // by id AND reads its ComposePlugin.Dependencies (compose.uiTest / desktop.currentOs), so the
+    // plugin classes must be on the convention plugin's runtime classpath.
+    implementation(libs.compose.multiplatform.gradlePlugin)
 }
 
 gradlePlugin {
@@ -74,6 +78,12 @@ gradlePlugin {
         register("sageComposeKmp") {
             id = "sage.compose.kmp"
             implementationClass = "SageComposeKmpModulePlugin"
+            version = "1.0"
+        }
+
+        register("sageComposeUiTest") {
+            id = "sage.compose.uitest"
+            implementationClass = "SageComposeUiTestModulePlugin"
             version = "1.0"
         }
 

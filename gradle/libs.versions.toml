@@ -290,6 +290,9 @@ firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "fir
 firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+# The JetBrains Compose Gradle plugin jar, on the build-logic classpath so a convention plugin can
+# apply `org.jetbrains.compose` and read its `compose.uiTest` / `compose.desktop.currentOs` deps.
+compose-multiplatform-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatformPlugin" }
 kotlin-serialization-gradlePlugin = { group = "org.jetbrains.kotlin.plugin.serialization", name = "org.jetbrains.kotlin.plugin.serialization.gradle.plugin", version.ref = "kotlin" }
 
 # Metro DI extensions — the core runtime is auto-added by the dev.zacsweers.metro Gradle
@@ -330,6 +333,7 @@ sage-kmp = { id = "sage.kmp" }
 sage-kmp-js = { id = "sage.kmp.js" }
 sage-compose-android = { id = "sage.compose.android" }
 sage-compose-kmp = { id = "sage.compose.kmp" }
+sage-compose-uitest = { id = "sage.compose.uitest" }
 sage-di = { id = "sage.di" }
 sage-di-worker-android = { id = "sage.di.worker.android" }
 
