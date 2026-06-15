@@ -25,10 +25,12 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  *  - The on-device test component (`withDeviceTest`), so the Android half runs instrumented — where
  *    `runComposeUiTest` has a real framework — rather than `androidHostTest` (which lacks one) or
  *    Robolectric.
- *  - `src/uiTest/kotlin` into BOTH `jvmTest` and `androidDeviceTest`, with the compose-test and
- *    instrumentation deps each tree needs. The dir is kept off `androidHostTest` on purpose
- *    (no Android framework there → runComposeUiTest NPEs). The two trees can't `dependsOn` each
- *    other (KMP forbids it across the unit-test / instrumented-test trees), so each carries the deps.
+ *  - The specs live in the JVM unit-test tree's own `src/jvmTest/kotlin` (its canonical dir, so the
+ *    IDE marks it a test source root and gives run gutters), and the on-device tree MIRRORS them:
+ *    `androidDeviceTest` adds `src/jvmTest/kotlin` as a srcDir. The two trees can't `dependsOn` each
+ *    other (KMP forbids it across the unit-test / instrumented-test trees), so the instrumented tree
+ *    re-declares the same compose-test + instrumentation deps rather than inheriting them. The dir
+ *    is kept off `androidHostTest` on purpose (no Android framework there → runComposeUiTest NPEs).
  *
  * The app-specific harness deps (the DI graph's feature modules + fakes) stay in the module build.
  */
@@ -65,16 +67,16 @@ class SageComposeUiTestModulePlugin : Plugin<Project> {
                         implementation(compose.material3)
                     }
 
-                    getByName("jvmTest").apply {
-                        kotlin.srcDir("src/uiTest/kotlin")
-                        dependencies {
-                            // Per-OS Skia native — the desktop backend renders onto.
-                            implementation(compose.desktop.currentOs)
-                        }
+                    getByName("jvmTest").dependencies {
+                        // Per-OS Skia native — the desktop backend renders onto. The specs live in
+                        // this source set's canonical src/jvmTest/kotlin (no srcDir needed).
+                        implementation(compose.desktop.currentOs)
                     }
 
                     getByName("androidDeviceTest").apply {
-                        kotlin.srcDir("src/uiTest/kotlin")
+                        // Mirror the desktop unit-test specs onto the device (can't dependsOn across
+                        // trees, so compile the same files here).
+                        kotlin.srcDir("src/jvmTest/kotlin")
                         dependencies {
                             implementation(compose.uiTest)
                             implementation(compose.material3)
