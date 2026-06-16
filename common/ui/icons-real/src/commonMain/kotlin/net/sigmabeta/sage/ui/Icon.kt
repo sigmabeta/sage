@@ -3,6 +3,7 @@ package net.sigmabeta.sage.ui
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.FeaturedPlayList
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.automirrored.filled.QueueMusic
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Repeat
 import androidx.compose.material.icons.filled.RepeatOne
@@ -70,6 +72,7 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.Person -> Icons.Default.Person
     is Icon.Play -> Icons.Default.PlayArrow
     is Icon.Plus -> Icons.Default.Add
+    is Icon.QueueMusic -> Icons.AutoMirrored.Default.QueueMusic
     is Icon.Refresh -> Icons.Default.Refresh
     is Icon.Repeat -> Icons.Default.Repeat
     is Icon.RepeatOne -> Icons.Default.RepeatOne

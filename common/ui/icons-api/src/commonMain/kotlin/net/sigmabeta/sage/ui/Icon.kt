@@ -29,6 +29,7 @@ sealed interface Icon {
     data object Person : Icon
     data object Play : Icon
     data object Plus : Icon
+    data object QueueMusic : Icon
     data object Refresh : Icon
     data object Repeat : Icon
     data object RepeatOne : Icon
