@@ -22,5 +22,15 @@ open class SageAction {
 
     data class NotifClearClicked(val id: Long) : SageAction()
 
+    /**
+     * A drag-to-reorder gesture moved the list item at [fromIndex] to [toIndex]. Both are
+     * positions within the screen's current `listItems` (header/non-reorderable rows included),
+     * and the action is emitted once per completed drag — not per intermediate step. The
+     * receiving reducer is the source of truth: it applies the move to its domain order and
+     * re-emits; [net.sigmabeta.sage.ui.list.ReorderableScreen] only mirrors the order locally
+     * for in-drag feedback.
+     */
+    data class Reorder(val fromIndex: Int, val toIndex: Int) : SageAction()
+
     data object KeepScreenOnSnackCtaClicked : SageAction()
 }
