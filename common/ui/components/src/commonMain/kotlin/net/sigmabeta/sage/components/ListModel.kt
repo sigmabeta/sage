@@ -8,7 +8,10 @@ abstract class ListModel {
     abstract val dataId: Long
     abstract val columns: Int
 
-    fun layoutId(): String = runtimeClassName(this)
+    // Open so a wrapping/decorating model (e.g. a draggable container) can compose its own
+    // layout identity with the wrapped content's — letting LazyList contentType discriminate by
+    // inner type without aliasing the bare, undecorated version of that type.
+    open fun layoutId(): String = runtimeClassName(this)
 
     companion object {
         const val COLUMNS_ALL = -1
