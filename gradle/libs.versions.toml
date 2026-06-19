@@ -23,18 +23,20 @@ androidxUiautomator = "2.3.0"
 androidxWindowManager = "1.5.1"
 androidxWorkManager = "2.11.2"
 coil = "3.4.0"
-# Compose Multiplatform lib jars (runtime / foundation / material3 / ui / components-resources).
-# 1.9.0 is the latest stable on Maven Central; the newer Gradle plugin (`composeMultiplatformPlugin`
-# below) is at 1.11.0 because the 1.9.0 plugin breaks against AGP 9 KMP. The plugin manages its
-# own internal compose lib version, so the version skew between this and `composeMultiplatformPlugin`
-# is intentional — bump both when stable lib jars catch up to the plugin line.
-composeMultiplatform = "1.9.0"
-# JetBrains Compose Gradle plugin — pinned a line ahead of `composeMultiplatform` above. The
-# 1.9.0 plugin breaks against AGP 9's `KotlinMultiplatformAndroidComponentsExtension.onVariant`
-# (NoSuchMethodError when applied to a `sage.kmp` module); 1.11.0 fixes the variant call. The
-# plugin manages its own internal Compose-lib version, so coexisting with the libs at 1.9.0 is
-# safe. Bump both when stable lib jars catch up to the plugin line.
-composeMultiplatformPlugin = "1.9.3"
+# Compose Multiplatform lib jars (runtime / foundation / ui / animation / components-resources).
+# Pinned to stable 1.11.1 so these wrap androidx compose 1.11.1 — the same version
+# `androidXComposeAnimationAlpha` forces onto the androidx classpath. The lockstep matters for
+# Modifier.sharedElement: at 1.9.0 the libs compiled against an androidx ~1.8 `sharedElement`
+# signature while the runtime resolved androidx 1.11.1, so Paparazzi screenshot tests of
+# shared-element screens died with NoSuchMethodError. 1.11.1 closes that skew AND keeps compileSdk
+# at 36 — the 1.12.0-alpha line drags in androidx compose 1.12.0-alpha03, which mandates compileSdk 37.
+composeMultiplatform = "1.11.1"
+# JetBrains Compose Gradle plugin — kept in lockstep with the libs above. The 1.9.x plugin breaks
+# against AGP 9's `KotlinMultiplatformAndroidComponentsExtension.onVariant`; 1.11.x fixes it.
+composeMultiplatformPlugin = "1.11.1"
+# CMP material3 has no stable 1.11.1 (its 1.11 line is alpha-only); pinned separately to the
+# latest 1.11 alpha so the rest of the CMP libs stay on stable 1.11.1 (compileSdk-36 safe).
+composeMultiplatformMaterial3 = "1.11.0-alpha07"
 detekt = "1.23.8"
 ktlintGradle = "14.2.0"
 # Pins the ktlint engine used by the Gradle plugin to the version the old ktlint-check.sh
@@ -166,11 +168,11 @@ hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", ver
 # applied in apps/jvm, not in the sage.compose.kmp convention).
 jetbrains-compose-runtime    = { module = "org.jetbrains.compose.runtime:runtime",                 version.ref = "composeMultiplatform" }
 jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation",           version.ref = "composeMultiplatform" }
-jetbrains-compose-material3  = { module = "org.jetbrains.compose.material3:material3",             version.ref = "composeMultiplatform" }
+jetbrains-compose-material3  = { module = "org.jetbrains.compose.material3:material3",             version.ref = "composeMultiplatformMaterial3" }
 # JetBrains-published twin of androidx.compose.material3:material3-adaptive-navigation-suite —
 # NavigationSuiteScaffold + NavigationSuiteScope on Android + JVM/desktop (the AndroidX artifact
 # is Android-only). Used by consumer app UIs to render the bottom nav bar / nav rail on both targets.
-jetbrains-compose-material3-adaptive-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "composeMultiplatform" }
+jetbrains-compose-material3-adaptive-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "composeMultiplatformMaterial3" }
 jetbrains-compose-ui         = { module = "org.jetbrains.compose.ui:ui",                           version.ref = "composeMultiplatform" }
 # Material icons — `Icons.Default.X` + `Icons.AutoMirrored.Default.X`. The JetBrains fork mirrors
 # androidx.compose.material:material-icons-extended and builds for both Android and JVM/desktop.
