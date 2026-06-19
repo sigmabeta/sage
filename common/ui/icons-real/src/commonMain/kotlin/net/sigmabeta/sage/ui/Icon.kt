@@ -27,6 +27,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Shuffle
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.ui.graphics.vector.ImageVector
 import net.sigmabeta.sage.ui.icons.IcAlbum24dp
@@ -82,5 +84,7 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.SkipNext -> Icons.Default.SkipNext
     is Icon.SkipPrevious -> Icons.Default.SkipPrevious
     is Icon.Tag -> SageMaterialVectors.IcTagBlack24dp
+    is Icon.Visibility -> Icons.Default.Visibility
+    is Icon.VisibilityOff -> Icons.Default.VisibilityOff
     is Icon.Warning -> Icons.Default.Warning
 }

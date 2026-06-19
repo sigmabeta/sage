@@ -39,5 +39,7 @@ sealed interface Icon {
     data object SkipNext : Icon
     data object SkipPrevious : Icon
     data object Tag : Icon
+    data object Visibility : Icon
+    data object VisibilityOff : Icon
     data object Warning : Icon
 }
