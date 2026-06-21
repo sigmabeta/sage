@@ -20,9 +20,12 @@ import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.automirrored.filled.QueueMusic
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Repeat
 import androidx.compose.material.icons.filled.RepeatOne
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Shuffle
 import androidx.compose.material.icons.filled.SkipNext
@@ -54,11 +57,13 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.Chip -> Icons.Default.Memory
     is Icon.Clear -> Icons.Default.Clear
     is Icon.Computer -> Icons.Default.Computer
+    is Icon.Delete -> Icons.Default.Delete
     is Icon.CrossOut -> SageMaterialVectors.IcCrossOut24dp()
     is Icon.CrossOutError -> SageMaterialVectors.IcCrossOutError24dp()
     is Icon.CrossOutMenu -> SageMaterialVectors.IcCrossOutMenu24dp()
     is Icon.Description -> SageMaterialVectors.IcDescription24dp
     is Icon.Difficulty -> SageMaterialVectors.IcBarChart24dp
+    is Icon.Edit -> Icons.Default.Edit
     is Icon.Forward -> Icons.AutoMirrored.Default.ArrowForward
     is Icon.Home -> Icons.Default.Home
     is Icon.FavoriteEmpty -> SageMaterialVectors.IcFavoriteEmpty
@@ -78,6 +83,7 @@ fun Icon.vector(): ImageVector = when (this) {
     is Icon.Refresh -> Icons.Default.Refresh
     is Icon.Repeat -> Icons.Default.Repeat
     is Icon.RepeatOne -> Icons.Default.RepeatOne
+    is Icon.Save -> Icons.Default.Save
     is Icon.Search -> Icons.Default.Search
     is Icon.SearchYoutube -> SageMaterialVectors.IcPlayCircleFilled24
     is Icon.Shuffle -> Icons.Default.Shuffle

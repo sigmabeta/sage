@@ -9,11 +9,13 @@ sealed interface Icon {
     data object Chip : Icon
     data object Clear : Icon
     data object Computer : Icon
+    data object Delete : Icon
     data object CrossOut : Icon
     data object CrossOutError : Icon
     data object CrossOutMenu : Icon
     data object Description : Icon
     data object Difficulty : Icon
+    data object Edit : Icon
     data object FavoriteEmpty : Icon
     data object FavoriteFilled : Icon
     data object Forward : Icon
@@ -33,6 +35,7 @@ sealed interface Icon {
     data object Refresh : Icon
     data object Repeat : Icon
     data object RepeatOne : Icon
+    data object Save : Icon
     data object Search : Icon
     data object SearchYoutube : Icon
     data object Shuffle : Icon
