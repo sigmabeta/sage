@@ -225,6 +225,7 @@ sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.r
 support-sqlite = { group = "com.github.requery", name = "sqlite-android", version.ref = "supportSqlite" }
 threeten = { group = "com.jakewharton.threetenabp", name = "threetenabp", version.ref = "threeten" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 webview = { group = "io.github.kevinnzou", name = "compose-webview", version.ref = "webview" }
