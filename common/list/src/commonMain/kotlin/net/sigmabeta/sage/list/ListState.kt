@@ -20,6 +20,13 @@ abstract class ListState : SageState {
 
     open val columnType: ColumnType = ColumnType.One
 
+    /**
+     * Whether (and how) this screen pages its content. Default [PaginationType.None] keeps the list
+     * non-paginated; a paginating type opts into scroll-driven load-more/load-previous signals in
+     * `ListScreen`.
+     */
+    open val paginationType: PaginationType = PaginationType.None
+
     @Suppress("TooGenericExceptionCaught", "SwallowedException")
     fun toActual(stringProvider: StringProvider): ListStateActual {
         val title = try {
@@ -65,6 +72,7 @@ abstract class ListState : SageState {
             columnType = columnType,
             title = title,
             listItems = listItems,
+            paginationType = paginationType,
         )
     }
 

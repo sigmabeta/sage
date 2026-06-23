@@ -23,6 +23,21 @@ open class SageAction {
     data class NotifClearClicked(val id: Long) : SageAction()
 
     /**
+     * The list has scrolled near its bottom edge. Emitted by
+     * [net.sigmabeta.sage.ui.list.ListScreen] only for screens whose state declares a paginating
+     * [net.sigmabeta.sage.list.PaginationType]; the reducer loads the next page (or ignores it when
+     * there is nothing more below). Non-paginating screens never receive this.
+     */
+    data object LoadMoreRequested : SageAction()
+
+    /**
+     * The list has scrolled near its top edge. Counterpart to [LoadMoreRequested] for windows opened
+     * at a non-zero offset: the reducer prepends the previous page (or ignores it when the window
+     * already starts at offset 0).
+     */
+    data object LoadPreviousRequested : SageAction()
+
+    /**
      * A drag-to-reorder gesture moved the list item at [fromIndex] to [toIndex]. Both are
      * positions within the screen's current `listItems` (header/non-reorderable rows included),
      * and the action is emitted once per completed drag — not per intermediate step. The

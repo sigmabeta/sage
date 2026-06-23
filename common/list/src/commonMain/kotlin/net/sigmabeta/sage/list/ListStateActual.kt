@@ -8,5 +8,6 @@ import kotlinx.collections.immutable.toImmutableList
 data class ListStateActual(
     val columnType: ColumnType = ColumnType.One,
     val title: TitleBarModel = TitleBarModel(),
-    val listItems: ImmutableList<ListModel> = emptyList<ListModel>().toImmutableList()
+    val listItems: ImmutableList<ListModel> = emptyList<ListModel>().toImmutableList(),
+    val paginationType: PaginationType = PaginationType.None,
 )
