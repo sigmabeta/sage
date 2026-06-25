@@ -10,12 +10,14 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -26,6 +28,7 @@ import net.sigmabeta.sage.components.HorizontalScrollerListModel
 import net.sigmabeta.sage.components.ListModel
 import net.sigmabeta.sage.components.SectionListModel
 import net.sigmabeta.sage.list.ListStateActual
+import net.sigmabeta.sage.list.PaginationType
 
 @Composable
 @Suppress("MagicNumber", "LongMethod")
@@ -132,7 +135,15 @@ fun GridScreen(
             end = sideMargin,
         )
 
+        val gridState = rememberLazyGridState()
+
+        if (state.paginationType != PaginationType.None) {
+            val paginationState = remember(gridState) { gridState.asPaginationState() }
+            PaginationEffects(paginationState, unrolledItems, actionSink)
+        }
+
         LazyVerticalGrid(
+            state = gridState,
             contentPadding = contentPaddingWithInsets,
             columns = GridCells.Fixed(numberOfColumns),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
