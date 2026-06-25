@@ -29,13 +29,6 @@ data class DropdownSettingListModel(
      * interactive.
      */
     val onExpandClicked: SageAction = SageAction.Noop,
-    /**
-     * Maps the picked option index to the [SageAction] to dispatch. Kept for producers that build
-     * their options from a flat label list via [ofLabels]; producers supplying [options] directly
-     * bake the action into each option's `clickAction` instead. Defaults to a no-op so a dropdown
-     * can render without yet writing changes back.
-     */
-    val onNewOptionSelected: (Int) -> SageAction = { SageAction.Noop },
 ) : ListModel() {
     override val dataId: Long = settingId.hashCode().toLong()
     override val columns = ListModel.COLUMNS_ALL
@@ -70,7 +63,6 @@ data class DropdownSettingListModel(
             }.toImmutableList(),
             expanded = expanded,
             onExpandClicked = onExpandClicked,
-            onNewOptionSelected = onNewOptionSelected,
         )
     }
 }
