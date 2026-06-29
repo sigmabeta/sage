@@ -40,7 +40,7 @@ class Cache(/* … */)
 class RealThing(/* … */) : Thing
 ```
 
-See `docs/architecture/sage-integration.md` (chipbox) for the full Metro wiring
+See `arch-docs/architecture/sage-integration.md` (chipbox) for the full Metro wiring
 story.
 
 ## Module facts
