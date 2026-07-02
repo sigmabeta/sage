@@ -55,6 +55,7 @@ junit4 = "4.13.2"
 kotlin = "2.3.21"
 kotlinxCollections = "0.4.0"
 kotlinxCoroutines = "1.11.0"
+kotlinxDatetime = "0.7.1"
 kotlinxSerialization = "1.11.0"
 # Ktor — HTTP server (apps/server) + JS client (apps/js → server). 3.x is built for K2 and works
 # on Kotlin 2.3.21. Server uses ktor-server-netty + content-negotiation + partial-content (Range)
@@ -199,6 +200,7 @@ kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 # Required by any commonTest source set that drives a coroutine-based ViewModel, repository, or
 # state machine. Pinned to the same `kotlinxCoroutines` ref so test and production runtimes agree.
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
