@@ -49,6 +49,6 @@ val hatchet: Hatchet = if (appInfo.isDebug) BasicHatchet() else BluntHatchet()
 ## Module facts
 
 - **Plugin:** `sage.kmp` + `sage.kmp.js`
-- **Targets:** Android + JVM; JS (Node) when built with `-Pchipbox.js`
+- **Targets:** Android + JVM; JS (Node) when built with `-Psage.js`
 - **Source set:** `commonMain` (pure Kotlin — `println` + a `when` on `Int`)
 - **SAGE dependencies:** none (leaf)

@@ -95,7 +95,7 @@ The UI then collects `brain.uiStateActual` and renders it with `ListScreen` /
 ## Module facts
 
 - **Plugin:** `sage.kmp` + `sage.kmp.js`
-- **Targets:** Android + JVM; JS (Node) when built with `-Pchipbox.js`
+- **Targets:** Android + JVM; JS (Node) when built with `-Psage.js`
 - **Source set:** `commonMain`
 - **SAGE/module dependencies:** `:common:appcomm`, `:common:analytics`,
   `:common:coroutines`, `:common:logging`, `:common:nav`, `:common:ui:strings`

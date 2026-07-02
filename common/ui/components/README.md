@@ -65,7 +65,7 @@ val items: ImmutableList<ListModel> = persistentListOf(
 ## Module facts
 
 - **Plugin:** `sage.kmp` + `sage.kmp.js`
-- **Targets:** Android + JVM; JS (Node) when built with `-Pchipbox.js`
+- **Targets:** Android + JVM; JS (Node) when built with `-Psage.js`
 - **Source set:** `commonMain` (with `src/main/java` = `jvmSharedMain` and `src/jsMain`
   `actual`s for `runtimeClassName`)
 - **SAGE/module dependencies (all `api`):** `:common:appcomm`, `:common:images`,

@@ -39,6 +39,6 @@ platform's real dispatchers and provided through DI.
 ## Module facts
 
 - **Plugin:** `sage.kmp` + `sage.kmp.js`
-- **Targets:** Android + JVM; JS (Node) when built with `-Pchipbox.js`
+- **Targets:** Android + JVM; JS (Node) when built with `-Psage.js`
 - **Source set:** `commonMain`
 - **SAGE dependencies:** none (leaf) — re-exports `kotlinx-coroutines-core`

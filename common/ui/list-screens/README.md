@@ -88,7 +88,7 @@ which the brain's reducer applies.
 ## Module facts
 
 - **Plugin:** `sage.kmp` + `sage.kmp.js` + `sage.compose.kmp`
-- **Targets:** Android + JVM; JS (Node) when built with `-Pchipbox.js` (Compose
+- **Targets:** Android + JVM; JS (Node) when built with `-Psage.js` (Compose
   Multiplatform; no `androidMain` code)
 - **Source set:** `commonMain`
 - **SAGE/module dependencies:** `:common:appcomm`, `:common:list`, `:common:nav`,

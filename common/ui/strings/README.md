@@ -40,6 +40,6 @@ val fakeTitle = StringGenerator(Random(42)).generateTitle()
 ## Module facts
 
 - **Plugin:** `sage.kmp` + `sage.kmp.js`
-- **Targets:** Android + JVM; JS (Node) when built with `-Pchipbox.js`
+- **Targets:** Android + JVM; JS (Node) when built with `-Psage.js`
 - **Source set:** `commonMain` (interfaces) + `src/main/java` (`jvmSharedMain`, `StringGenerator`)
 - **SAGE/module dependencies:** `:common:connectivity`
