@@ -64,12 +64,15 @@ internal fun PaginationEffects(
         val key = anchorKey ?: return@LaunchedEffect
         val newIndex = items.indexOfFirst { it.dataId == key }
         when {
-            newIndex < 0 -> anchorKey = null                       // anchor row left the window
-            newIndex > anchorIndex -> {                            // rows prepended above the anchor
+            newIndex < 0 -> anchorKey = null
+
+            // anchor row left the window
+            newIndex > anchorIndex -> { // rows prepended above the anchor
                 scrollState.scrollToItem(newIndex, anchorOffset)
                 anchorIndex = newIndex
             }
-            else -> anchorKey = null                              // index stable -> prepend settled
+
+            else -> anchorKey = null // index stable -> prepend settled
         }
     }
 }

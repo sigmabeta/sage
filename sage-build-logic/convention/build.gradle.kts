@@ -23,6 +23,11 @@ kotlin {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
+    // ktlint mirrors detekt: compileOnly for the KtlintExtension/BaseKtLintCheckTask types that
+    // configureKtlint() references; the runtime plugin is provided by the consuming build's root
+    // (`alias(libs.plugins.ktlint) apply false`), same as detekt. No library alias exists in the
+    // catalog (only a plugin marker), so pull the marker artifact at the `ktlintGradle` version.
+    compileOnly("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:${libs.versions.ktlintGradle.get()}")
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.kotlin.compose.compiler.gradlePlugin)
     // implementation, not compileOnly: SageFeatureApiPlugin calls

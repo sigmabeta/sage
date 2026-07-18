@@ -126,7 +126,9 @@ class AndroidHatchet : Hatchet {
 
     private fun formatFixedWidth(text: String, width: Int): String = when {
         text.length == width -> text
+
         text.length < width -> text.padEnd(width)
+
         else -> {
             val keep = width - ELLIPSIS.length
             val head = (keep + 1) / 2

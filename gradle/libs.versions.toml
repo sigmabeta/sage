@@ -64,7 +64,7 @@ ktor = "3.5.0"
 # Logback — SLF4J backend Ktor uses for its own logging. Classic, not slim, since this is a
 # server deployment where one extra MB doesn't matter for one extra dep.
 logback = "1.5.33"
-ksp = "2.3.7"
+ksp = "2.3.10"
 # licensePlugin = "0.9.8" # No support for AGP 9 yet
 material = "1.13.0"
 mavericks = "3.1.0"

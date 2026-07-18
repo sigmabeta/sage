@@ -15,7 +15,10 @@ import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginE
  */
 internal fun Project.configureComposeCompiler() {
     extensions.configure<ComposeCompilerGradlePluginExtension> {
-        val rootFile = rootProject.layout.projectDirectory.file("compose-stability.conf")
+        // `isolated.rootProject` (not `rootProject.layout`) reads the root directory in an
+        // Isolated-Projects-safe way — a plain `rootProject.layout` access is a project reaching
+        // into another project's state, which IP forbids.
+        val rootFile = isolated.rootProject.projectDirectory.file("compose-stability.conf")
         if (rootFile.asFile.exists()) {
             stabilityConfigurationFiles.add(rootFile)
         }

@@ -1,0 +1,6 @@
+# This module holds ImageVector factory functions (SageMaterialVectors.IcXxx24dp) that use
+# PascalCase by the same convention as Material's `Icons.Filled.*`. They aren't @Composable, so the
+# root config's Composable exemption doesn't cover them — disable function-naming for this module
+# rather than rename the icon API to non-idiomatic camelCase.
+[*.kt]
+ktlint_standard_function-naming = disabled

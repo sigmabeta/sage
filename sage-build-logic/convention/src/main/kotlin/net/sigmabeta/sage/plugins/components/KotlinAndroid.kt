@@ -1,14 +1,19 @@
 package net.sigmabeta.sage.plugins.components
 
 import com.android.build.api.dsl.CommonExtension
+import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
+import org.jlleitschuh.gradle.ktlint.KtlintExtension
+import org.jlleitschuh.gradle.ktlint.tasks.BaseKtLintCheckTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
@@ -53,6 +58,7 @@ internal fun Project.configureKotlinJvm() {
 
 private inline fun <reified T : KotlinTopLevelExtension> Project.configureKotlin() = configure<T> {
     configureDetekt()
+    configureKtlint()
 
     val warningsAsErrors: String? by project
     when (this) {
@@ -80,5 +86,40 @@ internal fun Project.configureDetekt() {
     extensions.configure<DetektExtension> {
         config.setFrom("${rootDir.absolutePath}/detekt-config.yml")
         baseline = file("detekt-baseline.xml")
+    }
+
+    // Compose-resource / KSP codegen registers generated sources (Res.kt, *Strings*.kt,
+    // *_Impl.kt) into the Kotlin source sets with absolute paths; exclude anything under a build
+    // dir so detekt only sees hand-written code. A source-root-relative glob wouldn't match the
+    // absolute-path entries, hence the path predicate.
+    tasks.withType<Detekt>().configureEach {
+        exclude { it.file.path.contains("/build/") }
+    }
+}
+
+/**
+ * ktlint, mirroring [configureDetekt]: applies the plugin (runtime provided by the consuming
+ * build's root via `alias(libs.plugins.ktlint) apply false`), pins the engine to the catalog's
+ * `ktlintTool` version so the ruleset doesn't drift, and excludes generated sources under build
+ * dirs. Applied per-module by the base plugins, so ktlint stays co-resident with each module's
+ * Kotlin plugin — which ktlint-gradle's multiplatform integration requires.
+ */
+internal fun Project.configureKtlint() {
+    with(pluginManager) {
+        apply("org.jlleitschuh.gradle.ktlint")
+    }
+
+    val ktlintToolVersion = extensions.getByType<VersionCatalogsExtension>()
+        .named("libs")
+        .findVersion("ktlintTool")
+        .get()
+        .requiredVersion
+
+    extensions.configure<KtlintExtension> {
+        version.set(ktlintToolVersion)
+    }
+
+    tasks.withType<BaseKtLintCheckTask>().configureEach {
+        exclude { it.file.path.contains("/build/") }
     }
 }
