@@ -165,7 +165,7 @@ class AndroidHatchet : Hatchet {
         private const val THREAD_NAME_WIDTH = 16
         private const val MAX_RECENT_ERRORS = 16
         private const val ELLIPSIS = "..."
-        private const val FALLBACK_TAG_RAW = "Chipbox"
+        private const val FALLBACK_TAG_RAW = "SAGE"
         private val ANONYMOUS_CLASS = Pattern.compile("(\\$\\d+)+$")
     }
 }

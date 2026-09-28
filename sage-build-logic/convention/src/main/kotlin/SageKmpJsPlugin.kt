@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 /**
  * Opt-in Kotlin/JS (Node) target for `sage.kmp` modules that participate in the web build
  * (`apps/js`). Apply it alongside `sage.kmp` — directly (`alias(libs.plugins.sage.kmp.js)`) or
- * transitively (the chipbox `feature.api`/`feature.real` plugins apply it for every feature).
+ * transitively via a consumer's own convention plugin.
  *
  * Why a plugin instead of a per-module `js { nodejs() }`: it lets the JS target be **gated**.
  * The Kotlin/JS root plugins (NodeJs/Yarn, applied to the root project the first time any module

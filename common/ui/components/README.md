@@ -40,7 +40,7 @@ lives in the consuming UI layer.
 ## Why depend on this module
 
 Depend on `:common:ui:components` whenever a feature builds list state — its
-`ChipboxListViewModel`/`ListState` produces `ImmutableList<ListModel>` from these types,
+list view-model produces `ImmutableList<ListModel>` from these types,
 and the appui renderer maps them to Compose. It's the lingua franca between feature state
 and the renderer, so both sides depend on it. Because `ListModel` is open, a feature can
 also subclass it for a bespoke row without modifying this module.

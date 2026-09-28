@@ -17,7 +17,7 @@ to.
 
 Depend on `:common:di` from any module that contributes bindings to the
 application graph. Hosting the marker in SAGE (rather than in the app) means a
-SAGE module **and** a downstream chipbox module can both contribute to the same
+SAGE module **and** a downstream app module can both contribute to the same
 scope without creating a `sage → app` dependency cycle. The module carries no
 Metro runtime dependency itself — consumers apply the Metro plugin and reference
 `AppScope` by fully-qualified name in their annotations.
@@ -39,9 +39,6 @@ class Cache(/* … */)
 @Inject
 class RealThing(/* … */) : Thing
 ```
-
-See `arch-docs/architecture/sage-integration.md` (chipbox) for the full Metro wiring
-story.
 
 ## Module facts
 

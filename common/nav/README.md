@@ -16,10 +16,9 @@ particular navigation library. A leaf module.
 ## Why depend on this module
 
 Depend on `:common:nav` when defining or consuming route metadata. It exists so
-the description of a route is decoupled from the navigation engine. In chipbox
-the actual navigation is **Voyager**, and route keys are `@Serializable` objects
-in each feature's `:api`; this module supplies the shared, library-neutral
-notion those build on.
+the description of a route is decoupled from the navigation engine. The consuming
+app chooses the actual navigation library (e.g. Voyager); this module supplies
+the shared, library-neutral notion its routes build on.
 
 ## Using it
 

@@ -25,9 +25,9 @@ module only handles the light/dark switch and `MaterialTheme` application.
 ```kotlin
 setContent {
     SageMaterial(
-        lightColors = ChipboxLightColors,
-        darkColors = ChipboxDarkColors,
-        typography = ChipboxTypography,
+        lightColors = AppLightColors,
+        darkColors = AppDarkColors,
+        typography = AppTypography,
     ) {
         App()
     }
