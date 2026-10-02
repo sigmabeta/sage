@@ -76,6 +76,7 @@ include(
     ":common:storage:common",
     ":common:time",
     ":common:ui:components",
+    ":common:ui:composables",
     ":common:ui:icons-api",
     ":common:ui:icons-real",
     ":common:ui:perf-compose",

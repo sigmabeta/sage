@@ -39,6 +39,7 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | `storage/common` | `net.sigmabeta.sage:common` | Storage abstractions |
 | `time` | `net.sigmabeta.sage:time` | Time/date utilities (ThreeTen) |
 | `ui/components` | `net.sigmabeta.sage:components` | Shared UI component model types |
+| `ui/composables` | `net.sigmabeta.sage:composables` | Shared Compose UI building blocks (e.g. `CollageLayout`) |
 | `ui/icons-api` | `net.sigmabeta.sage:icons-api` | Icon-set API (Compose-free) |
 | `ui/icons-real` | `net.sigmabeta.sage:icons-real` | Compose implementation of `icons-api` |
 | `ui/list-screens` | `net.sigmabeta.sage:list-screens` | Shared Compose list/screen scaffolds |

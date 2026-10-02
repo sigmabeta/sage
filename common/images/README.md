@@ -2,7 +2,7 @@
 
 > Shared value types for image/PDF rendering — no rendering code.
 
-Two small platform-agnostic types that let common code talk about image sources
+Small platform-agnostic types that let common code talk about image sources
 and target sizes while the actual decoding lives in platform modules. A leaf
 module.
 
@@ -11,7 +11,8 @@ module.
 | File | What it is |
 | --- | --- |
 | `PdfSize.kt` | `enum PdfSize { THUMBNAIL, MEDIUM, LARGE, FILL }` — the size bucket to render a page/cover at. |
-| `SourceInfo.kt` | `data class SourceInfo(info: Any?)` — an opaque, platform-erased handle to an image source. The `Any?` is deliberately untyped so `commonMain` can pass a source token across the expect/actual boundary without naming a platform type. |
+| `SourceInfo.kt` | `data class SourceInfo(info: Any?)` — an opaque, platform-erased handle to an image source. The `Any?` is deliberately untyped so `commonMain` can pass a source token across the expect/actual boundary without naming a platform type. `SourceInfo.ofUrls(urls)` builds one from 0..n URLs: no image, the single URL, or an `ImageCollage`. |
+| `ImageCollage.kt` | `data class ImageCollage(sources: List<String>)` — 2–4 image URLs to show as one tiled image (rendered with `:common:ui:composables`'s `CollageLayout`). |
 
 ## Why depend on this module
 

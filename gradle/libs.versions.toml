@@ -275,6 +275,7 @@ sage-common-time = { group = "net.sigmabeta.sage", name = "time" }
 sage-common-ui-iconsApi = { group = "net.sigmabeta.sage", name = "icons-api" }
 sage-common-ui-iconsReal = { group = "net.sigmabeta.sage", name = "icons-real" }
 sage-common-ui-perfCompose = { group = "net.sigmabeta.sage", name = "perf-compose" }
+sage-common-ui-composables = { group = "net.sigmabeta.sage", name = "composables" }
 sage-common-ui-listScreens = { group = "net.sigmabeta.sage", name = "list-screens" }
 sage-common-ui-strings = { group = "net.sigmabeta.sage", name = "strings" }
 sage-common-wakelocks = { group = "net.sigmabeta.sage", name = "wakelocks" }
