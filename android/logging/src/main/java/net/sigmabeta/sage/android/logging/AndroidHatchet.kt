@@ -7,7 +7,16 @@ import net.sigmabeta.sage.logging.HatchetError
 import java.util.concurrent.ConcurrentHashMap
 import java.util.regex.Pattern
 
-class AndroidHatchet : Hatchet {
+/**
+ * A [Hatchet] that writes to logcat, deriving its tag from the calling stack frame.
+ *
+ * Silent unless [enabled], which defaults to this module's [BuildConfig.DEBUG] so the app's
+ * release builds emit nothing. Pass `enabled = true` to force output from a consumer that
+ * resolves this module to its **release** variant and so would inherit `BuildConfig.DEBUG = false`
+ * — e.g. the `:benchmark` module, whose `benchmark` build type is debuggable but whose dependency
+ * on `:android:logging` matches the release variant (its `matchingFallbacks`).
+ */
+class AndroidHatchet(private val enabled: Boolean = BuildConfig.DEBUG) : Hatchet {
     override fun v(message: String) {
         log(Log.VERBOSE, message)
     }
@@ -47,7 +56,7 @@ class AndroidHatchet : Hatchet {
      */
     @Suppress("ThrowingExceptionsWithoutMessageOrCause")
     private fun logInternal(severity: Int, message: String) {
-        if (!BuildConfig.DEBUG) {
+        if (!enabled) {
             return
         }
 
