@@ -9,4 +9,9 @@ data class PdfConfigById(
     val pdfSize: PdfSize,
     val maxWidth: Int? = null,
     val maxHeight: Int? = null,
+    /**
+     * Changes when the underlying document changes, so rendered-page caches miss instead of
+     * serving an image produced from the previous document.
+     */
+    val cacheVersion: Long = 0L,
 )
