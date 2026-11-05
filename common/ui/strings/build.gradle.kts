@@ -14,5 +14,11 @@ kotlin {
                 implementation(projects.common.connectivity)
             }
         }
+
+        named("jvmSharedTest") {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
     }
 }
