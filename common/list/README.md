@@ -75,9 +75,21 @@ data class SongListState(val songs: LCE<List<Song>>) : ListState() {
     override fun title(stringProvider: StringProvider) = TitleBarModel("Songs")
 
     override fun toListItems(stringProvider: StringProvider): List<ListModel> =
-        songs.withStandardErrorAndLoading { content.map(::songRow) }
+        when (val loaded = songs) {
+            // Handle the error branch explicitly: see the caveat below.
+            is LCE.Error -> error("songs", loaded.error)
+            else -> loaded.withStandardErrorAndLoading { content.map(::songRow) }
+        }
 }
 ```
+
+> **Error caveat.** `withStandardErrorAndLoading`'s `LCE.Error` branch currently resolves to the
+> stdlib `error(...)`, which throws instead of returning an error row. `toActual()` catches that
+> throw and renders its generic `"App Error Occurred"` fallback, so the operation name and the
+> original throwable are lost. Route `LCE.Error` through the state's own
+> `error(operationName, error)` helper before falling back to the standard helper, as above: it
+> produces the `ErrorStateListModel` the helper was meant to build, with the operation name and
+> throwable intact. This is a limitation of the current helper, not of the pattern.
 
 ### 2. Drive it with a ViewModel
 
