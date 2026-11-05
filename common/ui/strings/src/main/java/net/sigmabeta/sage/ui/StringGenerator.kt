@@ -38,8 +38,10 @@ class StringGenerator(private val random: Random) {
                 |quis In eget ligula leo Integer finibus metus ut est molestie et finibus
                 |ligula convallis"""
             .trimMargin()
-            .split(" ")
-            .map { it.trim() }
+            // The literal is wrapped across source lines and `trimMargin` keeps those newlines.
+            // Splitting on a single space would leave newline-bearing tokens such as
+            // "Curabitur\niaculis", which render as two lines wherever generated text is shown.
+            .split(Regex("\\s+"))
             .map { word ->
                 word.replaceFirstChar { c ->
                     if (c.isLowerCase()) c.titlecase(Locale.getDefault()) else c.toString()
