@@ -7,7 +7,8 @@ The three pure Compose Multiplatform composables that turn a `ListStateActual`
 pagination machinery and bottom-inset hook they share. It is an unsuffixed
 shared UI module (composables, no `:api`/`:real` split); it depends on
 `:common:list` for the state types it renders and on `:common:ui:components`
-for the `ListModel`s it lays out.
+for the `ListModel`s it lays out (both `api`, so depending on this module alone
+gives you the state and model types).
 
 ## Contents
 
@@ -32,28 +33,30 @@ for the `ListModel`s it lays out.
 ## Why depend on this module
 
 Depend on `:common:ui:list-screens` to render a `:common:list` screen. It is the
-view half of the pair: `:common:list` produces a `ListStateActual`, this module
-draws it. A feature's screen composable picks one of the three renderers based on
-its `ColumnType` (one column → `ListScreen`; `Regular`/`Staggered` → `GridScreen`;
-drag-reorderable → `ReorderableScreen`), passes its own `itemContent` to draw each
-`ListModel`, and lets the screen handle scrolling, insets, and pagination
-signalling. The `reorderable` library is an `implementation` detail — `itemContent`
-never sees a reorderable type, only a `Modifier` drag handle and an `isDragging`
-flag.
+view half of the pair: the screen's ViewModel (a plain `androidx.lifecycle.ViewModel`
+contributed into Metro's ViewModel map — see `:common:list`) produces a
+`ListStateActual`, this module draws it. A feature's screen composable picks one of
+the three renderers based on its `ColumnType` (one column → `ListScreen`;
+`Regular`/`Staggered` → `GridScreen`; drag-reorderable → `ReorderableScreen`),
+passes its own `itemContent` to draw each `ListModel`, and lets the screen handle
+scrolling, insets, and pagination signalling. The `reorderable` library is an
+`implementation` detail — `itemContent` never sees a reorderable type, only a
+`Modifier` drag handle and an `isDragging` flag.
 
 ## Using it
 
 ```kotlin
 @Composable
-fun SongListScreen(brain: SongListBrain, modifier: Modifier = Modifier) {
-    val state by brain.uiStateActual.collectAsState()
+fun SongListScreen(modifier: Modifier = Modifier) {
+    val viewModel = metroViewModel<SongListViewModel>()
+    val state by viewModel.uiStateActual.collectAsStateWithLifecycle()
 
     // Reserve space for the floating mini-player below the list.
     CompositionLocalProvider(LocalListBottomInset provides miniPlayerHeight) {
         when (val columns = state.columnType) {
             ColumnType.One -> ListScreen(
                 state = state,
-                actionSink = brain,        // ListViewModelBrain is an ActionSink
+                actionSink = viewModel,    // the screen ViewModel implements ActionSink
                 showDebug = false,
                 sideMargin = 16.dp,
                 modifier = modifier,
@@ -63,7 +66,7 @@ fun SongListScreen(brain: SongListBrain, modifier: Modifier = Modifier) {
 
             is ColumnType.Regular -> GridScreen(
                 state = state,
-                actionSink = brain,
+                actionSink = viewModel,
                 showDebug = false,
                 numberOfColumns = columns.numberOfColumns(WidthClass.MEDIUM),
                 staggered = false,
@@ -80,10 +83,14 @@ fun SongListScreen(brain: SongListBrain, modifier: Modifier = Modifier) {
 }
 ```
 
+`SongListViewModel` is the Metro-contributed `androidx.lifecycle.ViewModel` from
+`:common:list`'s [Using it](../../list/README.md#using-it) example — there is no
+brain to pass in, and the ViewModel's `viewModelScope` owns the loading work.
+
 `ReorderableScreen` has the same shape but its `itemContent` additionally
 receives an `isDragging: Boolean` and a `dragHandle: Modifier` to attach to the
 row's drag affordance; a completed drag emits one net `SageAction.Reorder(from, to)`
-which the brain's reducer applies.
+which the screen ViewModel's reducer applies.
 
 ## Module facts
 
