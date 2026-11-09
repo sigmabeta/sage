@@ -76,6 +76,7 @@ each implementation apart so a consumer can depend on the contract without dragg
 | `:real` | The production implementation of `:api` | KMP; use `androidMain`/`jvmMain`/`jsMain` only for a genuine platform seam |
 | `:fake` | Deterministic, in-memory test doubles implementing `:api` | KMP; no I/O and no clock |
 | `:di` | Metro bindings that select the implementation | The targets its consumers need; plain `sage.di` setup, no logic |
+| `:native` | Build/packaging companion for a `:real` that wraps a native library | Android-only CMake/NDK leaf; host targets build the same source tree |
 
 A feature with Paparazzi goldens adds an Android-only `:screenshot` companion. It is a test module
 and never a runtime dependency.
@@ -91,6 +92,18 @@ Rules:
   Never put an interface and its production implementation in the same module.
 - `:di` is a binding container: Metro contributions and `@Provides` only. It owns no business
   logic, screen state or rendering.
+
+A `:real` that wraps a native core adds a `:native` companion. It is build and packaging glue, never
+an API:
+
+- `:real` declares it `runtimeOnly` for Android and host-builds the same native source tree for the
+  JVM target. Nothing compiles against `:native`.
+- The JNI surface is one thin object of `external` functions plus `loadNativeLib`; no pointer, handle
+  or platform type escapes into `commonMain`.
+- Every native call is confined to one thread. Shared code owns the dispatcher and the lifecycle, and
+  a test asserts the confinement.
+- A native change is verified on host and device by rendering the same corpus through both builds and
+  diffing the output.
 
 ## DI is Metro, and screen ViewModels are screen-scoped
 
@@ -124,11 +137,31 @@ Rules:
 - Route arguments are typed values passed to the screen and ViewModel. Do not parse route strings
   inside a feature or reach for `SavedStateHandle`.
 
+## App-lifetime services own their state and scope
+
+A screen owns its presentation state, not long-lived work. A service that outlives a screen —
+playback, sync, downloads, a connection — is `@SingleIn(AppScope::class)`, owns its own
+`CoroutineScope`, and is injected into the ViewModels that observe it.
+
+- Expose immutable state as `StateFlow` and one-shot effects as `SharedFlow`. A screen projects that
+  state; it never keeps a second writable copy.
+- Control methods are imperative entry points that dispatch onto the service scope. The screen
+  sends intents and renders the result.
+- Confine the mutable model to one dispatcher (`limitedParallelism(1)`) or a single actor; no locks.
+  Blocking and platform work runs on an injected dispatcher, never Main.
+- The service must run headless: no Compose, navigation, resources or Android types. A platform sink
+  (audio output, foreground service, notification) sits behind a shared interface bound by the app.
+- The app or service starts and stops it, not a screen's `onResume`; define what happens while no
+  screen is attached. Failures are state or events, not exceptions thrown into the UI.
+
 ## Routes and URLs come from one pure codec
 
 - Define each destination once as a shared type in a KMP module, with its route key in the
   feature's `:api`. Encode and decode it in one pure codec used by navigation, browser history and
   deep links; do not repeat route strings or a URL grammar per app.
+- A parameterized destination must have a screen/ViewModel identity that includes its arguments, or
+  its own ViewModel store. Otherwise two different arguments share one ViewModel; test that pushing
+  two values produces two states.
 - Platform navigation is a seam: the shared shell decides the destination, and the app supplies the
   platform handler (Android Back, desktop keys and mouse back, browser `pushState`/`popstate`).
 
@@ -138,13 +171,20 @@ Rules:
   labels, and demo or repository content — is an app string id implementing SAGE's `SageStringId`,
   resolved through `StringProvider`. The app owns one exhaustive id → text table; feature modules
   emit ids and never literal English.
-- Do not keep a per-module string table or resolve platform resources in shared code. An Android
-  app's only string resource is the application label.
+- The table may be split across per-area resource files, including Compose Multiplatform resources.
+  What matters is one id type and one provider, not one file: do not keep a per-module vocabulary.
+- Do not resolve platform resources in feature code. An Android app's only manifest string resource
+  is the application label.
+- A message that embeds a path, name or exception keeps its English in the resource with a `%1$s`
+  placeholder; do not concatenate translated fragments.
+- Icon-only controls take their accessibility label from the same table.
 - ViewModels and other non-composable code take `StringProvider`; they cannot use
   `stringResource`/`R.string`.
 - Repository diagnostics, exception messages and log lines are not UI text and may stay literals.
 - The composition root installs the provider where the renderer suite can read it, and previews and
   screenshot fixtures use the same implementation so text cannot drift.
+- Where a mechanical check exists, it flags a literal user-facing argument at the standard
+  snackbar/event sink and names `file:line`; tests, previews and logs are excluded.
 
 ## Screenshot tests are fixtures, not running screens
 
@@ -157,6 +197,25 @@ Rules:
 - Add both halves of a state: a `@DevicePreviews` composable and a matching Paparazzi `@Test`.
   Check goldens with the check task; record only for an intentional UI change, then review the diff.
 - The screenshot module is never a runtime dependency of an app.
+
+## Verification is part of "done"
+
+A green build, lint and unit-test run is necessary, not sufficient. A change is done when the gates
+it touches have run on their target.
+
+- A regression test must fail on the unfixed code. Revert the fix locally, confirm the test goes red,
+  then keep it.
+- Closed-set mappings get a table test that names every case; a typed intent mapped onto an existing
+  action gets one test per branch.
+- UI tests drive the real shell over a fake graph with seeded, deterministic data, and run the same
+  specs on the JVM host and a device. Assert typed destinations and events, not generic text.
+  Existing tests are the source of truth: never weaken or delete one to make a change pass.
+- Fixtures never read the clock, network or dependency graph; a failure produces a screenshot and a
+  semantics dump.
+- A change to native or rendered output is verified by rendering the same corpus through both builds
+  and diffing the result, not only by a build.
+- A device, browser, WASM or release gate is done when it has run on that target. Record what ran and
+  what a human must still run in the change description.
 
 ## Every Gradle module has a README
 
