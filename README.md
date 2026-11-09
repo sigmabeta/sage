@@ -88,6 +88,12 @@ Defined in `sage-build-logic/`. All plugins auto-apply detekt and configure JVM 
 - Core library desugaring enabled
 - `detekt-config.yml` from repo root
 
+## Coding Standards
+
+App-architecture rules for code built on SAGE — KMP-first app modules, repository-backed list and
+grid screens, the `api`/`fake`/`real`/`di` module split, and the sample as the reference — are in
+[`CODING_STANDARDS.md`](CODING_STANDARDS.md).
+
 ## How to Consume SAGE
 
 ### 1. Add SAGE as a submodule
