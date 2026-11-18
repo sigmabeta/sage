@@ -1,108 +1,108 @@
 [versions]
-adaptive = "1.2.0"
+adaptive = "1.3.0"
 adaptiveNavigation = "1.4.0"
 androidDesugarJdkLibs = "2.1.5"
-androidGradlePlugin = "9.2.1"
+androidGradlePlugin = "9.5.1"
 androidxActivity = "1.13.0"
-androidxAppCompat = "1.7.1"
-androidXComposeAnimationAlpha = "1.11.1"
-androidxComposeBom = "2026.05.00"
-androidxComposeCompiler = "1.5.14"
-androidxCore = "1.18.0"
-androidxConstraint = "2.2.1"
-androidxDataStore = "1.2.1"
-androidxHiltNavigationCompose = "1.3.0"
-androidxLifecycle = "2.10.0"
-androidxNavigation = "2.9.8"
+androidxAppCompat = "1.8.0"
+androidXComposeAnimationAlpha = "1.12.1"
+androidxComposeBom = "2026.09.00"
+androidxComposeCompiler = "1.5.15"
+androidxCore = "1.19.1"
+androidxConstraint = "2.2.2"
+androidxDataStore = "1.3.0"
+androidxHiltNavigationCompose = "1.4.0"
+androidxLifecycle = "2.11.0"
+androidxNavigation = "2.10.2"
 androidXTest = "1.7.0"
 androidXTestRules = "1.7.0"
 androidXTestExtJunit = "1.3.0"
-androidxBenchmark = "1.4.1"
-androidxTracing = "1.3.0"
-androidxUiautomator = "2.3.0"
+androidxBenchmark = "1.5.0"
+androidxTracing = "2.0.5"
+androidxUiautomator = "2.4.1"
 androidxWindowManager = "1.5.1"
-androidxWorkManager = "2.11.2"
-coil = "3.4.0"
+androidxWorkManager = "2.12.0"
+coil = "3.6.3"
 # Compose Multiplatform lib jars (runtime / foundation / ui / animation / components-resources).
-# Pinned to stable 1.11.1 so these wrap androidx compose 1.11.1 — the same version
+# Pinned to stable 1.12.2 so these wrap androidx compose 1.12.x — the same version
 # `androidXComposeAnimationAlpha` forces onto the androidx classpath. The lockstep matters for
 # Modifier.sharedElement: at 1.9.0 the libs compiled against an androidx ~1.8 `sharedElement`
-# signature while the runtime resolved androidx 1.11.1, so Paparazzi screenshot tests of
-# shared-element screens died with NoSuchMethodError. 1.11.1 closes that skew AND keeps compileSdk
-# at 36 — the 1.12.0-alpha line drags in androidx compose 1.12.0-alpha03, which mandates compileSdk 37.
-composeMultiplatform = "1.11.1"
+# signature while the runtime resolved a newer androidx, so Paparazzi screenshot tests of
+# shared-element screens died with NoSuchMethodError. androidx compose 1.12.x declares
+# minCompileSdk=37, which is why build-logic compiles against SDK 37.
+composeMultiplatform = "1.12.2"
 # JetBrains Compose Gradle plugin — kept in lockstep with the libs above. The 1.9.x plugin breaks
-# against AGP 9's `KotlinMultiplatformAndroidComponentsExtension.onVariant`; 1.11.x fixes it.
-composeMultiplatformPlugin = "1.11.1"
-# CMP material3 has no stable 1.11.1 (its 1.11 line is alpha-only); pinned separately to the
-# latest 1.11 alpha so the rest of the CMP libs stay on stable 1.11.1 (compileSdk-36 safe).
-composeMultiplatformMaterial3 = "1.11.0-alpha07"
+# against AGP 9's `KotlinMultiplatformAndroidComponentsExtension.onVariant`; 1.11.x+ fixes it.
+composeMultiplatformPlugin = "1.12.2"
+# CMP material3 has no stable release in the 1.12 line either (it is alpha-only), so it is pinned
+# separately to the latest 1.12 alpha that matches the CMP libs above.
+composeMultiplatformMaterial3 = "1.12.0-alpha03"
 detekt = "1.23.8"
 ktlintGradle = "14.2.0"
 # Pins the ktlint engine used by the Gradle plugin to the version the old ktlint-check.sh
 # downloaded, so switching to Gradle doesn't change the active ruleset.
 ktlintTool = "1.8.0"
-firebaseBom = "34.13.0"
-firebaseCrashlyticsPlugin = "3.0.7"
+firebaseBom = "35.2.0"
+firebaseCrashlyticsPlugin = "3.0.8"
 firebasePerfPlugin = "2.0.2"
 gitVersion = "1.6.0"
-gradlePublisher = "4.0.0"
-gmsPlugin = "4.4.4"
-hilt = "2.59.2"
-hilt-work = "1.3.0"
-jankStatsVersion = "1.0.0-beta01"
+gradlePublisher = "4.1.2"
+gmsPlugin = "4.6.0"
+hilt = "2.60.1"
+hilt-work = "1.4.0"
+jankStatsVersion = "1.0.0"
 junit4 = "4.13.2"
-kotlin = "2.3.21"
-kotlinxCollections = "0.4.0"
+kotlin = "2.4.21"
+kotlinxCollections = "0.5.2"
 kotlinxCoroutines = "1.11.0"
-kotlinxDatetime = "0.7.1"
-kotlinxSerialization = "1.11.0"
+kotlinxDatetime = "0.8.0"
+kotlinxSerialization = "1.13.0"
 # Ktor — HTTP server (apps/server) + JS client (apps/js → server). 3.x is built for K2 and works
-# on Kotlin 2.3.21. Server uses ktor-server-netty + content-negotiation + partial-content (Range)
+# on Kotlin 2.4.x. Server uses ktor-server-netty + content-negotiation + partial-content (Range)
 # + status-pages + cors + call-logging; client uses ktor-client-js + content-negotiation.
-ktor = "3.5.0"
+ktor = "3.6.1"
 # Logback — SLF4J backend Ktor uses for its own logging. Classic, not slim, since this is a
 # server deployment where one extra MB doesn't matter for one extra dep.
-logback = "1.5.33"
-ksp = "2.3.10"
+logback = "1.6.7"
+ksp = "2.3.14"
 # licensePlugin = "0.9.8" # No support for AGP 9 yet
-material = "1.13.0"
-mavericks = "3.1.0"
-media3 = "1.10.1"
-metro = "1.1.1"
+material = "1.14.0"
+mavericks = "3.1.1"
+media3 = "1.11.1"
+metro = "1.6.0"
 # Mordant — terminal styling + interactive widgets (the arrow-key select list) for the JVM CLI
 # app (:apps:cli). The plain `mordant` artifact resolves to `mordant-jvm`, which pulls all three
 # JVM terminal backends (JNA / FFM / GraalVM); JNA is the one that works on the Java 17 toolchain
 # (FFM needs JDK 22+), and Mordant auto-selects it at runtime.
-mordant = "3.0.2"
+mordant = "3.1.1"
 moshi = "1.15.2"
-okhttp = "5.3.2"
-okio = "3.17.0"
-paparazzi = "2.0.0-alpha05"
-pdfbox = "3.0.7"
+okhttp = "5.5.1"
+okio = "3.18.2"
+paparazzi = "2.0.0-alpha05.1"
+pdfbox = "3.0.8"
 # Calvin-LL/Reorderable — drag-and-drop reorder for Lazy lists/grids on Compose Multiplatform
 # (android/jvm/js/wasm/ios). Used by sage list-screens' ReorderableScreen. Built on
 # Modifier.animateItem (same primitive ListScreen/GridScreen already use). 3.1.0 is the latest
 # on Maven Central (published 2026-04).
 reorderable = "3.1.0"
 retrofit = "3.0.0"
-room = "2.8.4"
+room = "2.8.5"
 # Bundled SQLite driver for Room KMP (Android + JVM/desktop + native). Paired
 # with Room 2.8.x.
-sqliteBundled = "2.6.2"
+sqliteBundled = "2.7.1"
 splash = "1.2.0"
 supportSqlite = "3.49.0"
 threeten = "1.4.9"
 # Voyager — Compose Multiplatform navigation library. Picked over
-# `androidx.navigation:navigation-compose` because the AndroidX CMP fork (2.9.8) publishes
-# JVM variants but `jvmStubsRuntimeElements-published` has zero files — compile-time stubs
-# only, no runnable desktop implementation. Pinned to a 1.1.0 beta rather than 1.0.1 stable
-# because 1.0.1's `AndroidScreenLifecycleOwner` throws
-# `State is 'DESTROYED' and cannot be moved to 'STARTED'` on pop+recompose against
-# androidx.lifecycle 2.10.x (e.g. ArtistDetail → back → GameDetail recomposes). Fixed in
-# the 1.1.0 line; bump to 1.1.0 stable when it lands.
-voyager = "1.1.0-beta03"
-tracing = "1.11.2"
+# `androidx.navigation:navigation-compose` because the AndroidX CMP fork publishes JVM variants
+# but `jvmStubsRuntimeElements-published` has zero files — compile-time stubs only, no runnable
+# desktop implementation. On the 2.x line: the stable 1.1.0 release never shipped (the 1.0.1
+# `AndroidScreenLifecycleOwner` bug — `State is 'DESTROYED' and cannot be moved to 'STARTED'` on
+# pop+recompose against androidx.lifecycle 2.10.x — was only fixed in 1.1.0-beta), and
+# `2.2.21-1.10.3` is the newest published artifact. Its version string is Voyager's own
+# `<app>-<api>` scheme, not a Kotlin pin.
+voyager = "2.2.21-1.10.3"
+tracing = "1.12.1"
 webview = "0.33.6"
 zoomable = "0.19.0"
 

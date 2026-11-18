@@ -45,7 +45,7 @@ class SageKmpModulePlugin : Plugin<Project> {
                 (this as ExtensionAware).extensions.configure(
                     KotlinMultiplatformAndroidLibraryExtension::class.java,
                 ) {
-                    compileSdk = 36
+                    compileSdk = 37
                     minSdk = 26
                     // Enable the JVM-host (not on-device) test component for the Android target.
                     // Every shared module has a commonTest source set; without this AGP can't run

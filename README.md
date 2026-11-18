@@ -7,10 +7,10 @@ Reusable Android infrastructure for sigmabeta apps. Consumed via Gradle composit
 | Tool | Version |
 |------|---------|
 | JDK | 17 |
-| Gradle | 9.5.0 |
-| Android Gradle Plugin | 9.2.1 |
-| Kotlin | 2.3.20 |
-| compileSdk | 36 |
+| Gradle | 9.6.0 |
+| Android Gradle Plugin | 9.5.1 |
+| Kotlin | 2.4.21 |
+| compileSdk | 37 |
 | minSdk | 26 |
 
 ## Module Inventory
@@ -83,7 +83,7 @@ Defined in `sage-build-logic/`. All plugins auto-apply detekt and configure JVM 
 ### What `sage.android` configures
 
 - `com.android.library` + `org.jetbrains.kotlin.android` + `io.gitlab.arturbosch.detekt`
-- compileSdk 36, minSdk 26
+- compileSdk 37, minSdk 26
 - JVM 17 source/target compatibility
 - Core library desugaring enabled
 - `detekt-config.yml` from repo root
