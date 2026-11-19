@@ -52,7 +52,12 @@ hilt = "2.60.1"
 hilt-work = "1.4.0"
 jankStatsVersion = "1.0.0"
 junit4 = "4.13.2"
-kotlin = "2.4.21"
+# Pinned one patch behind the newest stable (2.4.21): 2.4.21's Kotlin/JS linker adds a
+# `require('./js-reexport-symbols.mjs')` to linked library chunks but never materialises that
+# helper file, so `jsNodeTest` dies with MODULE_NOT_FOUND on any module whose test graph pulls a
+# 2.4-era klib (chipbox: :cbox:common:webroutes via Coil 3.6.3). 2.4.10 is the version Coil
+# 3.6.3's own JS klib is built with. Lift the pin once a later patch is known to fix it.
+kotlin = "2.4.10"
 kotlinxCollections = "0.5.2"
 kotlinxCoroutines = "1.11.0"
 kotlinxDatetime = "0.8.0"
