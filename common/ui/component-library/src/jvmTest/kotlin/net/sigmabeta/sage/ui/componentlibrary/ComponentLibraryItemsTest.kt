@@ -1,5 +1,6 @@
 package net.sigmabeta.sage.ui.componentlibrary
 
+import net.sigmabeta.sage.appcomm.SageAction
 import net.sigmabeta.sage.components.CheckableListModel
 import net.sigmabeta.sage.components.DropdownSettingListModel
 import net.sigmabeta.sage.components.HorizontalScrollerListModel
@@ -14,6 +15,7 @@ import net.sigmabeta.sage.ui.composables.DraggableListModel
 import kotlin.reflect.KClass
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class ComponentLibraryItemsTest {
@@ -67,7 +69,8 @@ class ComponentLibraryItemsTest {
     @Test
     fun `extras are appended unchanged`() {
         val result = items(ComponentLibraryLayout.LIST, withExtras = true)
-        assertEquals(extras, result.takeLast(extras.size))
+        // The invisible style carrier always follows the extras.
+        assertEquals(extras, result.dropLast(1).takeLast(extras.size))
         assertTrue(items(ComponentLibraryLayout.LIST, withExtras = false).none { it in extras })
     }
 
@@ -104,6 +107,51 @@ class ComponentLibraryItemsTest {
             .map { it.loadingType }
             .toSet()
         assertEquals(LoadingType.entries.toSet(), loadingSeen)
+    }
+
+    @Test
+    fun `the style carrier appears once, last, in every layout`() {
+        ComponentLibraryLayout.entries.forEach { layout ->
+            listOf(false, true).forEach { withExtras ->
+                val result = items(layout, withExtras)
+                assertEquals(1, result.count { it is ComponentLibraryStyleListModel }, "$layout")
+                assertTrue(result.last() is ComponentLibraryStyleListModel, "$layout carrier is last")
+            }
+        }
+    }
+
+    @Test
+    fun `componentLibraryStyleOf round-trips every token`() {
+        StyleToken.entries.forEach { token ->
+            val config = ComponentLibraryConfig().reduce(ComponentLibraryAction.SetStyle(token, 12))
+            assertEquals(config.style, componentLibraryStyleOf(componentLibraryItems(config)), "$token")
+        }
+    }
+
+    @Test
+    fun `componentLibraryStyleOf defaults without a carrier`() {
+        assertEquals(ComponentLibraryStyle(), componentLibraryStyleOf(emptyList()))
+        assertEquals(ComponentLibraryStyle(), componentLibraryStyleOf(extras))
+    }
+
+    @Test
+    fun `extras colliding with a catalog id make the catalog throw`() {
+        val collidingExplicit = SingleTextListModel("Clash", SageAction.Noop, dataId = STYLE_CARRIER_ID)
+        val ex = assertFailsWith<IllegalStateException> {
+            componentLibraryItems(ComponentLibraryConfig(), listOf(collidingExplicit))
+        }
+        assertTrue(STYLE_CARRIER_ID.toString() in ex.message.orEmpty(), ex.message)
+        assertFailsWith<IllegalStateException> {
+            componentLibraryItems(ComponentLibraryConfig(), listOf(collidingExplicit, collidingExplicit.copy(dataId = 7)))
+        }
+    }
+
+    @Test
+    fun `extras built with componentLibraryExtraId do not collide`() {
+        val rows = (0 until 5).map { SingleTextListModel("Row $it", SageAction.Noop, dataId = componentLibraryExtraId(it)) }
+        ComponentLibraryLayout.entries.forEach { layout ->
+            componentLibraryItems(ComponentLibraryConfig(layout = layout), rows)
+        }
     }
 
     private companion object {

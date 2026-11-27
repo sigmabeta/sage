@@ -1,6 +1,7 @@
 package net.sigmabeta.sage.ui.componentlibrary
 
 import net.sigmabeta.sage.appcomm.SageAction
+import net.sigmabeta.sage.components.ListModel
 import net.sigmabeta.sage.list.ColumnType
 
 /** Which showcase the gallery renders. */
@@ -82,6 +83,39 @@ data class ComponentLibraryConfig(
     /** State of the demo checkbox row. */
     val checked: Boolean = true,
 )
+
+/**
+ * An invisible carrier row holding the live [style]; always the last item of [componentLibraryItems].
+ *
+ * `ComponentLibraryHost(items)` reads it back with [componentLibraryStyleOf], so an app's screen
+ * can recover the style from its rendered `ListStateActual.listItems` without a typed state flow.
+ * `BuiltInContent` renders unknown models as a zero-size `Spacer`, so it draws nothing.
+ */
+data class ComponentLibraryStyleListModel(val style: ComponentLibraryStyle) : ListModel() {
+    override val dataId: Long = STYLE_CARRIER_ID
+    override val columns = COLUMNS_ALL
+}
+
+/** The [ComponentLibraryStyle] carried by [items], or the defaults when there is no carrier. */
+fun componentLibraryStyleOf(items: List<ListModel>): ComponentLibraryStyle =
+    items.filterIsInstance<ComponentLibraryStyleListModel>().lastOrNull()?.style ?: ComponentLibraryStyle()
+
+/**
+ * A `dataId` for an app row passed as `extraSamples`, guaranteed clear of the catalog's explicit ids.
+ *
+ * The catalog reserves `1_000_000..1_999_999` for its explicit ids (including the style carrier);
+ * this returns `2_000_000 + index`. Ids the catalog derives by hashing text (image cells, dropdown
+ * settings) cannot be reserved, so also avoid reusing the catalog's section titles and `cl-`
+ * setting ids. A collision makes [componentLibraryItems] throw.
+ */
+fun componentLibraryExtraId(index: Int): Long {
+    require(index >= 0) { "index must not be negative: $index" }
+    return EXTRA_ID_BASE + index
+}
+
+internal const val CATALOG_ID_BASE = 1_000_000L
+internal const val STYLE_CARRIER_ID = CATALOG_ID_BASE + 999
+private const val EXTRA_ID_BASE = 2_000_000L
 
 /** Actions the gallery's own controls send; forward them to [reduce]. */
 sealed class ComponentLibraryAction : SageAction() {

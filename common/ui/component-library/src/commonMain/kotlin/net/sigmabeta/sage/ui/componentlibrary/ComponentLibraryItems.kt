@@ -50,8 +50,13 @@ import net.sigmabeta.sage.ui.composables.DraggableListModel
  * a States section, and, when [extraSamples] is non-empty, an "App rows" section with those models
  * unchanged (the app renders them through its own `contentFor`).
  *
- * Every returned `dataId` is unique, including nested children, as long as [extraSamples] do not
- * collide with the catalog's.
+ * The last item is always a [ComponentLibraryStyleListModel], an invisible carrier of the style.
+ *
+ * Every returned `dataId` is unique, including nested children: this `check`s it and throws
+ * [IllegalStateException] naming each duplicate id and its models if [extraSamples] collide with the
+ * catalog. Build explicit extra ids with [componentLibraryExtraId]. (`ListState.toActual` catches a
+ * throw from `toListItems` and shows an error row, so in an app a collision is a visible error;
+ * calling this directly in a unit test, it throws.)
  */
 fun componentLibraryItems(
     config: ComponentLibraryConfig,
@@ -69,6 +74,33 @@ fun componentLibraryItems(
     if (extraSamples.isNotEmpty()) {
         add(SectionHeaderListModel("App rows"))
         addAll(extraSamples)
+    }
+    add(ComponentLibraryStyleListModel(config.style))
+}.also(::checkUniqueIds)
+
+// Walks the whole tree, so nested children count too. Wrappers that delegate their dataId to their
+// content (Dismissible, Draggable) and a Subsection's header (which shares the Subsection's id) are
+// not counted twice.
+private fun checkUniqueIds(items: List<ListModel>) {
+    val owners = items.flatMap { it.idOwners() }
+    val duplicates = owners.groupBy { it.first }.filterValues { it.size > 1 }
+    check(duplicates.isEmpty()) {
+        "Duplicate dataIds in the component library: " +
+            duplicates.entries.joinToString("; ") { (id, models) ->
+                "$id (${models.joinToString { it.second }})"
+            }
+    }
+}
+
+private fun ListModel.idOwners(): List<Pair<Long, String>> {
+    val self = dataId to this::class.simpleName.orEmpty()
+    return when (this) {
+        is HorizontalScrollerListModel -> listOf(self) + scrollingItems.flatMap { it.idOwners() }
+        is SubsectionListModel -> listOf(self) + children.flatMap { it.idOwners() }
+        is SectionListModel -> listOf(self) + sectionItems.flatMap { it.idOwners() }
+        is DismissibleListModel -> content.idOwners()
+        is DraggableListModel -> content.idOwners()
+        else -> listOf(self)
     }
 }
 
@@ -354,6 +386,6 @@ private const val SUBSECTION_CELL_COUNT = 4
 private const val COLUMN_WIDE_COUNT = 4
 private const val COLLAPSIBLE_DETAIL_COUNT = 3
 private const val STAR_RATING = 3
-private const val ID_BASE = 1_000_000L
+private const val ID_BASE = CATALOG_ID_BASE
 private const val WIDE_ID_BASE = 100
 private const val IMAGE_SEED = "component-library"
