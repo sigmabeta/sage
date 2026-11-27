@@ -75,6 +75,7 @@ include(
     ":common:settings:general",
     ":common:storage:common",
     ":common:time",
+    ":common:ui:component-library",
     ":common:ui:components",
     ":common:ui:composables",
     ":common:ui:icons-api",
