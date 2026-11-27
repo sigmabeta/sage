@@ -51,14 +51,6 @@ fun ListModel.Content(
     mod: Modifier,
     pad: PaddingValues,
 ) {
-    // An app contributes app-owned ListModel subclasses (and can replace a built-in renderer)
-    // through SageRenderers.contentFor. Consult that first, and fall through to the built-ins when
-    // it has no renderer for this model.
-    LocalSageRenderers.current.contentFor(this)?.let { render ->
-        render(this, sink, debug, mod, pad)
-        return
-    }
-
     // Tag every rendered item with its model type so UI tests can select a specific kind of row
     // (e.g. a WideItem vs a NameCaptionValueItem) by `hasTestTag(type) and hasText(name)`. The tag
     // rides on `mod` — the same modifier each item applies to its clickable root — so it merges
@@ -70,99 +62,114 @@ fun ListModel.Content(
         DURATION_THRESHOLD_WARNING_COMPONENT_DEVICE,
         DURATION_THRESHOLD_ERROR_COMPONENT_DEVICE,
     ) {
-        when (this) {
-            is CheckableListModel -> LabelCheckboxItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is CollapsibleDetailsListModel -> CollapsibleDetailsListItem(model = this, modifier = mod, padding = pad)
-
-            is ConfirmationListModel -> ConfirmationListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is CtaListModel -> ActionItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is DropdownSettingListModel -> ExpandingDropdownListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is EditTextListModel -> EditTextListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is EmptyStateListModel -> EmptyListIndicator(model = this, modifier = mod)
-
-            is ErrorStateListModel -> EmptyListIndicator(model = this, showDebug = debug, modifier = mod)
-
-            is HeroImageListModel -> HeroImage(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is HorizontalScrollerListModel -> HorizontalScroller(model = this, actionSink = sink, showDebug = debug, modifier = mod, padding = pad)
-
-            is IconNameCaptionListModel -> IconNameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is IconNameListModel -> IconNameListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is ImageNameCaptionListModel -> ImageNameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is ImageNameListModel -> ImageNameListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is LabelRatingStarListModel -> LabelRatingListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is LabelValueListModel -> LabelValueListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is NameCaptionListModel -> NameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is NameCaptionCheckboxListModel -> NameCaptionCheckboxListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is NameCaptionValueListModel -> NameCaptionValueListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is NotifListModel -> NotifListItem(model = this, actionSink = sink, modifier = mod)
-
-            is SearchResultListModel -> ImageNameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is SectionListModel -> SectionListItem(model = this, actionSink = sink, showDebug = debug, modifier = mod, padding = pad)
-
-            is SectionHeaderListModel -> SectionHeader(name = title, modifier = mod, padding = pad)
-
-            is SearchHistoryListModel -> SearchHistoryListItem(model = this, modifier = mod, actionSink = sink, padding = pad)
-
-            is SingleTextListModel -> LabelNoThingyItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is SmallTextListModel -> SmallText(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is GridImageListModel -> GridImage(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is SubsectionHeaderListModel -> SubsectionHeader(model = this, modifier = mod)
-
-            is SubsectionListModel -> Subsection(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            is WideItemListModel -> WideItem(model = this, actionSink = sink, modifier = mod, padding = pad)
-
-            // A DraggableListModel is meant for the reorderable path (SAGE's ReorderableScreen
-            // supplies the handle; wrap it in a DraggableListItem). If one reaches a normal list,
-            // render its inner content without a handle rather than falling through to the blank
-            // Spacer below.
-            is DraggableListModel -> content.Content(sink, debug, mod, pad)
-
-            // Swipe-to-remove works in any list path: wrap the inner content in SwipeToRemoveBox.
-            is DismissibleListModel -> SwipeToRemoveBox(onRemove = { sink.sendAction(dismissAction) }) {
-                content.Content(sink, debug, mod, pad)
-            }
-
-            is LoadingItemListModel -> {
-                when (loadingType) {
-                    LoadingType.PAGE,
-                    LoadingType.SQUARE,
-                    LoadingType.COVER,
-                    LoadingType.NOTIF,
-                    LoadingType.WIDE_ITEM,
-                    LoadingType.BIG_IMAGE -> LoadingItem(
-                        seed = dataId,
-                        loadingType = loadingType,
-                        modifier = mod,
-                        padding = pad
-                    )
-
-                    LoadingType.SECTION_HEADER -> LoadingSectionHeader(seed = dataId, modifier = mod, padding = pad)
-
-                    else -> LoadingTextItem(seed = dataId, loadingType = loadingType, modifier = mod, padding = pad)
-                }
-            }
-
-            else -> Spacer(modifier = mod)
+        // An app contributes app-owned ListModel subclasses (and can replace a built-in renderer)
+        // through SageRenderers.contentFor. It is consulted inside the tag and the measurement, so
+        // app rows get both exactly like the built-ins; null falls through to the built-ins.
+        val appContent = LocalSageRenderers.current.contentFor(this)
+        if (appContent != null) {
+            appContent(this, sink, debug, mod, pad)
+        } else {
+            BuiltInContent(sink, debug, mod, pad)
         }
+    }
+}
+
+/** The renderers SAGE ships, one per built-in [ListModel] type; a blank [Spacer] for anything else. */
+@Suppress("MaxLineLength")
+@Composable
+private fun ListModel.BuiltInContent(sink: ActionSink, debug: Boolean, mod: Modifier, pad: PaddingValues) {
+    when (this) {
+        is CheckableListModel -> LabelCheckboxItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is CollapsibleDetailsListModel -> CollapsibleDetailsListItem(model = this, modifier = mod, padding = pad)
+
+        is ConfirmationListModel -> ConfirmationListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is CtaListModel -> ActionItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is DropdownSettingListModel -> ExpandingDropdownListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is EditTextListModel -> EditTextListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is EmptyStateListModel -> EmptyListIndicator(model = this, modifier = mod)
+
+        is ErrorStateListModel -> EmptyListIndicator(model = this, showDebug = debug, modifier = mod)
+
+        is HeroImageListModel -> HeroImage(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is HorizontalScrollerListModel -> HorizontalScroller(model = this, actionSink = sink, showDebug = debug, modifier = mod, padding = pad)
+
+        is IconNameCaptionListModel -> IconNameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is IconNameListModel -> IconNameListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is ImageNameCaptionListModel -> ImageNameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is ImageNameListModel -> ImageNameListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is LabelRatingStarListModel -> LabelRatingListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is LabelValueListModel -> LabelValueListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is NameCaptionListModel -> NameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is NameCaptionCheckboxListModel -> NameCaptionCheckboxListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is NameCaptionValueListModel -> NameCaptionValueListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is NotifListModel -> NotifListItem(model = this, actionSink = sink, modifier = mod)
+
+        is SearchResultListModel -> ImageNameCaptionListItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is SectionListModel -> SectionListItem(model = this, actionSink = sink, showDebug = debug, modifier = mod, padding = pad)
+
+        is SectionHeaderListModel -> SectionHeader(name = title, modifier = mod, padding = pad)
+
+        is SearchHistoryListModel -> SearchHistoryListItem(model = this, modifier = mod, actionSink = sink, padding = pad)
+
+        is SingleTextListModel -> LabelNoThingyItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is SmallTextListModel -> SmallText(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is GridImageListModel -> GridImage(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is SubsectionHeaderListModel -> SubsectionHeader(model = this, modifier = mod)
+
+        is SubsectionListModel -> Subsection(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        is WideItemListModel -> WideItem(model = this, actionSink = sink, modifier = mod, padding = pad)
+
+        // A DraggableListModel is meant for the reorderable path (SAGE's ReorderableScreen
+        // supplies the handle; wrap it in a DraggableListItem). If one reaches a normal list,
+        // render its inner content without a handle rather than falling through to the blank
+        // Spacer below.
+        is DraggableListModel -> content.Content(sink, debug, mod, pad)
+
+        // Swipe-to-remove works in any list path: wrap the inner content in SwipeToRemoveBox.
+        is DismissibleListModel -> SwipeToRemoveBox(onRemove = { sink.sendAction(dismissAction) }) {
+            content.Content(sink, debug, mod, pad)
+        }
+
+        is LoadingItemListModel -> {
+            when (loadingType) {
+                LoadingType.PAGE,
+                LoadingType.SQUARE,
+                LoadingType.COVER,
+                LoadingType.NOTIF,
+                LoadingType.WIDE_ITEM,
+                LoadingType.BIG_IMAGE -> LoadingItem(
+                    seed = dataId,
+                    loadingType = loadingType,
+                    modifier = mod,
+                    padding = pad
+                )
+
+                LoadingType.SECTION_HEADER -> LoadingSectionHeader(seed = dataId, modifier = mod, padding = pad)
+
+                else -> LoadingTextItem(seed = dataId, loadingType = loadingType, modifier = mod, padding = pad)
+            }
+        }
+
+        else -> Spacer(modifier = mod)
     }
 }

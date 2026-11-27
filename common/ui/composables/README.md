@@ -67,7 +67,9 @@ thumbnail and shared-transition clip), `heroCornerRadius` (the destination's her
 
 `(ListModel) -> ListModelContent?`, consulted **before** the built-ins. Return `null` to fall
 through; return a composable to render that model. Use it both for app-owned `ListModel`
-subclasses and to replace a built-in renderer.
+subclasses and to replace a built-in renderer. An app row still gets the model-type test tag (on
+the `modifier` it is handed) and the perf measurement, exactly like a built-in row, so don't
+re-apply the tag yourself.
 
 ```kotlin
 // An app-owned row, dispatched through the same entry point.
